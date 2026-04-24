@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a2332;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e3048;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  
+  <!-- Accent line left -->
+  <rect x="0" y="0" width="6" height="630" fill="#f07020"/>
+  
+  <!-- Top accent line -->
+  <rect x="80" y="80" width="60" height="3" fill="#f07020"/>
+  
+  <!-- Service label -->
+  <text x="80" y="140" font-family="Georgia, serif" font-size="18" fill="rgba(255,255,255,0.5)" letter-spacing="4">ランナー専門サポート</text>
+  
+  <!-- Main title -->
+  <text x="80" y="240" font-family="Georgia, serif" font-size="96" font-weight="bold" fill="white">Re</text>
+  <text x="230" y="240" font-family="Georgia, serif" font-size="96" font-weight="bold" fill="#f07020"> Move</text>
+  
+  <!-- Tagline -->
+  <text x="80" y="320" font-family="Georgia, serif" font-size="26" fill="rgba(255,255,255,0.7)">動きを変えて、走り続けられる身体へ。</text>
+  
+  <!-- Divider -->
+  <rect x="80" y="370" width="1040" height="1" fill="rgba(255,255,255,0.1)"/>
+  
+  <!-- Description -->
+  <text x="80" y="420" font-family="Georgia, serif" font-size="20" fill="rgba(255,255,255,0.5)">痛みの根本原因を動きから分析。理学療法士・山田紘暉</text>
+  
+  <!-- Bottom info -->
+  <text x="80" y="530" font-family="Georgia, serif" font-size="18" fill="rgba(255,255,255,0.35)">理学療法士 / HUREC認定連動性シニアトレーナー</text>
+  <text x="80" y="560" font-family="Georgia, serif" font-size="18" fill="rgba(255,255,255,0.35)">対面（愛知県内）/ オンライン対応</text>
+  
+  <!-- Right decoration -->
+  <circle cx="1050" cy="315" r="180" fill="rgba(240,112,32,0.05)"/>
+  <circle cx="1050" cy="315" r="120" fill="rgba(240,112,32,0.05)"/>
+  <circle cx="1050" cy="315" r="60" fill="rgba(240,112,32,0.08)"/>
+</svg>

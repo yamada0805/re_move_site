@@ -1,0 +1,7 @@
+{
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/form-analysis.html", "destination": "/analysis", "permanent": true },
+    { "source": "/form-analysis", "destination": "/analysis", "permanent": true }
+  ]
+}

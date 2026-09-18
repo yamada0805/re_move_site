@@ -175,18 +175,23 @@
   .site-nav a.current { color: var(--accent); font-weight: 700; }
 
   .apply {
-    padding: 80px 0 120px;
-    background: #ffffff;
+    padding: 100px 0;
+    background: #1e2d42;
+    color: #fff;
+    border-top: 3px solid var(--accent);
   }
+  .apply .section-label { color: rgba(255,255,255,0.35); }
+  .apply .divider { background: var(--accent); }
+  .apply .jp-heading { color: #fff; }
+
   .apply-row {
     display: grid;
     grid-template-columns: 1fr auto;
     gap: 48px;
     align-items: center;
-    padding: 48px 0;
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
+    padding: 44px 0 0;
     margin-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.1);
   }
   .apply-badge {
     display: inline-block;
@@ -203,29 +208,30 @@
     font-family: 'Shippori Mincho', serif;
     font-size: 24px;
     font-weight: 800;
-    color: var(--ink);
+    color: #fff;
     margin-bottom: 12px;
   }
   .apply-desc {
     font-size: 13px;
-    color: var(--muted);
+    color: rgba(255,255,255,0.5);
     line-height: 2;
-    max-width: 400px;
+    max-width: 420px;
   }
   .apply-right {
-    text-align: right;
+    text-align: center;
     flex-shrink: 0;
+    min-width: 240px;
   }
   .apply-amount-wrap {
     display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    gap: 12px;
-    margin-bottom: 18px;
+    align-items: baseline;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 16px;
   }
   .apply-amount {
     font-family: 'Shippori Mincho', serif;
-    font-size: 52px;
+    font-size: 34px;
     font-weight: 800;
     color: var(--accent);
     line-height: 1;
@@ -233,19 +239,27 @@
   }
   .apply-unit-label {
     font-size: 12px;
-    color: var(--muted);
+    color: rgba(255,255,255,0.45);
     letter-spacing: 0.08em;
-    padding-bottom: 8px;
+  }
+  .apply-right .cta-primary {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .apply-note {
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.04em;
+    margin-top: 12px;
   }
 
   @media (max-width: 720px) {
-    .apply { padding: 64px 0 80px; }
-    .apply-row { grid-template-columns: 1fr; gap: 24px; padding: 36px 0; }
-    .apply-right { text-align: left; }
-    .apply-amount-wrap { justify-content: flex-start; }
+    .apply { padding: 72px 0; }
+    .apply-row { grid-template-columns: 1fr; gap: 28px; padding: 32px 0 0; }
+    .apply-right { min-width: 0; }
     .apply-name { font-size: 20px; }
-    .apply-desc { font-size: 13px; }
-    .apply-amount { font-size: 42px; }
+    .apply-amount { font-size: 30px; }
   }
 
   .trial-invite {
@@ -1835,6 +1849,7 @@
             <span class="apply-unit-label">オンライン30分</span>
           </div>
           <a href="https://lin.ee/tjPDQay" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': 'LINE登録ボタン_フォーム分析申込'})" class="cta-primary" target="_blank">LINEで申し込む</a>
+          <p class="apply-note">LINEの友だち追加だけでも大丈夫です</p>
         </div>
       </div>
     </div>

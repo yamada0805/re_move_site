@@ -178,47 +178,74 @@
     padding: 80px 0 120px;
     background: #ffffff;
   }
-  .apply-box {
-    margin-top: 10px;
-    padding: 40px 28px;
-    text-align: center;
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 8px;
+  .apply-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 48px;
+    align-items: center;
+    padding: 48px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    margin-top: 32px;
   }
-  .apply-points {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 28px;
-    margin-bottom: 26px;
-  }
-  .apply-point {
-    font-family: 'Zen Kaku Gothic New', sans-serif;
-    font-size: 13px;
-    letter-spacing: 0.06em;
-    color: var(--muted);
-  }
-  .apply-point strong {
-    display: block;
+  .apply-badge {
+    display: inline-block;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 26px;
+    font-size: 11px;
     font-weight: 700;
-    line-height: 1.2;
+    letter-spacing: 0.25em;
     color: var(--accent);
-    letter-spacing: 0.02em;
+    border: 1px solid var(--accent);
+    padding: 4px 12px;
+    margin-bottom: 16px;
   }
-  .apply-steps {
-    font-size: 14px;
+  .apply-name {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .apply-desc {
+    font-size: 13px;
     color: var(--muted);
     line-height: 2;
-    margin-top: 22px;
+    max-width: 400px;
+  }
+  .apply-right {
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .apply-amount-wrap {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .apply-amount {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 52px;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+  .apply-unit-label {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    padding-bottom: 8px;
   }
 
   @media (max-width: 720px) {
     .apply { padding: 64px 0 80px; }
-    .apply-box { padding: 30px 20px; }
-    .apply-points { gap: 20px; }
+    .apply-row { grid-template-columns: 1fr; gap: 24px; padding: 36px 0; }
+    .apply-right { text-align: left; }
+    .apply-amount-wrap { justify-content: flex-start; }
+    .apply-name { font-size: 20px; }
+    .apply-desc { font-size: 13px; }
+    .apply-amount { font-size: 42px; }
   }
 
   .trial-invite {
@@ -1794,16 +1821,20 @@
       <span class="section-label">Apply</span>
       <div class="divider"></div>
       <h2 class="jp-heading" style="font-size: clamp(22px,3.5vw,34px); line-height:1.5;">無料フォーム分析のお申し込み</h2>
-      <div class="apply-box">
-        <div class="apply-points">
-          <span class="apply-point"><strong>無料</strong></span>
-          <span class="apply-point">オンライン30分</span>
-          <span class="apply-point"><strong>毎月10名</strong>まで</span>
+      <div class="apply-row">
+        <div class="apply-left">
+          <span class="apply-badge">毎月10名まで</span>
+          <h3 class="apply-name">無料フォーム分析</h3>
+          <p class="apply-desc">
+            LINEで「分析」と送っていただければ、撮影方法をご案内します。動画が届いてから1週間ほどでフィードバックをします。
+          </p>
         </div>
-        <a href="https://lin.ee/tjPDQay" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': 'LINE登録ボタン_フォーム分析申込'})" class="cta-primary" target="_blank">LINEで申し込む</a>
-        <div class="apply-steps">
-          LINEで「分析」と送っていただければ、撮影方法をご案内します。<br class="sp-br">
-          動画が届いてから1週間ほどでフィードバックをします。
+        <div class="apply-right">
+          <div class="apply-amount-wrap">
+            <span class="apply-amount">無料</span>
+            <span class="apply-unit-label">オンライン30分</span>
+          </div>
+          <a href="https://lin.ee/tjPDQay" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': 'LINE登録ボタン_フォーム分析申込'})" class="cta-primary" target="_blank">LINEで申し込む</a>
         </div>
       </div>
     </div>
@@ -2018,9 +2049,6 @@
       <span class="section-label">Trial Session</span>
       <div class="divider"></div>
       <h2 class="jp-heading" style="font-size: clamp(20px,3vw,30px); line-height:1.6;">すでに痛みが強い方へ</h2>
-      <p class="trial-invite-lead">
-        フォーム分析は、動画から「どこに負担が集中しているのか」をお伝えするものです。原因は分かりますが、その場で動きを変えるところまでは行いません。
-      </p>
       <p class="trial-invite-lead">
         <strong>すでに痛みが強く、まずは走れる状態を目指したいという方には、初回限定の体験セッションもご案内しています。</strong>実際に動きを見て、その場で変えて、変化があるかどうかを確かめる80分です。
       </p>

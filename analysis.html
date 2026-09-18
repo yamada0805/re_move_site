@@ -174,37 +174,57 @@
   .site-nav a:hover { color: var(--accent); }
   .site-nav a.current { color: var(--accent); font-weight: 700; }
 
+  .apply {
+    padding: 80px 0 120px;
+    background: #ffffff;
+  }
   .apply-box {
     margin-top: 10px;
-    padding: 36px 24px;
+    padding: 40px 28px;
     text-align: center;
-    background: var(--warm-white);
-    border: 2px solid var(--accent);
-    border-radius: 10px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 8px;
   }
   .apply-points {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 22px;
+    gap: 28px;
+    margin-bottom: 26px;
   }
   .apply-point {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
     font-size: 13px;
-    padding: 6px 14px;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    color: var(--ink);
-    background: var(--paper);
+    letter-spacing: 0.06em;
+    color: var(--muted);
   }
-  .apply-point strong { color: var(--accent); }
+  .apply-point strong {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
   .apply-steps {
     font-size: 14px;
     color: var(--muted);
     line-height: 2;
-    margin-top: 20px;
+    margin-top: 22px;
   }
 
+  @media (max-width: 720px) {
+    .apply { padding: 64px 0 80px; }
+    .apply-box { padding: 30px 20px; }
+    .apply-points { gap: 20px; }
+  }
+
+  .trial-invite {
+    padding: 80px 0 120px;
+    background: #f0f4f8;
+  }
   .trial-invite-lead {
     font-size: 15px;
     line-height: 2;
@@ -213,11 +233,16 @@
   }
   .trial-invite-box {
     margin-top: 28px;
-    padding: 30px 24px;
+    padding: 34px 28px;
     text-align: center;
-    background: var(--warm-white);
+    background: #ffffff;
     border: 1px solid var(--line);
     border-radius: 8px;
+  }
+
+  @media (max-width: 720px) {
+    .trial-invite { padding: 64px 0 80px; }
+    .trial-invite-box { padding: 26px 20px; }
   }
   .trial-invite-name {
     font-size: 15px;
@@ -1763,7 +1788,7 @@
 </section>
 
 <!-- APPLY -->
-<section class="why">
+<section class="apply">
   <div class="container">
     <div class="fade-in">
       <span class="section-label">Apply</span>
@@ -1778,7 +1803,7 @@
         <a href="https://lin.ee/tjPDQay" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': 'LINE登録ボタン_フォーム分析申込'})" class="cta-primary" target="_blank">LINEで申し込む</a>
         <div class="apply-steps">
           LINEで「分析」と送っていただければ、撮影方法をご案内します。<br class="sp-br">
-          動画が届いてから、1週間ほどでフィードバックの日程を調整します。
+          動画が届いてから1週間ほどでフィードバックをします。
         </div>
       </div>
     </div>
@@ -1987,7 +2012,7 @@
 </section>
 
 <!-- TRIAL INVITE -->
-<section class="why">
+<section class="trial-invite">
   <div class="container">
     <div class="fade-in">
       <span class="section-label">Trial Session</span>

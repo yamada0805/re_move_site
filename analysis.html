@@ -325,9 +325,58 @@
     .site-nav a { font-size: 11px; }
   }
 
-  @media (max-width: 480px) {
-    .site-nav { gap: 12px; margin-right: 10px; }
-    .site-nav a { font-size: 11px; }
+  /* ハンバーガーメニュー */
+  .nav-toggle {
+    display: none;
+    width: 40px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: 14px;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    position: relative;
+  }
+  .nav-toggle span {
+    display: block;
+    position: absolute;
+    left: 9px;
+    width: 22px;
+    height: 1.5px;
+    background: var(--ink);
+    transition: transform 0.25s, opacity 0.2s;
+  }
+  .nav-toggle span:nth-child(1) { top: 14px; }
+  .nav-toggle span:nth-child(2) { top: 20px; }
+  .nav-toggle span:nth-child(3) { top: 26px; }
+  .nav-toggle.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  @media (max-width: 720px) {
+    .nav-toggle { display: block; }
+    .site-nav {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      margin: 0;
+      background: rgba(245,242,237,0.98);
+      border-bottom: 1px solid var(--line);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.28s ease;
+    }
+    .site-nav.open { max-height: 200px; }
+    .site-nav a {
+      font-size: 14px;
+      padding: 16px 24px;
+      border-top: 1px solid var(--line);
+    }
   }
 
   .header-cta {
@@ -379,9 +428,7 @@
   .logo-re { color: var(--accent); }
   .logo-move { color: #1a2332; }
   @media (max-width: 480px) {
-    /* ナビが入って横幅が足りないので、ロゴはマークだけにする */
-    .logo-text-block { display: none; }
-    .header-logo-img { height: 36px; }
+    .header-logo-img { height: 44px; }
     .logo-main { font-size: 17px; }
     .logo-sub { font-size: 8px; }
   }
@@ -1599,6 +1646,9 @@
         <span class="logo-main"><span class="logo-re">Re</span> <span class="logo-move">Move</span></span>
       </div>
     </a>
+    <button class="nav-toggle" aria-label="メニュー" aria-expanded="false" onclick="toggleNav(this)">
+      <span></span><span></span><span></span>
+    </button>
     <nav class="site-nav">
       <a href="analysis.html" class="current">フォーム分析</a>
       <a href="trial.html">体験セッション</a>
@@ -2082,7 +2132,7 @@
       <div class="divider"></div>
       <h2 class="jp-heading" style="font-size: clamp(20px,3vw,30px); line-height:1.6;">すでに痛みが強い方へ</h2>
       <p class="trial-invite-target">すでに痛みが強く、まずは走れる状態を目指したいという方向け</p>
-      <p class="trial-invite-catch">初回限定の体験セッション実施中！</p>
+      <p class="trial-invite-catch">初回限定の体験セッション実施中</p>
       <p class="trial-invite-lead">痛みの原因を動きから分析し、セッションの中で原因となる動きの改善に取り組みます。</p>
       <div class="trial-invite-box">
         <div class="trial-invite-name">初回体験セッション（80分）</div>
@@ -2143,6 +2193,14 @@
   }, { threshold: 0.1 });
 
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // ハンバーガーメニュー
+  function toggleNav(btn) {
+    const nav = document.querySelector('.site-nav');
+    const open = btn.classList.toggle('open');
+    nav.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
 
   // FAQ
   function toggleFaq(btn) {

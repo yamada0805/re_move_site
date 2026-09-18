@@ -155,6 +155,56 @@
     margin: 0 auto;
     padding: 0 24px;
   }
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    margin-left: auto;
+    margin-right: 22px;
+  }
+  .site-nav a {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-size: 13px;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+  .site-nav a:hover { color: var(--accent); }
+  .site-nav a.current { color: var(--accent); font-weight: 700; }
+
+  .page-head {
+    padding: 140px 0 56px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+  }
+  .page-head-lead {
+    margin-top: 18px;
+    font-size: 15px;
+    line-height: 2;
+    color: var(--ink);
+  }
+  .page-head-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 24px;
+  }
+  .page-head .hero-badge {
+    color: var(--ink);
+    border: 1px solid var(--line);
+    background: var(--warm-white);
+  }
+  .page-head .hero-badge strong { color: var(--accent); }
+  .page-head-cta { margin-top: 28px; }
+
+  @media (max-width: 720px) {
+    .site-nav { gap: 14px; margin-right: 12px; }
+    .site-nav a { font-size: 11px; }
+    .page-head { padding: 110px 0 40px; }
+  }
+
   .header-cta {
     font-family: 'Zen Kaku Gothic New', sans-serif;
     font-size: 13px;
@@ -1445,29 +1495,28 @@
         <span class="logo-main"><span class="logo-re">Re</span> <span class="logo-move">Move</span></span>
       </div>
     </a>
+    <nav class="site-nav">
+      <a href="index.html">ホーム</a>
+      <a href="analysis.html">フォーム分析</a>
+      <a href="trial.html" class="current">体験セッション</a>
+    </nav>
     <a href="https://lin.ee/tjPDQay" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': 'LINE登録ボタン_体験セッション'})" class="header-cta" target="_blank">LINEで申し込む</a>
   </div>
 </header>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-img">
-    <img src="IMG_9491_2.JPG" alt="ランニングをするランナー">
-  </div>
-  <div class="hero-track-lines"></div>
-  <div class="hero-inner">
-    <span class="hero-label">初回体験セッション <span style="text-transform:none;">Re Move</span></span>
-    <p class="hero-catch">説明を聞くだけでは、<br class="sp-br">たぶん納得できません</p>
-    <h1 class="hero-main">
-      痛みの原因を、<br>
-      <em>その場で動かして<br class="sp-br">確かめる80分</em>
-    </h1>
-    <div class="hero-badges">
+<!-- PAGE HEAD -->
+<section class="page-head">
+  <div class="container">
+    <span class="section-label">Trial Session</span>
+    <div class="divider"></div>
+    <h1 class="jp-heading" style="font-size: clamp(24px,4vw,38px); line-height:1.5;">初回体験セッションについて</h1>
+    <p class="page-head-lead">痛みの原因を、その場で動かして確かめる80分です。<br class="sp-br">いまの動きを一緒に確認して、その場で変えてみて、変化があるかどうかを確かめます。</p>
+    <div class="page-head-badges">
       <span class="hero-badge"><strong>80分</strong></span>
       <span class="hero-badge">対面 / オンライン</span>
       <span class="hero-badge"><strong>初回4,400円</strong></span>
     </div>
-    <div class="hero-ctas">
+    <div class="page-head-cta">
       <a href="https://lin.ee/tjPDQay" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': 'LINE登録ボタン_体験セッション'})" class="cta-primary" target="_blank">LINEで申し込む</a>
     </div>
   </div>

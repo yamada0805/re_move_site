@@ -315,14 +315,9 @@
     .site-nav a { font-size: 11px; }
   }
 
-  /* スマホではヘッダーを1行に収める（ロゴの文字ブロックを隠す） */
   @media (max-width: 480px) {
-    .logo-text-block { display: none; }
-    .header-logo-img { height: 36px; }
     .site-nav { gap: 12px; margin-right: 10px; }
     .site-nav a { font-size: 11px; }
-    .header-cta { font-size: 11px; padding: 8px 12px; white-space: nowrap; }
-    header .inner { padding: 0 14px; }
   }
 
   .header-cta {
@@ -374,7 +369,9 @@
   .logo-re { color: var(--accent); }
   .logo-move { color: #1a2332; }
   @media (max-width: 480px) {
-    .header-logo-img { height: 44px; }
+    /* ナビが入って横幅が足りないので、ロゴはマークだけにする */
+    .logo-text-block { display: none; }
+    .header-logo-img { height: 36px; }
     .logo-main { font-size: 17px; }
     .logo-sub { font-size: 8px; }
   }
@@ -1424,7 +1421,8 @@
     .container { padding: 0 20px; }
 
     header { padding: 14px 0; }
-    .header-cta { font-size: 12px; padding: 8px 16px; }
+    header .inner { padding: 0 14px; }
+    .header-cta { font-size: 11px; padding: 8px 12px; white-space: nowrap; }
 
     .hero { padding: 100px 20px 64px; min-height: 90vh; }
     .hero-catch { font-size: 12px; margin-bottom: 14px; color: rgba(255,255,255,0.75) !important; }

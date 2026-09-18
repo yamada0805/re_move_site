@@ -174,6 +174,45 @@
   .site-nav a:hover { color: var(--accent); }
   .site-nav a.current { color: var(--accent); font-weight: 700; }
 
+  .trial-invite-lead {
+    font-size: 15px;
+    line-height: 2;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+  .trial-invite-box {
+    margin-top: 28px;
+    padding: 30px 24px;
+    text-align: center;
+    background: var(--warm-white);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+  .trial-invite-name {
+    font-size: 15px;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .trial-invite-price {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1.1;
+  }
+  .trial-invite-from {
+    font-size: 19px;
+    color: var(--muted);
+    text-decoration: line-through;
+    margin-right: 10px;
+  }
+  .trial-invite-note {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.9;
+    margin-top: 10px;
+  }
+
   @media (max-width: 720px) {
     .site-nav { gap: 14px; margin-right: 12px; }
     .site-nav a { font-size: 11px; }
@@ -1889,6 +1928,29 @@
             <p class="faq-a-text">はい、可能です。担当の医師や治療家の指示がある場合はそちらを優先してください。</p>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRIAL INVITE -->
+<section class="why">
+  <div class="container">
+    <div class="fade-in">
+      <span class="section-label">Trial Session</span>
+      <div class="divider"></div>
+      <h2 class="jp-heading" style="font-size: clamp(20px,3vw,30px); line-height:1.6;">すでに痛みが強い方へ</h2>
+      <p class="trial-invite-lead">
+        フォーム分析は、動画から「どこに負担が集中しているのか」をお伝えするものです。原因は分かりますが、その場で動きを変えるところまでは行いません。
+      </p>
+      <p class="trial-invite-lead">
+        <strong>すでに痛みが強く、まずは走れる状態を目指したいという方には、初回限定の体験セッションもご案内しています。</strong>実際に動きを見て、その場で変えて、変化があるかどうかを確かめる80分です。
+      </p>
+      <div class="trial-invite-box">
+        <div class="trial-invite-name">初回体験セッション（80分）</div>
+        <div class="trial-invite-price"><span class="trial-invite-from">¥8,800</span>¥4,400</div>
+        <div class="trial-invite-note">税込／初回の方限定<br>対面（愛知県内の公園）またはオンライン</div>
+        <a href="trial.html" class="cta-primary" style="margin-top:22px; display:inline-flex;">体験セッションについて見る</a>
       </div>
     </div>
   </div>

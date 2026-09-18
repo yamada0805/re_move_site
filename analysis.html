@@ -174,6 +174,37 @@
   .site-nav a:hover { color: var(--accent); }
   .site-nav a.current { color: var(--accent); font-weight: 700; }
 
+  .apply-box {
+    margin-top: 10px;
+    padding: 36px 24px;
+    text-align: center;
+    background: var(--warm-white);
+    border: 2px solid var(--accent);
+    border-radius: 10px;
+  }
+  .apply-points {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  .apply-point {
+    font-size: 13px;
+    padding: 6px 14px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--ink);
+    background: var(--paper);
+  }
+  .apply-point strong { color: var(--accent); }
+  .apply-steps {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 2;
+    margin-top: 20px;
+  }
+
   .trial-invite-lead {
     font-size: 15px;
     line-height: 2;
@@ -1731,6 +1762,29 @@
   </div>
 </section>
 
+<!-- APPLY -->
+<section class="why">
+  <div class="container">
+    <div class="fade-in">
+      <span class="section-label">Apply</span>
+      <div class="divider"></div>
+      <h2 class="jp-heading" style="font-size: clamp(22px,3.5vw,34px); line-height:1.5;">無料フォーム分析のお申し込み</h2>
+      <div class="apply-box">
+        <div class="apply-points">
+          <span class="apply-point"><strong>無料</strong></span>
+          <span class="apply-point">オンライン30分</span>
+          <span class="apply-point"><strong>毎月10名</strong>まで</span>
+        </div>
+        <a href="https://lin.ee/tjPDQay" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': 'LINE登録ボタン_フォーム分析申込'})" class="cta-primary" target="_blank">LINEで申し込む</a>
+        <div class="apply-steps">
+          LINEで「分析」と送っていただければ、撮影方法をご案内します。<br class="sp-br">
+          動画が届いてから、1週間ほどでフィードバックの日程を調整します。
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- VOICE -->
 <section class="voice">
   <div class="container">
@@ -1947,8 +2001,7 @@
       </p>
       <div class="trial-invite-box">
         <div class="trial-invite-name">初回体験セッション（80分）</div>
-        <div class="trial-invite-price"><span class="trial-invite-from">¥8,800</span>¥4,400</div>
-        <div class="trial-invite-note">税込／初回の方限定<br>対面（愛知県内の公園）またはオンライン</div>
+        <div class="trial-invite-note">対面（愛知県内の公園）またはオンライン<br>初回限定の価格でご案内しています</div>
         <a href="trial.html" class="cta-primary" style="margin-top:22px; display:inline-flex;">体験セッションについて見る</a>
       </div>
     </div>

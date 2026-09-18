@@ -233,6 +233,31 @@
     text-transform: none;
   }
   .logo-accent { color: var(--accent); }
+
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    margin-left: auto;
+    margin-right: 22px;
+  }
+  .site-nav a {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-size: 13px;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+  .site-nav a:hover { color: var(--accent); }
+  .site-nav a.current { color: var(--accent); font-weight: 700; }
+
+  @media (max-width: 720px) {
+    .site-nav { gap: 14px; margin-right: 12px; }
+    .site-nav a { font-size: 11px; }
+  }
+
   .header-cta {
     font-family: 'Zen Kaku Gothic New', sans-serif;
     font-size: 13px;
@@ -2150,6 +2175,11 @@
         <span class="logo-main"><span class="logo-re">Re</span> <span class="logo-move">Move</span></span>
       </div>
     </a>
+    <nav class="site-nav">
+      <a href="index.html" class="current">ホーム</a>
+      <a href="analysis.html">フォーム分析</a>
+      <a href="trial.html">体験セッション</a>
+    </nav>
     <a href="https://lin.ee/tjPDQay" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': 'LINE登録ボタン'})" class="header-cta" target="_blank">LINEで無料相談する</a>
   </div>
 </header>

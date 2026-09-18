@@ -205,6 +205,17 @@
     .page-head { padding: 110px 0 40px; }
   }
 
+  /* スマホではヘッダーを1行に収める（ロゴの文字ブロックを隠す） */
+  @media (max-width: 480px) {
+    .logo-text-block { display: none; }
+    .header-logo-img { height: 36px; }
+    .site-nav { gap: 12px; margin-right: 10px; }
+    .site-nav a { font-size: 11px; }
+    .header-cta { font-size: 11px; padding: 8px 12px; white-space: nowrap; }
+    header .inner { padding: 0 14px; }
+    .page-head { padding: 96px 0 40px; }
+  }
+
   .header-cta {
     font-family: 'Zen Kaku Gothic New', sans-serif;
     font-size: 13px;

@@ -1430,13 +1430,15 @@
   .analysis .divider,
   .steps .section-label,
   .steps .jp-heading,
-  .steps .divider,
-  .trainer .section-label,
-  .trainer .divider {
+  .steps .divider {
     text-align: left;
     margin-left: 0;
     margin-right: 0;
   }
+
+  /* TRAINERのラベルと線は中央に置く */
+  .trainer .section-label { text-align: center; }
+  .trainer .divider { margin: 20px auto; }
 
   .sp-br { display: none; }
   @media (max-width: 480px) {

@@ -347,16 +347,11 @@
   .nav-toggle.open span:nth-child(2) { opacity: 0; }
   .nav-toggle.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
-  /* スマホのTRAINER：写真とタグを縦に積み、余白を詰める */
+  /* スマホのTRAINER：名前の右に写真、タグはその下に全幅 */
   @media (max-width: 720px) {
     .trainer { padding: 44px 0 64px; }
     .trainer-grid { margin-top: 24px; }
-    .trainer-name-row {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 18px;
-      margin: 16px 0 28px;
-    }
+    .trainer-name-row { gap: 16px; margin: 0 0 20px; }
     .trainer-tags { width: 100%; margin-top: 0; }
   }
 
@@ -1077,8 +1072,9 @@
   .trainer-name-row {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 32px;
-    margin: 20px 0 36px;
+    margin: 0 0 24px;
   }
 
   .trainer-photo-circle {
@@ -1596,15 +1592,10 @@
   ═══════════════════════════════════════ */
   @media (max-width: 480px) {
 
-    /* TRAINER：写真とタグを縦積みにして、階段状になるのを防ぐ */
+    /* TRAINER：名前の右に写真、タグはその下に全幅 */
     .trainer { padding: 44px 0 64px; }
     .trainer-grid { margin-top: 24px; }
-    .trainer-name-row {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 18px;
-      margin: 16px 0 28px;
-    }
+    .trainer-name-row { gap: 16px; margin: 0 0 20px; }
     .trainer-tags { width: 100%; margin-top: 0; }
 
     body { font-weight: 500; }
@@ -1998,20 +1989,20 @@
       <div class="divider"></div>
     </div>
     <div class="trainer-grid fade-in">
-      <div class="trainer-name-block">
-        <div class="trainer-en">Hiroki Yamada</div>
-        <div class="trainer-name">山田 紘暉</div>
-      </div>
       <div class="trainer-name-row">
+        <div class="trainer-name-block">
+          <div class="trainer-en">Hiroki Yamada</div>
+          <div class="trainer-name">山田 紘暉</div>
+        </div>
         <div class="trainer-photo-circle">
           <img src="IMG_3965_2.JPG" alt="山田紘暉のプロフィール写真">
         </div>
-        <div class="trainer-tags">
-          <span class="trainer-tag">理学療法士</span>
-          <span class="trainer-tag">HUREC認定連動性トレーナー</span>
-          <span class="trainer-tag">フルマラソン 2:53:20</span>
-          <span class="trainer-tag">ハーフマラソン 1:18:42</span>
-        </div>
+      </div>
+      <div class="trainer-tags">
+        <span class="trainer-tag">理学療法士</span>
+        <span class="trainer-tag">HUREC認定連動性トレーナー</span>
+        <span class="trainer-tag">フルマラソン 2:53:20</span>
+        <span class="trainer-tag">ハーフマラソン 1:18:42</span>
       </div>
       <div class="trainer-story">
         <p class="trainer-story-text">中学時代、東海総体・全国大会を目指して練習を重ねていた2年の冬、腰椎分離症を発症。3年生最後の夏の大会を走れずに終わった経験が、今のサポートの原点です。</p>

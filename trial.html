@@ -1548,26 +1548,126 @@
 <body>
 
 <style>
-  .trial-lead { font-size: 16px; line-height: 2; color: var(--ink); margin-bottom: 8px; }
-  .trial-flow { list-style: none; counter-reset: step; margin-top: 8px; }
-  .trial-flow li { position: relative; padding: 18px 0 18px 64px; border-bottom: 1px solid var(--line); }
-  .trial-flow li:first-child { border-top: 1px solid var(--line); }
-  .trial-flow li::before {
-    counter-increment: step; content: counter(step, decimal-leading-zero);
-    position: absolute; left: 0; top: 18px;
-    font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 600; color: var(--accent);
+  /* ───── POINTS（サポートの特徴）───── */
+  .points { padding: 80px 0 120px; background: #ffffff; }
+  .points-grid { margin-top: 64px; display: grid; grid-template-columns: 1fr; gap: 0; }
+  .point-item {
+    background: transparent; padding: 48px 0; display: grid;
+    grid-template-columns: auto 1fr; gap: 48px; align-items: start;
+    border-bottom: 1px solid var(--line);
   }
-  .trial-flow strong { display: block; font-size: 17px; margin-bottom: 4px; }
-  .trial-flow span { font-size: 14px; color: var(--muted); line-height: 1.9; }
-  .trial-price { text-align: center; padding: 32px 24px; background: var(--warm-white); border: 1px solid var(--line); border-radius: 8px; }
-  .trial-price-name { font-size: 15px; color: var(--muted); margin-bottom: 8px; }
-  .trial-price-amount { font-family: 'Barlow Condensed', sans-serif; font-size: 46px; font-weight: 700; color: var(--accent); line-height: 1.1; }
-  .trial-price-note { font-size: 13px; color: var(--muted); margin-top: 10px; line-height: 1.9; }
-  .trial-where { margin-top: 24px; font-size: 14px; color: var(--ink); line-height: 2; }
-  .trial-note { margin-top: 28px; padding: 20px 22px; background: var(--paper); border-left: 3px solid var(--accent); font-size: 14px; line-height: 2; color: var(--ink); }
-  .trial-list { list-style: none; }
-  .trial-list li { position: relative; padding: 10px 0 10px 26px; font-size: 15px; line-height: 1.9; border-bottom: 1px dashed var(--line); }
-  .trial-list li::before { content: ""; position: absolute; left: 4px; top: 20px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+  .point-item:first-child { border-top: 1px solid var(--line); }
+  .point-label {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent);
+    writing-mode: vertical-rl; text-orientation: mixed;
+    padding-right: 20px; border-right: 1px solid var(--line);
+    min-height: 120px; display: flex; align-items: center; line-height: 1;
+  }
+  .point-icon { color: var(--accent); margin-bottom: 16px; opacity: 0.9; }
+  .point-icon svg { display: block; }
+  .point-title {
+    font-family: 'Shippori Mincho', serif; font-size: 20px; font-weight: 700;
+    color: var(--ink); margin-bottom: 16px; line-height: 1.5;
+  }
+  .point-text { font-size: 14px; line-height: 2; color: var(--muted); }
+  .points .section-label, .points .jp-heading, .points .divider {
+    text-align: left; margin-left: 0; margin-right: 0;
+  }
+
+  /* ───── セッションの流れの補足 ───── */
+  .steps-intro { font-size: 15px; line-height: 2; color: var(--muted); max-width: 620px; margin: 20px 0 64px; }
+  .session-info {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0;
+    margin: 40px 0 0; border-top: 1px solid var(--line);
+  }
+  .session-info-item {
+    display: flex; flex-direction: column; gap: 8px;
+    padding: 24px 32px 24px 0; border-bottom: 1px solid var(--line);
+  }
+  .session-info-label {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent);
+  }
+  .session-info-value { font-size: 14px; color: var(--ink); line-height: 1.8; font-weight: 500; }
+
+  /* ───── PRICE（料金）───── */
+  .price { padding: 100px 0; background: #1a2332; color: #fff; border-top: 3px solid var(--accent); }
+  .price .section-label { color: rgba(255,255,255,0.35); }
+  .price .divider { background: var(--accent); }
+  .price-heading {
+    font-family: 'Shippori Mincho', serif; font-size: clamp(28px, 4vw, 44px);
+    font-weight: 800; color: #fff; margin: 16px 0 56px;
+  }
+  .price-trial {
+    display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center;
+    padding: 48px 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .price-trial-badge {
+    display: inline-block; font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--accent); border: 1px solid var(--accent); padding: 4px 12px; margin-bottom: 16px;
+  }
+  .price-trial-name {
+    font-family: 'Shippori Mincho', serif; font-size: 24px; font-weight: 800;
+    color: #fff; margin-bottom: 12px;
+  }
+  .price-trial-desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 2; max-width: 400px; }
+  .price-trial-right { text-align: right; flex-shrink: 0; }
+  .price-trial-arrow-wrap { display: flex; align-items: flex-end; gap: 12px; margin-bottom: 8px; }
+  .price-trial-from {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 28px; font-weight: 400;
+    color: rgba(255,255,255,0.3); letter-spacing: 0.02em; line-height: 1; padding-bottom: 6px;
+  }
+  .price-trial-arrow { font-size: 18px; color: var(--accent); font-weight: 300; padding-bottom: 8px; }
+  .price-trial-to {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 56px; font-weight: 700;
+    color: #fff; line-height: 1; letter-spacing: -0.02em;
+  }
+  .price-trial-unit-label {
+    font-size: 12px; color: rgba(255,255,255,0.4); letter-spacing: 0.08em;
+    padding-bottom: 6px; align-self: flex-end;
+  }
+  .price-note { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 2; margin-top: 32px; }
+
+  @media (max-width: 768px) {
+    .point-item { grid-template-columns: 1fr; gap: 20px; }
+    .point-label {
+      writing-mode: horizontal-tb; border-right: none; border-bottom: 1px solid var(--line);
+      padding-right: 0; padding-bottom: 12px; min-height: auto;
+    }
+    .session-info { grid-template-columns: 1fr; }
+    .session-info-item { padding-right: 0; }
+    .price-trial { grid-template-columns: 1fr; gap: 32px; }
+    .price-trial-right { text-align: left; }
+  }
+
+  @media (max-width: 480px) {
+    .points { padding: 64px 0 80px; }
+    .points-grid { margin-top: 40px; }
+    .point-item { grid-template-columns: 1fr; padding: 32px 0; gap: 16px; }
+    .point-label {
+      writing-mode: horizontal-tb; border-right: none; border-bottom: 1px solid var(--line);
+      padding-right: 0; padding-bottom: 12px; min-height: auto;
+    }
+    .point-title { font-size: 17px; }
+    .point-text { font-size: 14px; color: #3a4250 !important; }
+    .steps-intro { font-size: 14px; margin-bottom: 32px; color: #4a5260 !important; }
+    .session-info { grid-template-columns: 1fr; margin: 28px 0 0; }
+    .session-info-item { padding: 18px 0; }
+    .session-info-value { color: #2a3240 !important; font-size: 14px; }
+    .price { padding: 72px 0; }
+    .price-heading { font-size: 28px; margin-bottom: 40px; }
+    .price-trial { grid-template-columns: 1fr; gap: 24px; padding: 36px 0; }
+    .price-trial-right { text-align: left; }
+    .price-trial-name { font-size: 20px; }
+    .price-trial-desc { font-size: 13px; color: rgba(255,255,255,0.75) !important; }
+    .price-trial-from { font-size: 22px; }
+    .price-trial-to { font-size: 44px; }
+    .price-note { color: rgba(255,255,255,0.6) !important; }
+  }
 </style>
 
 <!-- HEADER -->
@@ -1615,50 +1715,118 @@
     <div class="fade-in">
       <span class="section-label">Why</span>
       <div class="divider"></div>
-      <h2 class="jp-heading" style="font-size: clamp(20px,3vw,30px); line-height:1.6;">なぜ「体験」から始めるのか</h2>
-      <p class="trial-lead">
-        痛みの原因は、人によって違います。同じ膝の痛みでも、足首の動きが原因の方もいれば、股関節の使い方が原因の方もいます。だから、実際に見て、動かしてみないことには何も言えません。
-      </p>
-      <p class="trial-lead">
-        この80分は、説明を聞く時間ではありません。<strong>いまの動きを一緒に確認して、その場で変えてみて、変化があるかどうかを確かめる時間</strong>です。変化が出るかどうかは、やってみれば分かります。
-      </p>
+      <h2 class="jp-heading" style="font-size: clamp(20px,3vw,30px); line-height:1.6;">なぜ改善しきらないのか？</h2>
+    </div>
+    <div class="why-body fade-in">
+      <p>痛みや不調があると、多くの方はまず患部のケアを行います。ストレッチやマッサージをしたり、筋トレで強化をしたり、しっかり身体を休めることもあるでしょう。</p>
+      <p>もちろんそのこと自体は大切ですが、患部のケアだけでは改善しきらないこともあります。</p>
+      <p>その理由は、<strong>「痛みが出る原因そのものが変わっていない」</strong>からです。</p>
+      <p>痛みが出ている場所に負担をかけ続ける動きが変わらない限り、同じ痛みは繰り返されます。同じ膝痛でも、負担がかかっている理由や身体の使い方は人によって違うのです。</p>
+      <p>だからこそ大切なのは、なぜ痛みが出るのか、その根本の原因を知り、<strong>自分に合った身体の使い方を身につけること</strong>です。</p>
     </div>
   </div>
 </section>
 
-<!-- FLOW -->
-<section class="steps">
+<!-- CASES -->
+<section class="cases">
   <div class="container">
     <div class="fade-in">
-      <span class="section-label">Flow</span>
+      <span class="section-label">Before / After</span>
       <div class="divider"></div>
-      <h2 class="jp-heading" style="font-size: clamp(22px,3.5vw,34px); line-height:1.5;">80分の流れ</h2>
-      <ol class="trial-flow">
-        <li>
-          <strong>ヒアリング（約20分）</strong>
-          <span>どんなことに悩んでいるか、どうなりたいか、これまで何を試してきて、その結果どうだったか。ここにいちばん時間をかけます。</span>
-        </li>
-        <li>
-          <strong>検査（約10分）</strong>
-          <span>身体の動きを確認し、どこに負担が集中しているのか、その原因がどこにあるのかを見ていきます。</span>
-        </li>
-        <li>
-          <strong>今日の目標を決める（約5分）</strong>
-          <span>今日のセッションで何がどうなれば成果と言えるのか、一緒に決めます。曖昧なまま進めません。</span>
-        </li>
-        <li>
-          <strong>動きの改善（約20〜30分）</strong>
-          <span>原因になっている動きに対してアプローチしていきます。</span>
-        </li>
-        <li>
-          <strong>再検査と振り返り（約10分）</strong>
-          <span>最初に決めた目標に対して、可動域・動かしやすさ・痛みがどう変わったかを一緒に確認します。</span>
-        </li>
-        <li>
-          <strong>これからのこと</strong>
-          <span>今日の結果をふまえて、これから何をしていけばいいかをお伝えします。</span>
-        </li>
-      </ol>
+      <h2 class="jp-heading" style="font-size: clamp(22px,3.5vw,34px); line-height:1.5;">ランナーのサポート事例</h2>
+    </div>
+    <div class="cases-grid">
+      <div class="case-item fade-in">
+        <div class="case-img-wrap">
+          <img src="case-1.jpg" alt="鼠蹊部の痛みの改善事例" loading="lazy">
+        </div>
+        <div class="case-info">
+          <span class="case-tag">鼠蹊部の痛み</span>
+          <p class="case-trouble">鼠蹊部の痛みによって長い時間走れないという悩みを持つランナー</p>
+          <p class="case-desc">ランジ動作時の膝が内に入る動きを改善。</p>
+        </div>
+      </div>
+      <div class="case-item fade-in">
+        <div class="case-img-wrap">
+          <img src="case-2.jpg" alt="鵞足炎による膝痛の改善事例" loading="lazy">
+        </div>
+        <div class="case-info">
+          <span class="case-tag">膝痛 / 鵞足炎</span>
+          <p class="case-trouble">鵞足炎による膝痛で走れなかったランナー</p>
+          <p class="case-desc">しゃがみ込みの時の動作エラーを改善し、痛みなく走れるように回復。</p>
+        </div>
+      </div>
+      <div class="case-item fade-in">
+        <div class="case-img-wrap">
+          <img src="case-3.jpg" alt="ランニングフォーム改善の事例" loading="lazy">
+        </div>
+        <div class="case-info">
+          <span class="case-tag">フォーム改善 / 股関節</span>
+          <p class="case-trouble">ランニングフォーム改善に取り組むランナー</p>
+          <p class="case-desc">背中から臀部にかけての連動性を上げ、股関節の可動域が大幅改善。</p>
+        </div>
+      </div>
+      <div class="case-item fade-in">
+        <div class="case-img-wrap">
+          <img src="case-4.jpg" alt="フルマラソン後の膝痛の改善事例" loading="lazy">
+        </div>
+        <div class="case-info">
+          <span class="case-tag">膝痛 / フルマラソン後</span>
+          <p class="case-trouble">フルマラソン後の膝痛に悩んでいたランナー</p>
+          <p class="case-desc">痛みで左右均等にしゃがめない状態から、痛みなくしゃがめるように。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POINTS -->
+<section class="points">
+  <div class="container">
+    <div class="fade-in">
+      <span class="section-label">Features</span>
+      <div class="divider"></div>
+      <h2 class="jp-heading" style="font-size: clamp(22px,3.5vw,34px); line-height:1.5;">サポートの特徴</h2>
+    </div>
+    <div class="points-grid">
+      <div class="point-item fade-in">
+        <div class="point-label">Point 01</div>
+        <div class="point-content">
+          <div class="point-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+              <path d="M11 8v6M8 11h6"/>
+            </svg>
+          </div>
+          <h3 class="point-title">痛みの原因を走り方や<br class="sp-br">動作から分析する</h3>
+          <p class="point-text">痛みがある場所だけに注目するのではなく、どんな走り方や動作がその部位に負担をかけているのかを分析します。同じ膝痛でも、原因となっている動きや負担のかかり方は人によって違うため、今の状態に合わせて確認していきます。</p>
+        </div>
+      </div>
+      <div class="point-item fade-in">
+        <div class="point-label">Point 02</div>
+        <div class="point-content">
+          <div class="point-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="5" r="2"/>
+              <path d="M12 7v8M9 10l3 1 3-1M9 21l3-5 3 5"/>
+            </svg>
+          </div>
+          <h3 class="point-title">自分に合う<br class="sp-br">身体の使い方がわかる</h3>
+          <p class="point-text">長引く痛みや不調は、自分に合っていない身体の使い方を続けることで、一部分に負担がたまり続けて起きていることがあります。だからこそ、一般的な正解をそのまま当てはめるのではなく、自分に合った動きを身につけることが改善の近道になるのです。</p>
+        </div>
+      </div>
+      <div class="point-item fade-in">
+        <div class="point-label">Point 03</div>
+        <div class="point-content">
+          <div class="point-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 20h4v-4h4v-4h4v-4h4V4"/>
+            </svg>
+          </div>
+          <h3 class="point-title">痛みの改善だけでなく、<br class="sp-br">その先まで見据える</h3>
+          <p class="point-text">今ある痛みや不調の改善だけで終わらず、再発を防ぎながら安心して走れる状態を目指していきます。必要に応じて、その先のパフォーマンスアップまで見据えてサポートしていきます。</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1669,40 +1837,158 @@
     <div class="fade-in">
       <span class="section-label">For You</span>
       <div class="divider"></div>
-      <h2 class="jp-heading" style="font-size: clamp(22px,3.5vw,34px); line-height:1.5;">こんな方へ</h2>
-      <ul class="trial-list">
-        <li>整形外科や整体に通っても、走るとまた同じところが痛くなる方</li>
-        <li>痛みが出るたびに練習を止めていて、思うように積めていない方</li>
-        <li>治すことは半ば諦めているけれど、走ることは諦めていない方</li>
-        <li>自分の身体に何が起きているのかを、一度きちんと知りたい方</li>
-      </ul>
-      <div class="trial-note">
-        すでに痛みが強く、直接みてほしいという方に向けたセッションです。
+      <h2 class="jp-heading" style="font-size: clamp(22px,3.5vw,34px); line-height:1.5;">こんなランナーにおすすめ</h2>
+    </div>
+    <ul class="target-list fade-in">
+      <li>長引く痛みや不調を繰り返している方</li>
+      <li>治療やセルフケアを続けても、改善しきらない方</li>
+      <li>走れてはいるけれど、不安を抱えながら練習している方</li>
+      <li>痛みの根本の原因を、自分の走り方や動きから知りたい方</li>
+      <li>痛みを改善した先で、もっと自由に走れるようになりたい方</li>
+    </ul>
+    <p class="target-note fade-in">すでに痛みが強く、直接みてほしいという方に向けたセッションです。</p>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section class="steps">
+  <div class="container">
+    <div class="fade-in">
+      <span class="section-label">Session Flow</span>
+      <div class="divider"></div>
+      <h2 class="jp-heading" style="font-size: clamp(22px,3.5vw,34px); line-height:1.5;">セッションの流れ</h2>
+    </div>
+    <p class="steps-intro fade-in">
+      長引く痛みや不調を改善していくためには、まず今の身体の状態や、どんな動きが負担につながっているのかを知ることが大切です。初回セッションでは、今感じている悩みや目標を整理しながら、身体の状態や動きを確認し、改善の方向性を見つけていきます。
+    </p>
+
+    <div class="steps-track">
+      <div class="step-item fade-in">
+        <div class="step-num-wrap">
+          <div class="step-num">01</div>
+        </div>
+        <div class="step-content">
+          <h3 class="step-title">ヒアリング</h3>
+          <p class="step-text">現在のお悩みや目標をお聞きします。</p>
+        </div>
+      </div>
+      <div class="step-item fade-in">
+        <div class="step-num-wrap">
+          <div class="step-num">02</div>
+        </div>
+        <div class="step-content">
+          <h3 class="step-title">分析・評価</h3>
+          <p class="step-text">痛みや不調の原因を、走り方や動き方から分析していきます。</p>
+        </div>
+      </div>
+      <div class="step-item fade-in">
+        <div class="step-num-wrap">
+          <div class="step-num">03</div>
+        </div>
+        <div class="step-content">
+          <h3 class="step-title">調整・トレーニング</h3>
+          <p class="step-text">痛みの原因となる動きの改善に向けて、必要な調整やトレーニングを行います。</p>
+        </div>
+      </div>
+      <div class="step-item fade-in">
+        <div class="step-num-wrap">
+          <div class="step-num">04</div>
+        </div>
+        <div class="step-content">
+          <h3 class="step-title">振り返り</h3>
+          <p class="step-text">ビフォーアフターを振り返りながら、今後の改善の方向性をご提案します。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="session-info fade-in">
+      <div class="session-info-item">
+        <span class="session-info-label">所要時間</span>
+        <span class="session-info-value">80分（初回のみ）</span>
+      </div>
+      <div class="session-info-item">
+        <span class="session-info-label">実施形式</span>
+        <span class="session-info-value">対面 / オンライン（Zoom）</span>
+      </div>
+      <div class="session-info-item">
+        <span class="session-info-label">場所</span>
+        <span class="session-info-value">
+          <strong style="display:block; margin-bottom:4px;">対面</strong>愛知県内のランニングコースのある公園などで実施します。実施場所はご相談の中で決定します。場所によっては別途交通費をいただく場合がございます。<br><br>
+          <strong style="display:block; margin-bottom:4px;">オンライン</strong>ZOOMを用いて室内でも実施可能です。動きの分析があるため、スペースの確保が必要です。
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VOICE -->
+<section class="voice">
+  <div class="container">
+    <div class="fade-in">
+      <span class="section-label">Voice</span>
+      <div class="divider"></div>
+      <h2 class="jp-heading" style="font-size: clamp(22px,3.5vw,34px); line-height:1.5;">お客様の声</h2>
+    </div>
+    <div class="voice-grid">
+      <div class="voice-item fade-in">
+        <div class="voice-profile">
+          <span class="voice-age">40代</span>
+          <span class="voice-name">O.Sさん</span>
+        </div>
+        <div class="voice-content">
+          <span class="voice-tag">鼠蹊部の痛み</span>
+          <p class="voice-text">一見、患部に関係のない様な動きでも、ケアを続けていくと確実に患部に効いていて、いつもびっくりしています！</p>
+        </div>
+      </div>
+      <div class="voice-item fade-in">
+        <div class="voice-profile">
+          <span class="voice-age">40代</span>
+          <span class="voice-name">H.Aさん</span>
+        </div>
+        <div class="voice-content">
+          <span class="voice-tag">臀部痛・パフォーマンスアップ</span>
+          <p class="voice-text">痛いところや変なクセで硬くなってしまったところを瞬時に見抜き、エクササイズを教えてくださっていつも治るので目からうろこでした！</p>
+        </div>
+      </div>
+      <div class="voice-item fade-in">
+        <div class="voice-profile">
+          <span class="voice-age">30代</span>
+          <span class="voice-name">H.Sさん</span>
+        </div>
+        <div class="voice-content">
+          <span class="voice-tag">膝痛・パフォーマンスアップ</span>
+          <p class="voice-text">続ければ確実に変わることを実感しています。とにかく続けてみよう。</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- PRICE -->
-<section class="why">
+<section class="price">
   <div class="container">
     <div class="fade-in">
-      <span class="section-label">Price</span>
+      <span class="section-label">Pricing</span>
       <div class="divider"></div>
-      <h2 class="jp-heading" style="font-size: clamp(22px,3.5vw,34px); line-height:1.5;">料金と実施場所</h2>
-      <div class="trial-price">
-        <div class="trial-price-name">初回体験セッション（80分）</div>
-        <div class="trial-price-amount">¥4,400</div>
-        <div class="trial-price-note">通常セッション1回8,800円（税込）のところ、<br>初回限定で体験セッションを4,400円（税込）で受けられます</div>
+      <h2 class="price-heading">料金</h2>
+    </div>
+    <div class="price-trial fade-in">
+      <div class="price-trial-left">
+        <span class="price-trial-badge">初回限定</span>
+        <h3 class="price-trial-name">体験セッション</h3>
+        <p class="price-trial-desc">まずは今の状態を確認し、改善の方向性を一緒に見つけていきます。初回はお試し価格でご提供しています。</p>
       </div>
-      <div class="trial-where">
-        <strong>対面</strong>　愛知県内の、ランニングコースのある公園で行います。場所はご相談のうえ決めます（場所によっては交通費を別途いただきます）。<br>
-        <strong>オンライン</strong>　Zoomで行います。全身が映るスペースがあれば大丈夫です。
-      </div>
-      <div class="trial-note">
-        セッションの最後に、継続してサポートしていく形のご提案をさせていただく場合があります。もちろん体験だけで終わっていただいても大丈夫です。
+      <div class="price-trial-right">
+        <div class="price-trial-arrow-wrap">
+          <span class="price-trial-from">¥8,800</span>
+          <span class="price-trial-arrow">→</span>
+          <span class="price-trial-to">¥4,400</span>
+          <span class="price-trial-unit-label">（税込）</span>
+        </div>
+        <a href="https://lin.ee/tjPDQay" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': 'LINE登録ボタン_体験セッション'})" class="cta-primary" target="_blank" style="margin-top:24px;">体験セッションを申し込む</a>
       </div>
     </div>
+    <p class="price-note fade-in">セッションの最後に、継続してサポートしていく形のご提案をさせていただく場合があります。もちろん体験だけで終わっていただいても大丈夫です。</p>
   </div>
 </section>
 
@@ -1742,6 +2028,123 @@
         <div class="trainer-feat-item"><strong>東海選手権優勝選手</strong></div>
         <div class="trainer-feat-item">その他、アスリートから市民ランナーまで幅広くサポートしております。</div>
         <div class="trainer-feat-item">足底腱膜炎、鵞足炎、腸脛靭帯炎、アキレス腱炎、腰痛を始め、ランナーに多いスポーツ障害に対応しています。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="container">
+    <div class="fade-in">
+      <span class="section-label">FAQ</span>
+      <div class="divider"></div>
+      <h2 class="jp-heading" style="font-size: clamp(22px,3.5vw,34px); line-height:1.5;">よくある質問</h2>
+    </div>
+    <div class="faq-list fade-in">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-label">Q.</span>
+          <span class="faq-q-text">痛みが強くても受けられますか？</span>
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <span class="faq-a-label">A.</span>
+            <p class="faq-a-text">はい、大丈夫です。今の状態に合わせて、無理のない範囲で内容を調整しながら進めます。</p>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-label">Q.</span>
+          <span class="faq-q-text">まだ走れている段階でも受けた方がいいですか？</span>
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <span class="faq-a-label">A.</span>
+            <p class="faq-a-text">はい。走れていても、不安を抱えながら走っている方や、同じ痛みや不調を繰り返している方にもおすすめです。</p>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-label">Q.</span>
+          <span class="faq-q-text">効果が出るまでどのくらいかかりますか？</span>
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <span class="faq-a-label">A.</span>
+            <p class="faq-a-text">個人差がありますが、初回セッションの中でも動きの変化を感じていただけることが多いです。</p>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-label">Q.</span>
+          <span class="faq-q-text">何回くらい通う必要がありますか？</span>
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <span class="faq-a-label">A.</span>
+            <p class="faq-a-text">お悩みの内容や状態によって異なります。まずは体験セッションで現状を確認し、必要なセッション数をご提案します。</p>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-label">Q.</span>
+          <span class="faq-q-text">病院や治療院との併用はできますか？</span>
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <span class="faq-a-label">A.</span>
+            <p class="faq-a-text">はい、可能です。現在治療中の方も、併用しながらご利用いただけます。担当の医師や治療家の指示がある場合はそちらを優先してください。</p>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-label">Q.</span>
+          <span class="faq-q-text">対面とオンライン、どちらでも受けられますか？</span>
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <span class="faq-a-label">A.</span>
+            <p class="faq-a-text">はい、どちらも対応しています。ご希望や状態に合わせてご案内します。</p>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-label">Q.</span>
+          <span class="faq-q-text">どんな場所でセッションを行いますか？</span>
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <span class="faq-a-label">A.</span>
+            <p class="faq-a-text">対面の場合は、愛知県内のランニングコースのある公園などで実施します。実施場所はご相談のうえ決定します。</p>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-label">Q.</span>
+          <span class="faq-q-text">体験セッションだけでも受けられますか？</span>
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <span class="faq-a-label">A.</span>
+            <p class="faq-a-text">はい、受けていただけます。まずは今の状態を整理し、必要に応じて継続サポートをご提案します。</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1798,6 +2201,22 @@
     const open = btn.classList.toggle('open');
     nav.classList.toggle('open', open);
     btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
+  // FAQ
+  function toggleFaq(btn) {
+    const allBtns = document.querySelectorAll('.faq-q');
+    const allAnswers = document.querySelectorAll('.faq-a');
+    const answer = btn.nextElementSibling;
+    const isOpen = btn.classList.contains('open');
+
+    allBtns.forEach(b => b.classList.remove('open'));
+    allAnswers.forEach(a => a.classList.remove('open'));
+
+    if (!isOpen) {
+      btn.classList.add('open');
+      answer.classList.add('open');
+    }
   }
 
   // Scroll animation

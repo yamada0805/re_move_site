@@ -330,8 +330,8 @@
     display: none;
     width: 40px;
     height: 40px;
-    margin-left: auto;
-    margin-right: 14px;
+    margin-left: 10px;
+    margin-right: 0;
     background: none;
     border: 0;
     padding: 0;
@@ -356,6 +356,7 @@
 
   @media (max-width: 720px) {
     .nav-toggle { display: block; }
+    .header-cta { margin-left: auto; }
     .site-nav {
       position: absolute;
       top: 100%;
@@ -1063,16 +1064,20 @@
     margin-top: 64px;
   }
 
+  .trainer-name-block {
+    text-align: left;
+  }
+
   .trainer-name-row {
     display: flex;
     align-items: center;
-    gap: 28px;
-    margin-bottom: 36px;
+    gap: 32px;
+    margin: 20px 0 36px;
   }
 
   .trainer-photo-circle {
-    width: 110px;
-    height: 110px;
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
     overflow: hidden;
     flex-shrink: 0;
@@ -1461,7 +1466,7 @@
     }
 
     .trainer-name-row { gap: 20px; }
-    .trainer-photo-circle { width: 90px; height: 90px; }
+    .trainer-photo-circle { width: 120px; height: 120px; }
 
     .faq-q { padding: 20px 20px; }
     .faq-a-inner { padding: 0 20px 24px; }
@@ -1546,7 +1551,7 @@
     .voice-name { color: #6a7280; font-size: 12px; }
 
     .trainer { padding: 72px 0; }
-    .trainer-photo-circle { width: 80px; height: 80px; }
+    .trainer-photo-circle { width: 104px; height: 104px; }
     .trainer-name { font-size: 22px; }
     .trainer-en { color: #6a7280; }
     .trainer-tag { color: #4a5260; border-color: #c0c8d0; }
@@ -1648,14 +1653,14 @@
         <span class="logo-main"><span class="logo-re">Re</span> <span class="logo-move">Move</span></span>
       </div>
     </a>
-    <button class="nav-toggle" aria-label="メニュー" aria-expanded="false" onclick="toggleNav(this)">
-      <span></span><span></span><span></span>
-    </button>
     <nav class="site-nav">
       <a href="analysis.html" class="current">フォーム分析</a>
       <a href="trial.html">体験セッション</a>
     </nav>
     <a href="https://lin.ee/tjPDQay" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': 'LINE登録ボタン_フォーム分析'})" class="header-cta" target="_blank">LINEで申し込む</a>
+    <button class="nav-toggle" aria-label="メニュー" aria-expanded="false" onclick="toggleNav(this)">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
@@ -1976,19 +1981,19 @@
       <div class="divider"></div>
     </div>
     <div class="trainer-grid fade-in">
+      <div class="trainer-name-block">
+        <div class="trainer-en">Hiroki Yamada</div>
+        <div class="trainer-name">山田 紘暉</div>
+      </div>
       <div class="trainer-name-row">
         <div class="trainer-photo-circle">
           <img src="IMG_3965_2.JPG" alt="山田紘暉のプロフィール写真">
         </div>
-        <div class="trainer-name-block">
-          <div class="trainer-en">Hiroki Yamada</div>
-          <div class="trainer-name">山田 紘暉</div>
-          <div class="trainer-tags">
-            <span class="trainer-tag">理学療法士</span>
-            <span class="trainer-tag">HUREC認定連動性シニアトレーナー</span>
-            <span class="trainer-tag">フルマラソン 2:53:20</span>
-            <span class="trainer-tag">ハーフマラソン 1:18:42</span>
-          </div>
+        <div class="trainer-tags">
+          <span class="trainer-tag">理学療法士</span>
+          <span class="trainer-tag">HUREC認定連動性トレーナー</span>
+          <span class="trainer-tag">フルマラソン 2:53:20</span>
+          <span class="trainer-tag">ハーフマラソン 1:18:42</span>
         </div>
       </div>
       <div class="trainer-story">

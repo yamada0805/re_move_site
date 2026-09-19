@@ -939,25 +939,37 @@
 
   /* ───── TRAINER SECTION ───── */
   .trainer {
-    padding: 100px 0;
+    padding: 64px 0 100px;
     background: #f0f4f8;
   }
 
   .trainer-grid {
     display: block;
-    margin-top: 64px;
+    margin-top: 36px;
+  }
+
+  .trainer-name-block {
+    text-align: left;
   }
 
   .trainer-name-row {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      "photo name"
+      "photo tags";
+    column-gap: 32px;
+    row-gap: 14px;
     align-items: center;
-    gap: 28px;
-    margin-bottom: 36px;
+    margin: 0 0 24px;
   }
+  .trainer-photo-circle { grid-area: photo; }
+  .trainer-name-block { grid-area: name; align-self: end; }
+  .trainer-tags { grid-area: tags; align-self: start; }
 
   .trainer-photo-circle {
-    width: 110px;
-    height: 110px;
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
     overflow: hidden;
     flex-shrink: 0;
@@ -1315,13 +1327,14 @@
   .analysis .divider,
   .steps .section-label,
   .steps .jp-heading,
-  .steps .divider,
-  .trainer .section-label,
-  .trainer .divider {
+  .steps .divider {
     text-align: left;
     margin-left: 0;
     margin-right: 0;
   }
+
+  .trainer .section-label { text-align: center; }
+  .trainer .divider { margin: 20px auto; }
 
   .sp-br { display: none; }
   @media (max-width: 480px) {
@@ -1344,7 +1357,7 @@
     }
 
     .trainer-name-row { gap: 20px; }
-    .trainer-photo-circle { width: 90px; height: 90px; }
+    .trainer-photo-circle { width: 120px; height: 120px; }
 
     .faq-q { padding: 20px 20px; }
     .faq-a-inner { padding: 0 20px 24px; }
@@ -1429,7 +1442,7 @@
     .voice-name { color: #6a7280; font-size: 12px; }
 
     .trainer { padding: 72px 0; }
-    .trainer-photo-circle { width: 80px; height: 80px; }
+    .trainer-photo-circle { width: 104px; height: 104px; }
     .trainer-name { font-size: 22px; }
     .trainer-en { color: #6a7280; }
     .trainer-tag { color: #4a5260; border-color: #c0c8d0; }
@@ -1467,6 +1480,19 @@
      文字を太く・大きく・濃く
   ═══════════════════════════════════════ */
   @media (max-width: 480px) {
+
+    /* TRAINER：1行目に写真と名前、資格はその下に全幅 */
+    .trainer { padding: 44px 0 64px; }
+    .trainer-grid { margin-top: 24px; }
+    .trainer-name-row {
+      grid-template-areas:
+        "photo name"
+        "tags  tags";
+      column-gap: 16px;
+      row-gap: 16px;
+      margin: 0 0 20px;
+    }
+    .trainer-tags { width: 100%; margin-top: 0; }
 
     body { font-weight: 500; }
 
@@ -1536,7 +1562,6 @@
   .trial-price { text-align: center; padding: 32px 24px; background: var(--warm-white); border: 1px solid var(--line); border-radius: 8px; }
   .trial-price-name { font-size: 15px; color: var(--muted); margin-bottom: 8px; }
   .trial-price-amount { font-family: 'Barlow Condensed', sans-serif; font-size: 46px; font-weight: 700; color: var(--accent); line-height: 1.1; }
-  .trial-price-from { font-size: 20px; color: var(--muted); text-decoration: line-through; margin-right: 10px; }
   .trial-price-note { font-size: 13px; color: var(--muted); margin-top: 10px; line-height: 1.9; }
   .trial-where { margin-top: 24px; font-size: 14px; color: var(--ink); line-height: 2; }
   .trial-note { margin-top: 28px; padding: 20px 22px; background: var(--paper); border-left: 3px solid var(--accent); font-size: 14px; line-height: 2; color: var(--ink); }
@@ -1572,7 +1597,7 @@
     <span class="section-label">Trial Session</span>
     <div class="divider"></div>
     <h1 class="jp-heading" style="font-size: clamp(24px,4vw,38px); line-height:1.5;">初回体験セッションについて</h1>
-    <p class="page-head-lead">痛みの原因を、その場で動かして確かめる80分です。<br class="sp-br">いまの動きを一緒に確認して、その場で変えてみて、変化があるかどうかを確かめます。</p>
+    <p class="page-head-lead">痛みの原因を動きから分析し、<br class="sp-br">セッションの中で原因となる動きの改善に取り組みます。</p>
     <div class="page-head-badges">
       <span class="hero-badge"><strong>80分</strong></span>
       <span class="hero-badge">対面 / オンライン</span>
@@ -1667,7 +1692,7 @@
       <h2 class="jp-heading" style="font-size: clamp(22px,3.5vw,34px); line-height:1.5;">料金と実施場所</h2>
       <div class="trial-price">
         <div class="trial-price-name">初回体験セッション（80分）</div>
-        <div class="trial-price-amount"><span class="trial-price-from">¥8,800</span>¥4,400</div>
+        <div class="trial-price-amount">¥4,400</div>
         <div class="trial-price-note">税込／初回の方限定の価格です</div>
       </div>
       <div class="trial-where">
@@ -1676,6 +1701,47 @@
       </div>
       <div class="trial-note">
         セッションの最後に、継続してサポートしていく形のご提案をさせていただく場合があります。もちろん体験だけで終わっていただいても大丈夫です。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAINER -->
+<section class="trainer">
+  <div class="container">
+    <div class="fade-in">
+      <span class="section-label">Trainer</span>
+      <div class="divider"></div>
+    </div>
+    <div class="trainer-grid fade-in">
+      <div class="trainer-name-row">
+        <div class="trainer-photo-circle">
+          <img src="IMG_3965_2.JPG" alt="山田紘暉のプロフィール写真">
+        </div>
+        <div class="trainer-name-block">
+          <div class="trainer-en">Hiroki Yamada</div>
+          <div class="trainer-name">山田 紘暉</div>
+        </div>
+        <div class="trainer-tags">
+          <span class="trainer-tag">理学療法士</span>
+          <span class="trainer-tag">HUREC認定連動性トレーナー</span>
+          <span class="trainer-tag">フルマラソン 2:53:20</span>
+          <span class="trainer-tag">ハーフマラソン 1:18:42</span>
+        </div>
+      </div>
+      <div class="trainer-story">
+        <p class="trainer-story-text">中学時代、東海総体・全国大会を目指して練習を重ねていた2年の冬、腰椎分離症を発症。3年生最後の夏の大会を走れずに終わった経験が、今のサポートの原点です。</p>
+        <p class="trainer-story-text">その後、大学生になってフルマラソンを始め、ランニング仲間と走る時間の中で、「走れることの幸せ」を改めて感じました。</p>
+        <p class="trainer-story-text">怪我で走れない悔しさと、仲間と走れる喜び。この二つの経験が重なり、怪我なく走り続けられること、記録に挑戦し続けられることをサポートしていけるトレーナーになりたいと思うようになりました。</p>
+      </div>
+      <div class="trainer-stat-label">これまでのサポート実績</div>
+      <div class="trainer-feat">
+        <div class="trainer-feat-item"><strong>パラリンピック出場選手</strong></div>
+        <div class="trainer-feat-item"><strong>箱根駅伝出場選手</strong></div>
+        <div class="trainer-feat-item"><strong>マスターズ陸上日本記録保持者</strong></div>
+        <div class="trainer-feat-item"><strong>東海選手権優勝選手</strong></div>
+        <div class="trainer-feat-item">その他、アスリートから市民ランナーまで幅広くサポートしております。</div>
+        <div class="trainer-feat-item">足底腱膜炎、鵞足炎、腸脛靭帯炎、アキレス腱炎、腰痛を始め、ランナーに多いスポーツ障害に対応しています。</div>
       </div>
     </div>
   </div>

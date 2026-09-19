@@ -347,11 +347,18 @@
   .nav-toggle.open span:nth-child(2) { opacity: 0; }
   .nav-toggle.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
-  /* スマホのTRAINER：名前の右に写真、タグはその下に全幅 */
+  /* スマホのTRAINER：1行目に写真と名前、資格はその下に全幅 */
   @media (max-width: 720px) {
     .trainer { padding: 44px 0 64px; }
     .trainer-grid { margin-top: 24px; }
-    .trainer-name-row { gap: 16px; margin: 0 0 20px; }
+    .trainer-name-row {
+      grid-template-areas:
+        "photo name"
+        "tags  tags";
+      column-gap: 16px;
+      row-gap: 16px;
+      margin: 0 0 20px;
+    }
     .trainer-tags { width: 100%; margin-top: 0; }
   }
 
@@ -1070,12 +1077,19 @@
   }
 
   .trainer-name-row {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      "photo name"
+      "photo tags";
+    column-gap: 32px;
+    row-gap: 14px;
     align-items: center;
-    justify-content: space-between;
-    gap: 32px;
     margin: 0 0 24px;
   }
+  .trainer-photo-circle { grid-area: photo; }
+  .trainer-name-block { grid-area: name; align-self: end; }
+  .trainer-tags { grid-area: tags; align-self: start; }
 
   .trainer-photo-circle {
     width: 140px;
@@ -1592,10 +1606,17 @@
   ═══════════════════════════════════════ */
   @media (max-width: 480px) {
 
-    /* TRAINER：名前の右に写真、タグはその下に全幅 */
+    /* TRAINER：1行目に写真と名前、資格はその下に全幅 */
     .trainer { padding: 44px 0 64px; }
     .trainer-grid { margin-top: 24px; }
-    .trainer-name-row { gap: 16px; margin: 0 0 20px; }
+    .trainer-name-row {
+      grid-template-areas:
+        "photo name"
+        "tags  tags";
+      column-gap: 16px;
+      row-gap: 16px;
+      margin: 0 0 20px;
+    }
     .trainer-tags { width: 100%; margin-top: 0; }
 
     body { font-weight: 500; }
@@ -1990,19 +2011,19 @@
     </div>
     <div class="trainer-grid fade-in">
       <div class="trainer-name-row">
+        <div class="trainer-photo-circle">
+          <img src="IMG_3965_2.JPG" alt="山田紘暉のプロフィール写真">
+        </div>
         <div class="trainer-name-block">
           <div class="trainer-en">Hiroki Yamada</div>
           <div class="trainer-name">山田 紘暉</div>
         </div>
-        <div class="trainer-photo-circle">
-          <img src="IMG_3965_2.JPG" alt="山田紘暉のプロフィール写真">
+        <div class="trainer-tags">
+          <span class="trainer-tag">理学療法士</span>
+          <span class="trainer-tag">HUREC認定連動性トレーナー</span>
+          <span class="trainer-tag">フルマラソン 2:53:20</span>
+          <span class="trainer-tag">ハーフマラソン 1:18:42</span>
         </div>
-      </div>
-      <div class="trainer-tags">
-        <span class="trainer-tag">理学療法士</span>
-        <span class="trainer-tag">HUREC認定連動性トレーナー</span>
-        <span class="trainer-tag">フルマラソン 2:53:20</span>
-        <span class="trainer-tag">ハーフマラソン 1:18:42</span>
       </div>
       <div class="trainer-story">
         <p class="trainer-story-text">中学時代、東海総体・全国大会を目指して練習を重ねていた2年の冬、腰椎分離症を発症。3年生最後の夏の大会を走れずに終わった経験が、今のサポートの原点です。</p>
@@ -2014,7 +2035,7 @@
         <div class="trainer-feat-item"><strong>パラリンピック出場選手</strong></div>
         <div class="trainer-feat-item"><strong>箱根駅伝出場選手</strong></div>
         <div class="trainer-feat-item"><strong>マスターズ陸上日本記録保持者</strong></div>
-        <div class="trainer-feat-item"><strong>東海選手権入賞選手</strong></div>
+        <div class="trainer-feat-item"><strong>東海選手権優勝選手</strong></div>
         <div class="trainer-feat-item">その他、アスリートから市民ランナーまで幅広くサポートしております。</div>
         <div class="trainer-feat-item">足底腱膜炎、鵞足炎、腸脛靭帯炎、アキレス腱炎、腰痛を始め、ランナーに多いスポーツ障害に対応しています。</div>
       </div>

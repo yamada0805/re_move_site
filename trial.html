@@ -1668,6 +1668,84 @@
     .price-trial-to { font-size: 44px; }
     .price-note { color: rgba(255,255,255,0.6) !important; }
   }
+
+  /* ───── COMPARE（分析との違い）───── */
+  .compare { padding: 80px 0 100px; background: #ffffff; }
+  .compare .section-label, .compare .jp-heading, .compare .divider {
+    text-align: left; margin-left: 0; margin-right: 0;
+  }
+  .compare-lead { font-size: 15px; line-height: 2; color: var(--muted); margin-top: 20px; max-width: 640px; }
+  .compare-grid { margin-top: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+  .compare-col { border: 1px solid var(--line); padding: 28px 24px 24px; background: var(--paper); }
+  .compare-col-main { border: 2px solid var(--accent); background: #fff; }
+  .compare-badge {
+    display: inline-block; font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--muted); border: 1px solid var(--line); padding: 3px 10px; margin-bottom: 12px;
+  }
+  .compare-col-main .compare-badge { color: var(--accent); border-color: var(--accent); }
+  .compare-name {
+    font-family: 'Shippori Mincho', serif; font-size: 19px; font-weight: 800;
+    color: var(--ink); margin-bottom: 20px; line-height: 1.4;
+  }
+  .compare-row { padding: 14px 0; border-top: 1px solid var(--line); }
+  .compare-row:first-of-type { border-top: none; }
+  .compare-key {
+    display: block; font-family: 'Barlow Condensed', sans-serif; font-size: 10px;
+    font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 6px;
+  }
+  .compare-val { display: block; font-size: 14px; line-height: 1.9; color: var(--ink); }
+  .compare-note {
+    margin-top: 32px; padding: 20px 22px; background: var(--paper);
+    border-left: 3px solid var(--accent); font-size: 14px; line-height: 2; color: var(--ink);
+  }
+  .compare-target-label {
+    margin-top: 48px; margin-bottom: 8px; font-family: 'Shippori Mincho', serif;
+    font-size: 18px; font-weight: 700; color: var(--ink);
+  }
+
+  /* ───── HOW TO APPLY（申し込み方法）───── */
+  .howto { padding: 80px 0 100px; background: #f0f4f8; }
+  .howto .section-label, .howto .jp-heading, .howto .divider {
+    text-align: left; margin-left: 0; margin-right: 0;
+  }
+  .howto-steps {
+    margin-top: 40px; display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0; border-top: 1px solid var(--line);
+  }
+  .howto-step { padding: 28px 24px 28px 0; border-bottom: 1px solid var(--line); }
+  .howto-num {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 700;
+    color: var(--accent); line-height: 1; margin-bottom: 10px;
+  }
+  .howto-title { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+  .howto-text { font-size: 13px; line-height: 1.9; color: var(--muted); }
+  .howto-note {
+    margin-top: 28px; padding: 20px 22px; background: #fff;
+    border-left: 3px solid var(--accent); font-size: 14px; line-height: 2; color: var(--ink);
+  }
+  .howto-cta { margin-top: 32px; }
+
+  @media (max-width: 768px) {
+    .compare-grid { grid-template-columns: 1fr; gap: 16px; }
+    .howto-steps { grid-template-columns: 1fr; }
+    .howto-step { padding-right: 0; }
+  }
+
+  @media (max-width: 480px) {
+    .compare { padding: 64px 0 72px; }
+    .compare-grid { grid-template-columns: 1fr; gap: 16px; margin-top: 32px; }
+    .compare-col { padding: 22px 18px 18px; }
+    .compare-lead { font-size: 14px; color: #4a5260 !important; }
+    .compare-name { font-size: 18px; }
+    .compare-val { font-size: 14px; color: #2a3240 !important; }
+    .compare-target-label { margin-top: 36px; font-size: 17px; }
+    .howto { padding: 64px 0 72px; }
+    .howto-steps { grid-template-columns: 1fr; margin-top: 28px; }
+    .howto-step { padding: 20px 0; }
+    .howto-text { font-size: 13px; color: #4a5260 !important; }
+  }
 </style>
 
 <!-- HEADER -->
@@ -1684,7 +1762,7 @@
       <a href="analysis.html">フォーム分析</a>
       <a href="trial.html" class="current">体験セッション</a>
     </nav>
-    <a href="https://lin.ee/tjPDQay" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': 'LINE登録ボタン_体験セッション'})" class="header-cta" target="_blank">LINEで申し込む</a>
+    <a href="https://lin.ee/tjPDQay" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': 'LINE登録ボタン_体験セッション'})" class="header-cta" target="_blank">LINEで「体験」と送る</a>
     <button class="nav-toggle" aria-label="メニュー" aria-expanded="false" onclick="toggleNav(this)">
       <span></span><span></span><span></span>
     </button>
@@ -1704,8 +1782,71 @@
       <span class="hero-badge"><strong>初回4,400円</strong></span>
     </div>
     <div class="page-head-cta">
-      <a href="https://lin.ee/tjPDQay" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': 'LINE登録ボタン_体験セッション'})" class="cta-primary" target="_blank">LINEで申し込む</a>
+      <a href="https://lin.ee/tjPDQay" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': 'LINE登録ボタン_体験セッション'})" class="cta-primary" target="_blank">LINEで「体験」と送る</a>
     </div>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section class="compare">
+  <div class="container">
+    <div class="fade-in">
+      <span class="section-label">Which</span>
+      <div class="divider"></div>
+      <h2 class="jp-heading" style="font-size: clamp(20px,3vw,30px); line-height:1.6;">無料フォーム分析との違い</h2>
+      <p class="compare-lead">Re Move には、無料のフォーム分析と、初回体験セッションの2つの入口があります。いまの痛みの強さによって、向いているほうが変わります。</p>
+    </div>
+    <div class="compare-grid fade-in">
+      <div class="compare-col">
+        <span class="compare-badge">無料</span>
+        <h3 class="compare-name">フォーム分析</h3>
+        <div class="compare-row">
+          <span class="compare-key">形式</span>
+          <span class="compare-val">オンライン30分</span>
+        </div>
+        <div class="compare-row">
+          <span class="compare-key">やること</span>
+          <span class="compare-val">走っている動画を見て、痛みの原因になっている動きの見立てをお伝えします</span>
+        </div>
+        <div class="compare-row">
+          <span class="compare-key">向いている方</span>
+          <span class="compare-val">まだ走れていて、フォームの不安を確認したい方</span>
+        </div>
+        <div class="compare-row">
+          <span class="compare-key">料金</span>
+          <span class="compare-val">無料</span>
+        </div>
+      </div>
+      <div class="compare-col compare-col-main">
+        <span class="compare-badge">初回限定</span>
+        <h3 class="compare-name">体験セッション</h3>
+        <div class="compare-row">
+          <span class="compare-key">形式</span>
+          <span class="compare-val">対面80分 / オンライン80分</span>
+        </div>
+        <div class="compare-row">
+          <span class="compare-key">やること</span>
+          <span class="compare-val">その場で動いてもらいながら原因を確かめ、改善のための動きまで一緒に取り組みます</span>
+        </div>
+        <div class="compare-row">
+          <span class="compare-key">向いている方</span>
+          <span class="compare-val">すでに痛みが強く、一度直接みてほしい方</span>
+        </div>
+        <div class="compare-row">
+          <span class="compare-key">料金</span>
+          <span class="compare-val">初回4,400円（通常8,800円）</span>
+        </div>
+      </div>
+    </div>
+    <p class="compare-note fade-in">痛みが強く、走ること自体がつらい方には、体験セッションをおすすめしています。動画だけでは確かめられないことを、その場で動きながら確認できるためです。</p>
+    <p class="compare-target-label fade-in">こんな方は体験セッションへ</p>
+    <ul class="target-list fade-in">
+      <li>すでに痛みが強く、走ること自体がつらい方</li>
+      <li>長引く痛みや不調を繰り返している方</li>
+      <li>治療やセルフケアを続けても、改善しきらない方</li>
+      <li>痛みの根本の原因を、自分の走り方や動きから知りたい方</li>
+      <li>痛みを改善した先で、もっと自由に走れるようになりたい方</li>
+    </ul>
   </div>
 </section>
 
@@ -1723,59 +1864,6 @@
       <p>その理由は、<strong>「痛みが出る原因そのものが変わっていない」</strong>からです。</p>
       <p>痛みが出ている場所に負担をかけ続ける動きが変わらない限り、同じ痛みは繰り返されます。同じ膝痛でも、負担がかかっている理由や身体の使い方は人によって違うのです。</p>
       <p>だからこそ大切なのは、なぜ痛みが出るのか、その根本の原因を知り、<strong>自分に合った身体の使い方を身につけること</strong>です。</p>
-    </div>
-  </div>
-</section>
-
-<!-- CASES -->
-<section class="cases">
-  <div class="container">
-    <div class="fade-in">
-      <span class="section-label">Before / After</span>
-      <div class="divider"></div>
-      <h2 class="jp-heading" style="font-size: clamp(22px,3.5vw,34px); line-height:1.5;">ランナーのサポート事例</h2>
-    </div>
-    <div class="cases-grid">
-      <div class="case-item fade-in">
-        <div class="case-img-wrap">
-          <img src="case-1.jpg" alt="鼠蹊部の痛みの改善事例" loading="lazy">
-        </div>
-        <div class="case-info">
-          <span class="case-tag">鼠蹊部の痛み</span>
-          <p class="case-trouble">鼠蹊部の痛みによって長い時間走れないという悩みを持つランナー</p>
-          <p class="case-desc">ランジ動作時の膝が内に入る動きを改善。</p>
-        </div>
-      </div>
-      <div class="case-item fade-in">
-        <div class="case-img-wrap">
-          <img src="case-2.jpg" alt="鵞足炎による膝痛の改善事例" loading="lazy">
-        </div>
-        <div class="case-info">
-          <span class="case-tag">膝痛 / 鵞足炎</span>
-          <p class="case-trouble">鵞足炎による膝痛で走れなかったランナー</p>
-          <p class="case-desc">しゃがみ込みの時の動作エラーを改善し、痛みなく走れるように回復。</p>
-        </div>
-      </div>
-      <div class="case-item fade-in">
-        <div class="case-img-wrap">
-          <img src="case-3.jpg" alt="ランニングフォーム改善の事例" loading="lazy">
-        </div>
-        <div class="case-info">
-          <span class="case-tag">フォーム改善 / 股関節</span>
-          <p class="case-trouble">ランニングフォーム改善に取り組むランナー</p>
-          <p class="case-desc">背中から臀部にかけての連動性を上げ、股関節の可動域が大幅改善。</p>
-        </div>
-      </div>
-      <div class="case-item fade-in">
-        <div class="case-img-wrap">
-          <img src="case-4.jpg" alt="フルマラソン後の膝痛の改善事例" loading="lazy">
-        </div>
-        <div class="case-info">
-          <span class="case-tag">膝痛 / フルマラソン後</span>
-          <p class="case-trouble">フルマラソン後の膝痛に悩んでいたランナー</p>
-          <p class="case-desc">痛みで左右均等にしゃがめない状態から、痛みなくしゃがめるように。</p>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -1828,25 +1916,6 @@
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- TARGET -->
-<section class="target">
-  <div class="container">
-    <div class="fade-in">
-      <span class="section-label">For You</span>
-      <div class="divider"></div>
-      <h2 class="jp-heading" style="font-size: clamp(22px,3.5vw,34px); line-height:1.5;">こんなランナーにおすすめ</h2>
-    </div>
-    <ul class="target-list fade-in">
-      <li>長引く痛みや不調を繰り返している方</li>
-      <li>治療やセルフケアを続けても、改善しきらない方</li>
-      <li>走れてはいるけれど、不安を抱えながら練習している方</li>
-      <li>痛みの根本の原因を、自分の走り方や動きから知りたい方</li>
-      <li>痛みを改善した先で、もっと自由に走れるようになりたい方</li>
-    </ul>
-    <p class="target-note fade-in">すでに痛みが強く、直接みてほしいという方に向けたセッションです。</p>
   </div>
 </section>
 
@@ -1921,6 +1990,59 @@
   </div>
 </section>
 
+<!-- CASES -->
+<section class="cases">
+  <div class="container">
+    <div class="fade-in">
+      <span class="section-label">Before / After</span>
+      <div class="divider"></div>
+      <h2 class="jp-heading" style="font-size: clamp(22px,3.5vw,34px); line-height:1.5;">ランナーのサポート事例</h2>
+    </div>
+    <div class="cases-grid">
+      <div class="case-item fade-in">
+        <div class="case-img-wrap">
+          <img src="case-1.jpg" alt="鼠蹊部の痛みの改善事例" loading="lazy">
+        </div>
+        <div class="case-info">
+          <span class="case-tag">鼠蹊部の痛み</span>
+          <p class="case-trouble">鼠蹊部の痛みによって長い時間走れないという悩みを持つランナー</p>
+          <p class="case-desc">ランジ動作時の膝が内に入る動きを改善。</p>
+        </div>
+      </div>
+      <div class="case-item fade-in">
+        <div class="case-img-wrap">
+          <img src="case-2.jpg" alt="鵞足炎による膝痛の改善事例" loading="lazy">
+        </div>
+        <div class="case-info">
+          <span class="case-tag">膝痛 / 鵞足炎</span>
+          <p class="case-trouble">鵞足炎による膝痛で走れなかったランナー</p>
+          <p class="case-desc">しゃがみ込みの時の動作エラーを改善し、痛みなく走れるように回復。</p>
+        </div>
+      </div>
+      <div class="case-item fade-in">
+        <div class="case-img-wrap">
+          <img src="case-3.jpg" alt="ランニングフォーム改善の事例" loading="lazy">
+        </div>
+        <div class="case-info">
+          <span class="case-tag">フォーム改善 / 股関節</span>
+          <p class="case-trouble">ランニングフォーム改善に取り組むランナー</p>
+          <p class="case-desc">背中から臀部にかけての連動性を上げ、股関節の可動域が大幅改善。</p>
+        </div>
+      </div>
+      <div class="case-item fade-in">
+        <div class="case-img-wrap">
+          <img src="case-4.jpg" alt="フルマラソン後の膝痛の改善事例" loading="lazy">
+        </div>
+        <div class="case-info">
+          <span class="case-tag">膝痛 / フルマラソン後</span>
+          <p class="case-trouble">フルマラソン後の膝痛に悩んでいたランナー</p>
+          <p class="case-desc">痛みで左右均等にしゃがめない状態から、痛みなくしゃがめるように。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- VOICE -->
 <section class="voice">
   <div class="container">
@@ -1964,34 +2086,6 @@
   </div>
 </section>
 
-<!-- PRICE -->
-<section class="price">
-  <div class="container">
-    <div class="fade-in">
-      <span class="section-label">Pricing</span>
-      <div class="divider"></div>
-      <h2 class="price-heading">料金</h2>
-    </div>
-    <div class="price-trial fade-in">
-      <div class="price-trial-left">
-        <span class="price-trial-badge">初回限定</span>
-        <h3 class="price-trial-name">体験セッション</h3>
-        <p class="price-trial-desc">まずは今の状態を確認し、改善の方向性を一緒に見つけていきます。初回はお試し価格でご提供しています。</p>
-      </div>
-      <div class="price-trial-right">
-        <div class="price-trial-arrow-wrap">
-          <span class="price-trial-from">¥8,800</span>
-          <span class="price-trial-arrow">→</span>
-          <span class="price-trial-to">¥4,400</span>
-          <span class="price-trial-unit-label">（税込）</span>
-        </div>
-        <a href="https://lin.ee/tjPDQay" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': 'LINE登録ボタン_体験セッション'})" class="cta-primary" target="_blank" style="margin-top:24px;">体験セッションを申し込む</a>
-      </div>
-    </div>
-    <p class="price-note fade-in">セッションの最後に、継続してサポートしていく形のご提案をさせていただく場合があります。もちろん体験だけで終わっていただいても大丈夫です。</p>
-  </div>
-</section>
-
 <!-- TRAINER -->
 <section class="trainer">
   <div class="container">
@@ -2029,6 +2123,66 @@
         <div class="trainer-feat-item">その他、アスリートから市民ランナーまで幅広くサポートしております。</div>
         <div class="trainer-feat-item">足底腱膜炎、鵞足炎、腸脛靭帯炎、アキレス腱炎、腰痛を始め、ランナーに多いスポーツ障害に対応しています。</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICE -->
+<section class="price">
+  <div class="container">
+    <div class="fade-in">
+      <span class="section-label">Pricing</span>
+      <div class="divider"></div>
+      <h2 class="price-heading">料金</h2>
+    </div>
+    <div class="price-trial fade-in">
+      <div class="price-trial-left">
+        <span class="price-trial-badge">初回限定</span>
+        <h3 class="price-trial-name">体験セッション</h3>
+        <p class="price-trial-desc">まずは今の状態を確認し、改善の方向性を一緒に見つけていきます。初回はお試し価格でご提供しています。</p>
+      </div>
+      <div class="price-trial-right">
+        <div class="price-trial-arrow-wrap">
+          <span class="price-trial-from">¥8,800</span>
+          <span class="price-trial-arrow">→</span>
+          <span class="price-trial-to">¥4,400</span>
+          <span class="price-trial-unit-label">（税込）</span>
+        </div>
+        <a href="https://lin.ee/tjPDQay" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': 'LINE登録ボタン_体験セッション'})" class="cta-primary" target="_blank" style="margin-top:24px;">LINEで「体験」と送る</a>
+      </div>
+    </div>
+    <p class="price-note fade-in">セッションの最後に、継続してサポートしていく形のご提案をさせていただく場合があります。もちろん体験だけで終わっていただいても大丈夫です。</p>
+  </div>
+</section>
+
+<!-- HOW TO APPLY -->
+<section class="howto">
+  <div class="container">
+    <div class="fade-in">
+      <span class="section-label">How to Apply</span>
+      <div class="divider"></div>
+      <h2 class="jp-heading" style="font-size: clamp(22px,3.5vw,34px); line-height:1.5;">お申し込みの流れ</h2>
+    </div>
+    <div class="howto-steps fade-in">
+      <div class="howto-step">
+        <div class="howto-num">01</div>
+        <div class="howto-title">LINEで「体験」と送る</div>
+        <p class="howto-text">トーク画面に「体験」と送っていただければ、こちらからご連絡します。</p>
+      </div>
+      <div class="howto-step">
+        <div class="howto-num">02</div>
+        <div class="howto-title">日程と場所を決める</div>
+        <p class="howto-text">対面かオンラインか、ご希望をうかがったうえで日程を調整します。</p>
+      </div>
+      <div class="howto-step">
+        <div class="howto-num">03</div>
+        <div class="howto-title">当日、80分のセッション</div>
+        <p class="howto-text">服装や持ち物は、事前にLINEでご案内します。</p>
+      </div>
+    </div>
+    <p class="howto-note fade-in">すでにLINEでつながっている方は、トーク画面から「体験」と送っていただくだけで大丈夫です。</p>
+    <div class="howto-cta fade-in">
+      <a href="https://lin.ee/tjPDQay" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': 'LINE登録ボタン_体験セッション'})" class="cta-primary" target="_blank">LINEで「体験」と送る</a>
     </div>
   </div>
 </section>
@@ -2166,7 +2320,7 @@
         <span class="hero-badge"><strong>初回4,400円</strong></span>
       </div>
       <div class="final-cta-btns">
-        <a href="https://lin.ee/tjPDQay" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': 'LINE登録ボタン_体験セッション'})" class="cta-primary" target="_blank">LINEで申し込む</a>
+        <a href="https://lin.ee/tjPDQay" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': 'LINE登録ボタン_体験セッション'})" class="cta-primary" target="_blank">LINEで「体験」と送る</a>
       </div>
     </div>
   </div>

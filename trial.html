@@ -1662,12 +1662,17 @@
   /* ───── 強弱の設計 ─────
      主役＝流れの後の料金と最終CTA／補足＝なぜ・特徴・FAQ・従の料金 */
   .why, .points, .faq { padding: 64px 0; }
+  /* trainer（グレー）→ why → points と続くので、ここで白とグレーを入れ替えて境目を立てる */
+  .why { background: #ffffff; }
+  .points { background: #f0f4f8; }
   .points h2, .faq h2 { font-size: clamp(20px, 3vw, 30px) !important; }
   .cases { background: #1a2332; }
 
   /* 従の料金（冒頭と特徴の下）：濃紺をやめて軽いカードにする */
   .price-sub { background: #ffffff; color: var(--ink); border-top: none; padding: 56px 0; }
   .price-sub-alt { background: #f0f4f8; }
+  /* 「流れ」（白）の直後に置く従の料金。前後と色がぶつからないように一段だけ落とす */
+  .price-sub-paper { background: var(--paper); }
   .price-sub .section-label { color: var(--muted); }
   .price-sub .price-heading {
     color: var(--ink); font-size: clamp(22px, 3.5vw, 30px); margin: 12px 0 28px;
@@ -1847,7 +1852,7 @@
 </section>
 
 <!-- PRICE -->
-<section class="price price-sub">
+<section class="price">
   <div class="container">
     <div class="fade-in">
       <span class="section-label">Pricing</span>
@@ -1957,7 +1962,7 @@
 </section>
 
 <!-- PRICE -->
-<section class="price">
+<section class="price price-sub price-sub-paper">
   <div class="container">
     <div class="fade-in">
       <span class="section-label">Pricing</span>
@@ -2212,7 +2217,7 @@
 </section>
 
 <!-- PRICE -->
-<section class="price price-sub price-sub-alt">
+<section class="price price-sub price-sub-paper">
   <div class="container">
     <div class="fade-in">
       <span class="section-label">Pricing</span>

@@ -1601,15 +1601,33 @@
   .price { padding: 100px 0; background: #1a2332; color: #fff; border-top: 3px solid var(--accent); }
   .price .section-label { color: rgba(255,255,255,0.35); }
   .price .divider { background: var(--accent); }
+  .price .section-label { text-align: center; display: block; }
+  .price .divider { margin: 20px auto; }
   .price-heading {
     font-family: 'Shippori Mincho', serif; font-size: clamp(28px, 4vw, 44px);
-    font-weight: 800; color: #fff; margin: 16px 0 56px;
+    font-weight: 800; color: #fff; margin: 16px 0 56px; text-align: center;
   }
   .price-trial {
-    display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center;
-    padding: 48px 0;
+    display: block; text-align: center; padding: 48px 0;
     border-top: 1px solid rgba(255,255,255,0.1);
     border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .price-normal { font-size: 16px; color: rgba(255,255,255,0.45); line-height: 1.8; }
+  .price-down { font-size: 24px; color: var(--accent); line-height: 1; margin: 16px 0; }
+  .price-special-badge {
+    display: inline-block; font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--accent); border: 1px solid var(--accent); padding: 4px 12px; margin-bottom: 14px;
+  }
+  .price-special { font-size: 18px; color: #fff; line-height: 1.7; }
+  .price-special strong {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 44px; font-weight: 700;
+    letter-spacing: -0.01em; margin: 0 2px;
+  }
+  @media (max-width: 480px) {
+    .price-normal { font-size: 14px; }
+    .price-special { font-size: 16px; }
+    .price-special strong { font-size: 36px; }
   }
   .price-trial-badge {
     display: inline-block; font-family: 'Barlow Condensed', sans-serif;
@@ -1638,6 +1656,13 @@
   }
   .price-note { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 2; margin-top: 32px; }
   .target-lead { font-size: 15px; line-height: 2; color: var(--muted); margin-top: 20px; max-width: 640px; }
+  .page-head-catch {
+    font-size: 14px; font-weight: 600; color: var(--accent);
+    line-height: 1.9; letter-spacing: 0.02em; margin-bottom: 10px;
+  }
+  @media (max-width: 480px) {
+    .page-head-catch { font-size: 13px; }
+  }
   @media (max-width: 480px) {
     .target-lead { font-size: 14px; color: #4a5260 !important; }
   }
@@ -1777,13 +1802,9 @@
   <div class="container">
     <span class="section-label">Trial Session</span>
     <div class="divider"></div>
-    <h1 class="jp-heading" style="font-size: clamp(24px,4vw,38px); line-height:1.5;">初回体験セッションについて</h1>
-    <p class="page-head-lead">痛みの原因を動きから分析し、<br class="sp-br">セッションの中で原因となる動きの改善に取り組みます。</p>
-    <div class="page-head-badges">
-      <span class="hero-badge"><strong>80分</strong></span>
-      <span class="hero-badge">対面 / オンライン</span>
-      <span class="hero-badge"><strong>初回4,400円</strong></span>
-    </div>
+    <p class="page-head-catch">痛み・不調の原因を知り、<br class="sp-br">根本からの改善を目指したい方向け</p>
+    <h1 class="jp-heading" style="font-size: clamp(24px,4vw,38px); line-height:1.5;">体験セッションのご案内</h1>
+    <p class="page-head-lead">痛みの原因を、身体の使い方や動きから分析し、<br class="sp-br">原因となる動きの改善に取り組みます。</p>
     <div class="page-head-cta">
       <a href="https://line.me/R/oaMessage/@557obcxh/?体験" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': '体験申込_見出し'})" class="cta-primary" target="_blank">LINEで申し込み</a>
     </div>
@@ -1799,20 +1820,11 @@
       <h2 class="price-heading">料金</h2>
     </div>
     <div class="price-trial fade-in">
-      <div class="price-trial-left">
-        <span class="price-trial-badge">初回限定</span>
-        <h3 class="price-trial-name">体験セッション</h3>
-        <p class="price-trial-desc">まずは今の状態を確認し、改善の方向性を一緒に見つけていきます。初回はお試し価格でご提供しています。</p>
-      </div>
-      <div class="price-trial-right">
-        <div class="price-trial-arrow-wrap">
-          <span class="price-trial-from">¥8,800</span>
-          <span class="price-trial-arrow">→</span>
-          <span class="price-trial-to">¥4,400</span>
-          <span class="price-trial-unit-label">（税込）</span>
-        </div>
-        <a href="https://line.me/R/oaMessage/@557obcxh/?体験" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': '体験申込_料金上'})" class="cta-primary" target="_blank" style="margin-top:24px;">LINEで申し込み</a>
-      </div>
+      <div class="price-normal">通常セッション｜50分 8,800円（税込）</div>
+      <div class="price-down">↓</div>
+      <span class="price-special-badge">初回限定</span>
+      <div class="price-special">体験セッション｜80分 <strong>4,400円</strong>（税込）</div>
+      <a href="https://line.me/R/oaMessage/@557obcxh/?体験" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': '体験申込_料金上'})" class="cta-primary" target="_blank" style="margin-top:28px;">LINEで申し込み</a>
     </div>
   </div>
 </section>
@@ -1824,13 +1836,15 @@
       <span class="section-label">For You</span>
       <div class="divider"></div>
       <h2 class="jp-heading" style="font-size: clamp(22px,3.5vw,34px); line-height:1.5;">このようなお悩みを持つ方へ</h2>
-      <p class="target-lead">下記のいずれかに当てはまる方は、初回体験セッションで痛みの原因を知り、身体の使い方を改善することで、回復していく可能性があります。</p>
+      <p class="target-lead">ひとつでも当てはまる方へ。体験セッションでは痛みの原因を動きから見つけ、その場で改善に取り組みます。</p>
     </div>
     <ul class="target-list fade-in">
       <li>すでに痛みが強く、走ること自体がつらい方</li>
       <li>長引く痛みや不調を繰り返している方</li>
       <li>治療やセルフケアを続けても、改善しきらない方</li>
+      <li>痛みの不安を抱えながら練習していて、不安なく走り切れるようになりたい方</li>
       <li>痛みの根本の原因を、自分の走り方や動きから知りたい方</li>
+      <li>痛みを繰り返さない身体をつくって、記録に挑戦していきたい方</li>
       <li>痛みを改善した先で、もっと自由に走れるようになりたい方</li>
     </ul>
   </div>
@@ -1845,7 +1859,7 @@
       <h2 class="jp-heading" style="font-size: clamp(22px,3.5vw,34px); line-height:1.5;">セッションの流れ</h2>
     </div>
     <p class="steps-intro fade-in">
-      長引く痛みや不調を改善していくためには、まず今の身体の状態や、どんな動きが負担につながっているのかを知ることが大切です。初回セッションでは、今感じている悩みや目標を整理しながら、身体の状態や動きを確認し、改善の方向性を見つけていきます。
+      長引く痛みや不調を改善していくためには、まず今の身体の状態や、どんな動きが負担につながっているのかを知ることが大切です。体験セッションでは、今感じている悩みや目標を整理しながら、身体の状態や動きを確認し、改善の方向性を見つけていきます。
     </p>
 
     <div class="steps-track">
@@ -1916,20 +1930,11 @@
       <h2 class="price-heading">料金</h2>
     </div>
     <div class="price-trial fade-in">
-      <div class="price-trial-left">
-        <span class="price-trial-badge">初回限定</span>
-        <h3 class="price-trial-name">体験セッション</h3>
-        <p class="price-trial-desc">まずは今の状態を確認し、改善の方向性を一緒に見つけていきます。初回はお試し価格でご提供しています。</p>
-      </div>
-      <div class="price-trial-right">
-        <div class="price-trial-arrow-wrap">
-          <span class="price-trial-from">¥8,800</span>
-          <span class="price-trial-arrow">→</span>
-          <span class="price-trial-to">¥4,400</span>
-          <span class="price-trial-unit-label">（税込）</span>
-        </div>
-        <a href="https://line.me/R/oaMessage/@557obcxh/?体験" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': '体験申込_料金下'})" class="cta-primary" target="_blank" style="margin-top:24px;">LINEで申し込み</a>
-      </div>
+      <div class="price-normal">通常セッション｜50分 8,800円（税込）</div>
+      <div class="price-down">↓</div>
+      <span class="price-special-badge">初回限定</span>
+      <div class="price-special">体験セッション｜80分 <strong>4,400円</strong>（税込）</div>
+      <a href="https://line.me/R/oaMessage/@557obcxh/?体験" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': '体験申込_料金下'})" class="cta-primary" target="_blank" style="margin-top:28px;">LINEで申し込み</a>
     </div>
   </div>
 </section>
@@ -1959,7 +1964,6 @@
         <p class="howto-text">服装や持ち物は、事前にLINEでご案内します。</p>
       </div>
     </div>
-    <p class="howto-note fade-in">ボタンから開かない場合は、トーク画面に「体験」と送っていただければ大丈夫です。</p>
     <div class="howto-cta fade-in">
       <a href="https://line.me/R/oaMessage/@557obcxh/?体験" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': '体験申込_申込方法'})" class="cta-primary" target="_blank">LINEで申し込み</a>
     </div>
@@ -2172,6 +2176,24 @@
   </div>
 </section>
 
+<!-- PRICE -->
+<section class="price">
+  <div class="container">
+    <div class="fade-in">
+      <span class="section-label">Pricing</span>
+      <div class="divider"></div>
+      <h2 class="price-heading">料金</h2>
+    </div>
+    <div class="price-trial fade-in">
+      <div class="price-normal">通常セッション｜50分 8,800円（税込）</div>
+      <div class="price-down">↓</div>
+      <span class="price-special-badge">初回限定</span>
+      <div class="price-special">体験セッション｜80分 <strong>4,400円</strong>（税込）</div>
+      <a href="https://line.me/R/oaMessage/@557obcxh/?体験" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': '体験申込_特徴下'})" class="cta-primary" target="_blank" style="margin-top:28px;">LINEで申し込み</a>
+    </div>
+  </div>
+</section>
+
 <!-- FAQ -->
 <section class="faq">
   <div class="container">
@@ -2216,7 +2238,7 @@
         <div class="faq-a">
           <div class="faq-a-inner">
             <span class="faq-a-label">A.</span>
-            <p class="faq-a-text">個人差がありますが、初回セッションの中でも動きの変化を感じていただけることが多いです。</p>
+            <p class="faq-a-text">個人差がありますが、体験セッションの中でも動きの変化を感じていただけることが多いです。</p>
           </div>
         </div>
       </div>

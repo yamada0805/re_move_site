@@ -1624,6 +1624,8 @@
     font-family: 'Barlow Condensed', sans-serif; font-size: 44px; font-weight: 700;
     letter-spacing: -0.01em; margin: 0 2px;
   }
+  /* 金額と（税込）を切り離さない。44pxにしたとき「税」「込）」で泣き別れするため */
+  .price-special .price-amount { display: inline-block; white-space: nowrap; }
   @media (max-width: 480px) {
     .price-normal { font-size: 14px; }
     .price-special { font-size: 16px; }
@@ -1656,9 +1658,40 @@
   }
   .price-note { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 2; margin-top: 32px; }
   .target-lead { font-size: 15px; line-height: 2; color: var(--muted); margin-top: 20px; max-width: 640px; }
+
+  /* ───── 強弱の設計 ─────
+     主役＝流れの後の料金と最終CTA／補足＝なぜ・特徴・FAQ・従の料金 */
+  .why, .points, .faq { padding: 64px 0; }
+  .points h2, .faq h2 { font-size: clamp(20px, 3vw, 30px) !important; }
+  .cases { background: #1a2332; }
+
+  /* 従の料金（冒頭と特徴の下）：濃紺をやめて軽いカードにする */
+  .price-sub { background: #ffffff; color: var(--ink); border-top: none; padding: 56px 0; }
+  .price-sub-alt { background: #f0f4f8; }
+  .price-sub .section-label { color: var(--muted); }
+  .price-sub .price-heading {
+    color: var(--ink); font-size: clamp(22px, 3.5vw, 30px); margin: 12px 0 28px;
+  }
+  .price-sub .price-trial {
+    background: #fff; border: 1px solid var(--line); border-radius: 8px;
+    padding: 32px 24px; max-width: 520px; margin: 0 auto;
+  }
+  .price-sub .price-normal { color: var(--muted); font-size: 14px; }
+  .price-sub .price-down { font-size: 20px; margin: 12px 0; }
+  .price-sub .price-special { color: var(--ink); font-size: 16px; }
+  .price-sub .price-special strong { color: var(--accent); font-size: 36px; }
+
+  @media (max-width: 480px) {
+    .why, .points, .faq { padding: 56px 0; }
+    .price-sub { padding: 48px 0; }
+    .price-sub .price-trial { padding: 26px 18px; }
+    .price-sub .price-normal { color: #4a5260 !important; font-size: 13px; }
+    .price-sub .price-special { color: #1e2022 !important; }
+    .price-sub .price-special strong { font-size: 32px; }
+  }
   .page-head-catch {
-    font-size: 14px; font-weight: 600; color: var(--accent);
-    line-height: 1.9; letter-spacing: 0.02em; margin-bottom: 10px;
+    font-size: 14px; font-weight: 500; color: var(--muted);
+    line-height: 1.9; letter-spacing: 0.02em; margin-bottom: 12px;
   }
   @media (max-width: 480px) {
     .page-head-catch { font-size: 13px; }
@@ -1694,7 +1727,9 @@
     .session-info-item { padding: 18px 0; }
     .session-info-value { color: #2a3240 !important; font-size: 14px; }
     .price { padding: 72px 0; }
+    .price.price-sub { padding: 48px 0; }
     .price-heading { font-size: 28px; margin-bottom: 40px; }
+    .price-sub .price-heading { font-size: 22px; margin-bottom: 24px; }
     .price-trial { grid-template-columns: 1fr; gap: 24px; padding: 36px 0; }
     .price-trial-right { text-align: left; }
     .price-trial-name { font-size: 20px; }
@@ -1804,7 +1839,7 @@
     <div class="divider"></div>
     <p class="page-head-catch">痛み・不調の原因を知り、<br class="sp-br">根本からの改善を目指したい方向け</p>
     <h1 class="jp-heading" style="font-size: clamp(24px,4vw,38px); line-height:1.5;">体験セッションのご案内</h1>
-    <p class="page-head-lead">痛みの原因を、身体の使い方や動きから分析し、<br class="sp-br">原因となる動きの改善に取り組みます。</p>
+    <p class="page-head-lead">痛みの原因を、身体の使い方や<br class="sp-br">動きから分析し、原因となる動きの<br class="sp-br">改善に取り組みます。</p>
     <div class="page-head-cta">
       <a href="https://line.me/R/oaMessage/@557obcxh/?体験" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': '体験申込_見出し'})" class="cta-primary" target="_blank">LINEで申し込み</a>
     </div>
@@ -1812,7 +1847,7 @@
 </section>
 
 <!-- PRICE -->
-<section class="price">
+<section class="price price-sub">
   <div class="container">
     <div class="fade-in">
       <span class="section-label">Pricing</span>
@@ -1823,7 +1858,7 @@
       <div class="price-normal">通常セッション｜50分 8,800円（税込）</div>
       <div class="price-down">↓</div>
       <span class="price-special-badge">初回限定</span>
-      <div class="price-special">体験セッション｜80分 <strong>4,400円</strong>（税込）</div>
+      <div class="price-special">体験セッション｜80分 <span class="price-amount"><strong>4,400円</strong>（税込）</span></div>
       <a href="https://line.me/R/oaMessage/@557obcxh/?体験" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': '体験申込_料金上'})" class="cta-primary" target="_blank" style="margin-top:28px;">LINEで申し込み</a>
     </div>
   </div>
@@ -1933,7 +1968,7 @@
       <div class="price-normal">通常セッション｜50分 8,800円（税込）</div>
       <div class="price-down">↓</div>
       <span class="price-special-badge">初回限定</span>
-      <div class="price-special">体験セッション｜80分 <strong>4,400円</strong>（税込）</div>
+      <div class="price-special">体験セッション｜80分 <span class="price-amount"><strong>4,400円</strong>（税込）</span></div>
       <a href="https://line.me/R/oaMessage/@557obcxh/?体験" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': '体験申込_料金下'})" class="cta-primary" target="_blank" style="margin-top:28px;">LINEで申し込み</a>
     </div>
   </div>
@@ -2177,7 +2212,7 @@
 </section>
 
 <!-- PRICE -->
-<section class="price">
+<section class="price price-sub price-sub-alt">
   <div class="container">
     <div class="fade-in">
       <span class="section-label">Pricing</span>
@@ -2188,7 +2223,7 @@
       <div class="price-normal">通常セッション｜50分 8,800円（税込）</div>
       <div class="price-down">↓</div>
       <span class="price-special-badge">初回限定</span>
-      <div class="price-special">体験セッション｜80分 <strong>4,400円</strong>（税込）</div>
+      <div class="price-special">体験セッション｜80分 <span class="price-amount"><strong>4,400円</strong>（税込）</span></div>
       <a href="https://line.me/R/oaMessage/@557obcxh/?体験" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': '体験申込_特徴下'})" class="cta-primary" target="_blank" style="margin-top:28px;">LINEで申し込み</a>
     </div>
   </div>

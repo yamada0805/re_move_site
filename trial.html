@@ -175,7 +175,7 @@
   .site-nav a.current { color: var(--accent); font-weight: 700; }
 
   .page-head {
-    padding: 140px 0 56px;
+    padding: 104px 0 40px;
     background: var(--paper);
     border-bottom: 1px solid var(--line);
   }
@@ -202,7 +202,7 @@
   @media (max-width: 720px) {
     .site-nav { gap: 14px; margin-right: 12px; }
     .site-nav a { font-size: 11px; }
-    .page-head { padding: 110px 0 40px; }
+    .page-head { padding: 80px 0 32px; }
   }
 
   /* ハンバーガーメニュー */
@@ -261,7 +261,7 @@
   }
 
   @media (max-width: 480px) {
-    .page-head { padding: 96px 0 40px; }
+    .page-head { padding: 60px 0 28px; }
   }
 
   .header-cta {
@@ -1598,14 +1598,14 @@
   .session-info-value { font-size: 14px; color: var(--ink); line-height: 1.8; font-weight: 500; }
 
   /* ───── PRICE（料金）───── */
-  .price { padding: 100px 0; background: #1a2332; color: #fff; border-top: 3px solid var(--accent); }
+  .price { padding: 72px 0; background: #1a2332; color: #fff; border-top: 3px solid var(--accent); }
   .price .section-label { color: rgba(255,255,255,0.35); }
   .price .divider { background: var(--accent); }
   .price .section-label { text-align: center; display: block; }
   .price .divider { margin: 20px auto; }
   .price-heading {
     font-family: 'Shippori Mincho', serif; font-size: clamp(28px, 4vw, 44px);
-    font-weight: 800; color: #fff; margin: 16px 0 56px; text-align: center;
+    font-weight: 800; color: #fff; margin: 14px 0 32px; text-align: center;
   }
   .price-trial {
     display: block; text-align: center; padding: 48px 0;
@@ -1646,6 +1646,39 @@
     margin: 14px 0;
   }
   .price-bridge-arrow { font-size: 20px; color: var(--accent); line-height: 1; }
+  /* ───── 冒頭と料金をひとつにまとめたヒーロー ─────
+     見出し・金額・CTA・押したあとの操作を、最初の画面にまとめて置く。
+     英字ラベルと「料金」の見出しは重複するので持たない */
+  .hero-offer { padding: 56px 0 64px; border-top: none; }
+  .hero-offer .container { text-align: center; }
+  .hero-offer .section-label { color: rgba(255,255,255,0.35); display: block; }
+  .hero-offer .divider { margin: 16px auto 18px; background: var(--accent); }
+  .hero-offer-title {
+    font-family: 'Shippori Mincho', serif; font-size: clamp(24px, 4vw, 38px);
+    font-weight: 800; color: #fff; line-height: 1.5; margin-bottom: 14px;
+  }
+  .hero-offer-lead {
+    font-size: 15px; line-height: 1.95; color: rgba(255,255,255,0.7); margin-bottom: 26px;
+  }
+  @media (max-width: 480px) {
+    .hero-offer { padding: 40px 0 48px; }
+    .hero-offer-lead { font-size: 14px; margin-bottom: 20px; }
+  }
+
+  /* 実施形式と、ボタンを押したあとの操作。申込判断に要る条件を料金のそばに置く */
+  .price-meta {
+    margin-top: 14px; font-size: 13px; line-height: 1.9;
+    color: rgba(255,255,255,0.55); text-align: center;
+  }
+  .price-cta-note {
+    margin-top: 12px; font-size: 13px; line-height: 1.8;
+    color: rgba(255,255,255,0.55); text-align: center;
+  }
+  .price-sub .price-meta, .price-sub .price-cta-note { color: var(--muted); }
+  @media (max-width: 480px) {
+    .price-meta, .price-cta-note { font-size: 13px; }
+    .price-sub .price-meta, .price-sub .price-cta-note { color: #4a5260 !important; }
+  }
 
   /* ───── この先の道筋（根本改善プログラム）───── */
   .nextstep { padding: 64px 0; background: #f0f4f8; }
@@ -1822,9 +1855,9 @@
     .session-info { grid-template-columns: 1fr; margin: 28px 0 0; }
     .session-info-item { padding: 18px 0; }
     .session-info-value { color: #2a3240 !important; font-size: 14px; }
-    .price { padding: 72px 0; }
+    .price { padding: 56px 0; }
     .price.price-sub { padding: 48px 0; }
-    .price-heading { font-size: 28px; margin-bottom: 40px; }
+    .price-heading { font-size: 28px; margin-bottom: 24px; }
     .price-sub .price-heading { font-size: 22px; margin-bottom: 24px; }
     .price-trial { grid-template-columns: 1fr; gap: 24px; padding: 36px 0; }
     .price-trial-right { text-align: left; }
@@ -1924,28 +1957,18 @@
         <span class="logo-main"><span class="logo-re">Re</span> <span class="logo-move">Move</span></span>
       </div>
     </a>
-    <a href="https://line.me/R/oaMessage/@557obcxh/?体験" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': '体験申込_ヘッダー'})" class="header-cta" target="_blank">LINEで申し込み</a>
+    <a href="https://line.me/R/oaMessage/%40557obcxh/?%E4%BD%93%E9%A8%93" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': '体験申込_ヘッダー'})" class="header-cta" target="_blank">LINEで申し込み</a>
   </div>
 </header>
 
-<!-- PAGE HEAD -->
-<section class="page-head">
-  <div class="container">
-    <span class="section-label">Trial Session</span>
-    <div class="divider"></div>
-    <p class="page-head-catch">痛み・不調の原因を知り、<br class="sp-br">根本からの改善を目指したい方向け</p>
-    <h1 class="jp-heading" style="font-size: clamp(24px,4vw,38px); line-height:1.5;">体験セッションのご案内</h1>
-    <p class="page-head-lead">痛みの原因を、身体の使い方や<br class="sp-br">動きから分析し、原因となる動きの<br class="sp-br">改善に取り組みます。</p>
-  </div>
-</section>
-
-<!-- PRICE -->
-<section class="price">
+<!-- HERO / OFFER -->
+<section class="price hero-offer">
   <div class="container">
     <div class="fade-in">
-      <span class="section-label">Pricing</span>
+      <span class="section-label">Trial Session</span>
       <div class="divider"></div>
-      <h2 class="price-heading">料金</h2>
+      <h1 class="hero-offer-title">体験セッションのご案内</h1>
+      <p class="hero-offer-lead">痛みの原因を、身体の使い方や<br class="sp-br">動きから分析し、原因となる動きの<br class="sp-br">改善に取り組みます。</p>
     </div>
     <div class="price-trial fade-in">
       <div class="price-row price-row-normal">
@@ -1966,7 +1989,9 @@
         </div>
         <span class="price-row-yen">¥4,400<span class="price-row-tax">税込</span></span>
       </div>
-      <a href="https://line.me/R/oaMessage/@557obcxh/?体験" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': '体験申込_料金上'})" class="cta-primary" target="_blank" style="margin-top:28px;">LINEで申し込み</a>
+      <p class="price-meta">対面（愛知県内のランニングコースのある公園など）<br>／ オンライン（Zoom）</p>
+      <a href="https://line.me/R/oaMessage/%40557obcxh/?%E4%BD%93%E9%A8%93" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': '体験申込_料金上'})" class="cta-primary" target="_blank" style="margin-top:24px;">LINEで申し込み</a>
+      <p class="price-cta-note">LINEのトークが開きます。「体験」を送信してください。</p>
     </div>
   </div>
 </section>
@@ -2088,7 +2113,7 @@
         </div>
         <span class="price-row-yen">¥4,400<span class="price-row-tax">税込</span></span>
       </div>
-      <a href="https://line.me/R/oaMessage/@557obcxh/?体験" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': '体験申込_料金下'})" class="cta-primary" target="_blank" style="margin-top:28px;">LINEで申し込み</a>
+      <a href="https://line.me/R/oaMessage/%40557obcxh/?%E4%BD%93%E9%A8%93" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': '体験申込_料金下'})" class="cta-primary" target="_blank" style="margin-top:28px;">LINEで申し込み</a>
     </div>
   </div>
 </section>
@@ -2119,7 +2144,7 @@
       </div>
     </div>
     <div class="howto-cta fade-in">
-      <a href="https://line.me/R/oaMessage/@557obcxh/?体験" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': '体験申込_申込方法'})" class="cta-primary" target="_blank">LINEで申し込み</a>
+      <a href="https://line.me/R/oaMessage/%40557obcxh/?%E4%BD%93%E9%A8%93" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': '体験申込_申込方法'})" class="cta-primary" target="_blank">LINEで申し込み</a>
     </div>
   </div>
 </section>
@@ -2357,7 +2382,7 @@
         </div>
         <span class="price-row-yen">¥4,400<span class="price-row-tax">税込</span></span>
       </div>
-      <a href="https://line.me/R/oaMessage/@557obcxh/?体験" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': '体験申込_特徴下'})" class="cta-primary" target="_blank" style="margin-top:28px;">LINEで申し込み</a>
+      <a href="https://line.me/R/oaMessage/%40557obcxh/?%E4%BD%93%E9%A8%93" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': '体験申込_特徴下'})" class="cta-primary" target="_blank" style="margin-top:28px;">LINEで申し込み</a>
     </div>
   </div>
 </section>
@@ -2530,7 +2555,7 @@
         <span class="hero-badge"><strong>初回4,400円</strong></span>
       </div>
       <div class="final-cta-btns">
-        <a href="https://line.me/R/oaMessage/@557obcxh/?体験" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': '体験申込_最終CTA'})" class="cta-primary" target="_blank">LINEで申し込み</a>
+        <a href="https://line.me/R/oaMessage/%40557obcxh/?%E4%BD%93%E9%A8%93" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': '体験申込_最終CTA'})" class="cta-primary" target="_blank">LINEで申し込み</a>
       </div>
     </div>
   </div>

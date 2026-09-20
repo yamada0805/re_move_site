@@ -1614,6 +1614,53 @@
   }
   .price-normal { font-size: 16px; color: rgba(255,255,255,0.45); line-height: 1.8; }
   .price-down { font-size: 24px; color: var(--accent); line-height: 1; margin: 16px 0; }
+
+  /* ───── 料金の行（名前・時間を左、金額を右に振る）─────
+     1本の文字列を中央に置くだけだと、余白の割に中身が薄く見えるため */
+  .price-row {
+    display: grid; grid-template-columns: 1fr auto; align-items: baseline;
+    gap: 16px; padding: 18px 20px; text-align: left;
+  }
+  .price-row-left { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .price-row-name { font-size: 15px; font-weight: 700; }
+  .price-row-min {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 13px;
+    letter-spacing: 0.1em; opacity: 0.7;
+  }
+  .price-row-yen {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 24px;
+    font-weight: 700; white-space: nowrap;
+  }
+  /* 通常セッション：控えめに */
+  .price-row-normal { color: rgba(255,255,255,0.45); border-bottom: 1px solid rgba(255,255,255,0.12); }
+  /* 体験セッション：枠で囲んで主役に */
+  .price-row-trial {
+    border: 2px solid var(--accent); border-radius: 8px;
+    padding: 22px 20px; color: #fff;
+  }
+  .price-row-trial .price-row-name { font-size: 16px; }
+  .price-row-trial .price-row-yen { font-size: 40px; letter-spacing: -0.01em; }
+  .price-row-trial .price-row-tax { font-size: 12px; opacity: 0.6; margin-left: 4px; }
+  .price-bridge {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    margin: 14px 0;
+  }
+  .price-bridge-arrow { font-size: 20px; color: var(--accent); line-height: 1; }
+
+  /* 従のカードでは白地に合わせて色を差し替える */
+  .price-sub .price-row-normal { color: var(--muted); border-bottom-color: var(--line); }
+  .price-sub .price-row-trial { color: var(--ink); }
+  .price-sub .price-row-trial .price-row-yen { color: var(--accent); font-size: 34px; }
+
+  @media (max-width: 480px) {
+    .price-row { padding: 16px 14px; gap: 10px; }
+    .price-row-trial { padding: 18px 14px; }
+    .price-row-name { font-size: 14px; }
+    .price-row-trial .price-row-yen { font-size: 34px; }
+    .price-sub .price-row-trial .price-row-yen { font-size: 30px; }
+    .price-sub .price-row-normal { color: #4a5260 !important; }
+    .price-sub .price-row-trial { color: #1e2022 !important; }
+  }
   .price-special-badge {
     display: inline-block; font-family: 'Barlow Condensed', sans-serif;
     font-size: 11px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase;
@@ -1698,6 +1745,10 @@
     font-size: 14px; font-weight: 500; color: var(--muted);
     line-height: 1.9; letter-spacing: 0.02em; margin-bottom: 12px;
   }
+  /* 表紙は中央で揃える。ラベル中央・キャッチ左・見出し中央・リード左で散らかっていた */
+  .page-head .container { text-align: center; }
+  .page-head .divider { margin-left: auto; margin-right: auto; }
+  .page-head-lead { margin-left: auto; margin-right: auto; }
   @media (max-width: 480px) {
     .page-head-catch { font-size: 13px; }
   }
@@ -1845,9 +1896,6 @@
     <p class="page-head-catch">痛み・不調の原因を知り、<br class="sp-br">根本からの改善を目指したい方向け</p>
     <h1 class="jp-heading" style="font-size: clamp(24px,4vw,38px); line-height:1.5;">体験セッションのご案内</h1>
     <p class="page-head-lead">痛みの原因を、身体の使い方や<br class="sp-br">動きから分析し、原因となる動きの<br class="sp-br">改善に取り組みます。</p>
-    <div class="page-head-cta">
-      <a href="https://line.me/R/oaMessage/@557obcxh/?体験" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': '体験申込_見出し'})" class="cta-primary" target="_blank">LINEで申し込み</a>
-    </div>
   </div>
 </section>
 
@@ -1860,10 +1908,24 @@
       <h2 class="price-heading">料金</h2>
     </div>
     <div class="price-trial fade-in">
-      <div class="price-normal">通常セッション｜50分 8,800円（税込）</div>
-      <div class="price-down">↓</div>
-      <span class="price-special-badge">初回限定</span>
-      <div class="price-special">体験セッション｜80分 <span class="price-amount"><strong>4,400円</strong>（税込）</span></div>
+      <div class="price-row price-row-normal">
+        <div class="price-row-left">
+          <span class="price-row-name">通常セッション</span>
+          <span class="price-row-min">50分</span>
+        </div>
+        <span class="price-row-yen">¥8,800</span>
+      </div>
+      <div class="price-bridge">
+        <span class="price-bridge-arrow">↓</span>
+        <span class="price-special-badge" style="margin-bottom:0;">初回限定</span>
+      </div>
+      <div class="price-row price-row-trial">
+        <div class="price-row-left">
+          <span class="price-row-name">体験セッション</span>
+          <span class="price-row-min">80分</span>
+        </div>
+        <span class="price-row-yen">¥4,400<span class="price-row-tax">税込</span></span>
+      </div>
       <a href="https://line.me/R/oaMessage/@557obcxh/?体験" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': '体験申込_料金上'})" class="cta-primary" target="_blank" style="margin-top:28px;">LINEで申し込み</a>
     </div>
   </div>
@@ -1880,12 +1942,10 @@
     </div>
     <ul class="target-list fade-in">
       <li>すでに痛みが強く、走ること自体がつらい方</li>
-      <li>長引く痛みや不調を繰り返している方</li>
-      <li>治療やセルフケアを続けても、改善しきらない方</li>
+      <li>長引く痛みを繰り返し、治療やセルフケアでも改善しきらない方</li>
       <li>痛みの不安を抱えながら練習していて、不安なく走り切れるようになりたい方</li>
       <li>痛みの根本の原因を、自分の走り方や動きから知りたい方</li>
       <li>痛みを繰り返さない身体をつくって、記録に挑戦していきたい方</li>
-      <li>痛みを改善した先で、もっと自由に走れるようになりたい方</li>
     </ul>
   </div>
 </section>
@@ -1970,10 +2030,24 @@
       <h2 class="price-heading">料金</h2>
     </div>
     <div class="price-trial fade-in">
-      <div class="price-normal">通常セッション｜50分 8,800円（税込）</div>
-      <div class="price-down">↓</div>
-      <span class="price-special-badge">初回限定</span>
-      <div class="price-special">体験セッション｜80分 <span class="price-amount"><strong>4,400円</strong>（税込）</span></div>
+      <div class="price-row price-row-normal">
+        <div class="price-row-left">
+          <span class="price-row-name">通常セッション</span>
+          <span class="price-row-min">50分</span>
+        </div>
+        <span class="price-row-yen">¥8,800</span>
+      </div>
+      <div class="price-bridge">
+        <span class="price-bridge-arrow">↓</span>
+        <span class="price-special-badge" style="margin-bottom:0;">初回限定</span>
+      </div>
+      <div class="price-row price-row-trial">
+        <div class="price-row-left">
+          <span class="price-row-name">体験セッション</span>
+          <span class="price-row-min">80分</span>
+        </div>
+        <span class="price-row-yen">¥4,400<span class="price-row-tax">税込</span></span>
+      </div>
       <a href="https://line.me/R/oaMessage/@557obcxh/?体験" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': '体験申込_料金下'})" class="cta-primary" target="_blank" style="margin-top:28px;">LINEで申し込み</a>
     </div>
   </div>
@@ -2225,10 +2299,24 @@
       <h2 class="price-heading">料金</h2>
     </div>
     <div class="price-trial fade-in">
-      <div class="price-normal">通常セッション｜50分 8,800円（税込）</div>
-      <div class="price-down">↓</div>
-      <span class="price-special-badge">初回限定</span>
-      <div class="price-special">体験セッション｜80分 <span class="price-amount"><strong>4,400円</strong>（税込）</span></div>
+      <div class="price-row price-row-normal">
+        <div class="price-row-left">
+          <span class="price-row-name">通常セッション</span>
+          <span class="price-row-min">50分</span>
+        </div>
+        <span class="price-row-yen">¥8,800</span>
+      </div>
+      <div class="price-bridge">
+        <span class="price-bridge-arrow">↓</span>
+        <span class="price-special-badge" style="margin-bottom:0;">初回限定</span>
+      </div>
+      <div class="price-row price-row-trial">
+        <div class="price-row-left">
+          <span class="price-row-name">体験セッション</span>
+          <span class="price-row-min">80分</span>
+        </div>
+        <span class="price-row-yen">¥4,400<span class="price-row-tax">税込</span></span>
+      </div>
       <a href="https://line.me/R/oaMessage/@557obcxh/?体験" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': '体験申込_特徴下'})" class="cta-primary" target="_blank" style="margin-top:28px;">LINEで申し込み</a>
     </div>
   </div>
@@ -2357,9 +2445,9 @@
   <div class="final-cta-inner container">
     <div class="fade-in">
       <span class="section-label" style="text-transform:none;">Re Move</span>
-      <h2 class="final-cta-heading">痛みの原因は、<br>動かしてみれば分かります。</h2>
+      <h2 class="final-cta-heading">長引く痛みの原因は、<br>あなたの「身体の使い方」にあります。</h2>
       <p class="final-cta-text">
-        何年も変わらなかったものが、80分で全部解決するとは言いません。ただ、何が原因で、何をすれば変わるのかは、その日のうちにはっきりします。
+        まずは痛みの原因を知り、痛みなく走れる状態を取り戻す一歩を踏み出しましょう。
       </p>
       <div class="final-cta-badges">
         <span class="hero-badge"><strong>80分</strong></span>

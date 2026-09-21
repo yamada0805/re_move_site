@@ -372,14 +372,13 @@
     content: '';
     position: absolute;
     inset: 0;
-    /* 明るい屋外写真。文字が乗る上半分を濃く、走者のいる下半分は透かす */
+    /* 文字が乗る範囲は0.80で一律（実測で基準を満たす明るさの上限）。
+       文字のない足元だけ透かす */
     background: linear-gradient(180deg,
-      rgba(18,26,40,0.86) 0%,
-      rgba(18,26,40,0.84) 42%,
-      rgba(18,26,40,0.82) 64%,
-      rgba(18,26,40,0.62) 74%,
-      rgba(18,26,40,0.40) 86%,
-      rgba(18,26,40,0.46) 100%);
+      rgba(18,26,40,0.80) 0%,
+      rgba(18,26,40,0.80) 84%,
+      rgba(18,26,40,0.46) 94%,
+      rgba(18,26,40,0.50) 100%);
   }
   .hero-img img {
     width: 100%;
@@ -478,7 +477,7 @@
     letter-spacing: 0.1em;
     color: #fff;
     border: 1px solid rgba(255,255,255,0.45);
-    background: rgba(18,26,40,0.55);
+    background: rgba(18,26,40,0.62);
     padding: 8px 20px;
   }
   .hero-badge strong {

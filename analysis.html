@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>無料フォーム分析 | Re Move ランナー専門サポート</title>
 
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/img/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="canonical" href="https://re-move-run.vercel.app/analysis">
+
   <!-- OGP / SNSシェア設定 -->
   <meta property="og:title" content="無料フォーム分析 | Re Move ランナー専門サポート">
   <meta property="og:description" content="その痛みの原因、あなたの走りから分析します。ランニング動画から負担が集中している原因を分析し、オンライン30分で無料フィードバック。理学療法士・山田紘暉が担当します。">
@@ -51,20 +56,24 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Barlow+Condensed:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --ink: #1e2022;
     --paper: #f7f9fb;
     --warm-white: #ffffff;
-    --accent: #f07020;
+    --accent: #f07020;          /* ブランドのオレンジ。面・線・濃い背景の上の文字に使う */
     --accent-light: #f58c45;
-    --muted: #7a828a;
+    --accent-text: #b8480c;     /* 明るい背景に置く文字用。白地に対し約5.3:1 */
+    --cta: #bf4d0a;             /* 白文字を載せるボタンの地色。白文字に対し約4.9:1 */
+    --cta-hover: #a03f08;
+    --muted: #666e76;        /* 明るい地で4.6:1以上。旧 #7a828a は3.5:1しかなかった */
     --line: #dde3ea;
     --deep: #1a2332;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  picture { display: contents; }   /* 親→img の既存CSSを壊さないため */
 
   html { scroll-behavior: smooth; }
 
@@ -82,7 +91,7 @@
 
   .section-label {
     font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 300;
+    font-weight: 400;
     font-size: 11px;
     letter-spacing: 0.3em;
     text-transform: uppercase;
@@ -101,7 +110,7 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: var(--accent);
+    background: var(--cta);
     color: #fff;
     font-family: 'Zen Kaku Gothic New', sans-serif;
     font-size: 15px;
@@ -110,13 +119,26 @@
     padding: 16px 36px;
     text-decoration: none;
     border-radius: 6px;
-    border: 2px solid var(--accent);
+    border: 2px solid var(--cta);
     transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
   }
   .cta-primary:hover {
-    background: var(--accent-light);
+    background: var(--cta-hover);
+    border-color: var(--cta-hover);
     transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(240,112,32,0.35);
+  }
+
+  /* キーボード操作のフォーカスを見えるようにする */
+  a:focus-visible,
+  button:focus-visible,
+  summary:focus-visible {
+    outline: 3px solid var(--cta);
+    outline-offset: 3px;
+  }
+  .final-cta a:focus-visible,
+  .apply a:focus-visible{
+    outline-color: #ffb27a;
   }
 
   .divider {
@@ -127,14 +149,29 @@
   }
 
   /* ───── ANIMATIONS ───── */
-  .fade-in {
+  /* 既定は「見えている」状態。JSが動く環境だけフェードさせる */
+  .fade-in { opacity: 1; transform: none; }
+  .js .fade-in {
     opacity: 0;
     transform: translateY(28px);
     transition: opacity 0.7s ease, transform 0.7s ease;
   }
-  .fade-in.visible {
+  .js .fade-in.visible {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  /* 動きを減らす設定のときは演出を止める */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .js .fade-in,
+    .js .fade-in.visible { opacity: 1; transform: none; transition: none; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 
   /* ───── HEADER ───── */
@@ -155,32 +192,13 @@
     margin: 0 auto;
     padding: 0 24px;
   }
-  .site-nav {
-    display: flex;
-    align-items: center;
-    gap: 22px;
-    margin-left: auto;
-    margin-right: 22px;
-  }
-  .site-nav a {
-    font-family: 'Zen Kaku Gothic New', sans-serif;
-    font-size: 13px;
-    color: var(--ink);
-    text-decoration: none;
-    letter-spacing: 0.04em;
-    white-space: nowrap;
-    transition: color 0.2s;
-  }
-  .site-nav a:hover { color: var(--accent); }
-  .site-nav a.current { color: var(--accent); font-weight: 700; }
-
   .apply {
     padding: 100px 0;
     background: #1e2d42;
     color: #fff;
     border-top: 3px solid var(--accent);
   }
-  .apply .section-label { color: rgba(255,255,255,0.35); }
+  .apply .section-label { color: rgba(255,255,255,0.6); }
   .apply .divider { background: var(--accent); }
   .apply .jp-heading { color: #fff; }
 
@@ -204,13 +222,7 @@
     padding: 4px 12px;
     margin-bottom: 16px;
   }
-  .apply-name {
-    font-family: 'Shippori Mincho', serif;
-    font-size: 24px;
-    font-weight: 800;
-    color: #fff;
-    margin-bottom: 12px;
-  }
+  
   .apply-desc {
     font-size: 13px;
     color: rgba(255,255,255,0.5);
@@ -238,8 +250,8 @@
     letter-spacing: 0.02em;
   }
   .apply-unit-label {
-    font-size: 12px;
-    color: rgba(255,255,255,0.45);
+    font-size: 13px;
+    color: rgba(255,255,255,0.68);
     letter-spacing: 0.08em;
   }
   .apply-right .cta-primary {
@@ -252,100 +264,20 @@
     .apply { padding: 72px 0; }
     .apply-row { grid-template-columns: 1fr; gap: 28px; padding: 32px 0 0; }
     .apply-right { min-width: 0; }
-    .apply-name { font-size: 20px; }
+    
     .apply-amount { font-size: 30px; }
   }
 
-  .trial-invite {
-    padding: 80px 0 120px;
-    background: #f0f4f8;
-  }
-  .trial-invite-catch {
-    margin-top: 32px;
-    font-family: 'Shippori Mincho', serif;
-    font-size: clamp(18px, 2.6vw, 22px);
-    font-weight: 700;
-    color: var(--ink);
-    text-align: center;
-  }
-  .trial-invite-lead {
-    margin-top: 20px;
-    font-size: 15px;
-    line-height: 2;
-    color: var(--ink);
-    text-align: center;
-  }
-  .trial-invite-box {
-    margin-top: 28px;
-    padding: 34px 28px;
-    text-align: center;
-    background: #ffffff;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-  }
+  
+  
+  
+  
 
-  @media (max-width: 720px) {
-    .trial-invite { padding: 64px 0 80px; }
-    .trial-invite-box { padding: 26px 20px; }
-  }
-  .trial-invite-name {
-    font-size: 15px;
-    color: var(--muted);
-    margin-bottom: 10px;
-  }
-  .trial-invite-price {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 42px;
-    font-weight: 700;
-    color: var(--accent);
-    line-height: 1.1;
-  }
-  .trial-invite-from {
-    font-size: 19px;
-    color: var(--muted);
-    text-decoration: line-through;
-    margin-right: 10px;
-  }
-  .trial-invite-note {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.9;
-    margin-top: 10px;
-  }
-
-  @media (max-width: 720px) {
-    .site-nav { gap: 14px; margin-right: 12px; }
-    .site-nav a { font-size: 11px; }
-  }
-
-  /* ハンバーガーメニュー */
-  .nav-toggle {
-    display: none;
-    width: 40px;
-    height: 40px;
-    margin-left: 10px;
-    margin-right: 0;
-    background: none;
-    border: 0;
-    padding: 0;
-    cursor: pointer;
-    position: relative;
-  }
-  .nav-toggle span {
-    display: block;
-    position: absolute;
-    left: 9px;
-    width: 22px;
-    height: 1.5px;
-    background: var(--ink);
-    transition: transform 0.25s, opacity 0.2s;
-  }
-  .nav-toggle span:nth-child(1) { top: 14px; }
-  .nav-toggle span:nth-child(2) { top: 20px; }
-  .nav-toggle span:nth-child(3) { top: 26px; }
-  .nav-toggle.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-  .nav-toggle.open span:nth-child(2) { opacity: 0; }
-  .nav-toggle.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+  
+  
+  
+  
+  
 
   /* スマホのTRAINER：1行目に写真と名前、資格はその下に全幅 */
   @media (max-width: 720px) {
@@ -362,44 +294,21 @@
     .trainer-tags { width: 100%; margin-top: 0; }
   }
 
-  @media (max-width: 720px) {
-    .nav-toggle { display: block; }
-    .header-cta { margin-left: auto; }
-    .site-nav {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      flex-direction: column;
-      align-items: stretch;
-      gap: 0;
-      margin: 0;
-      background: rgba(245,242,237,0.98);
-      border-bottom: 1px solid var(--line);
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.28s ease;
-    }
-    .site-nav.open { max-height: 200px; }
-    .site-nav a {
-      font-size: 14px;
-      padding: 16px 24px;
-      border-top: 1px solid var(--line);
-    }
-  }
-
   .header-cta {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
     font-family: 'Zen Kaku Gothic New', sans-serif;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 700;
     color: #fff;
-    background: var(--accent);
-    padding: 10px 22px;
+    background: var(--cta);
+    padding: 10px 20px;
     text-decoration: none;
     letter-spacing: 0.05em;
     transition: background 0.2s;
   }
-  .header-cta:hover { background: var(--accent-light); }
+  .header-cta:hover { background: var(--cta-hover); }
 
   .logo-combo {
     display: flex;
@@ -444,10 +353,11 @@
 
   /* ───── HERO ───── */
   .hero {
-    min-height: 100vh;
+    min-height: 78vh;
+    min-height: 78svh;       /* 1画面を埋めきらず、次のセクションを覗かせる */
     display: flex;
-    align-items: center;
-    padding: 120px 24px 80px;
+    align-items: flex-start;  /* 文字を上へ。下半分は写真（走者）に空ける */
+    padding: 112px 24px 40px;
     position: relative;
     overflow: hidden;
     background: #1a2332;
@@ -462,18 +372,23 @@
     content: '';
     position: absolute;
     inset: 0;
-    background:
-      linear-gradient(100deg, rgba(26,35,50,0.82) 25%, rgba(26,35,50,0.45) 55%, rgba(26,35,50,0.10) 100%),
-      linear-gradient(to top, rgba(26,35,50,0.80) 0%, transparent 30%);
+    /* 明るい屋外写真。文字が乗る上半分を濃く、走者のいる下半分は透かす */
+    background: linear-gradient(180deg,
+      rgba(18,26,40,0.86) 0%,
+      rgba(18,26,40,0.84) 42%,
+      rgba(18,26,40,0.82) 64%,
+      rgba(18,26,40,0.62) 74%,
+      rgba(18,26,40,0.40) 86%,
+      rgba(18,26,40,0.46) 100%);
   }
   .hero-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 20%;
+    object-position: center 66%;   /* 横長の画面で切り取られても走者が残る位置 */
     display: block;
     opacity: 1;
-    filter: brightness(0.80) saturate(0.9);
+    filter: saturate(0.95);
   }
 
   .hero-track-lines {
@@ -509,7 +424,7 @@
     font-weight: 400;
     letter-spacing: 0.4em;
     text-transform: uppercase;
-    color: var(--accent);
+    color: var(--accent-light);   /* 写真の上でも4.5:1を確保するため一段明るく */
     margin-bottom: 32px;
     display: block;
     opacity: 0;
@@ -519,7 +434,7 @@
   .hero-catch {
     font-family: 'Shippori Mincho', serif;
     font-size: clamp(13px, 2vw, 16px);
-    font-weight: 500;
+    font-weight: 600;
     color: rgba(255,255,255,0.6);
     letter-spacing: 0.15em;
     margin-bottom: 20px;
@@ -563,6 +478,7 @@
     letter-spacing: 0.1em;
     color: #fff;
     border: 1px solid rgba(255,255,255,0.45);
+    background: rgba(18,26,40,0.55);
     padding: 8px 20px;
   }
   .hero-badge strong {
@@ -581,8 +497,8 @@
   }
 
   .hero-ctas .cta-primary {
-    background: var(--accent);
-    border-color: var(--accent);
+    background: var(--cta);
+    border-color: var(--cta);
     font-size: 14px;
     padding: 16px 32px;
   }
@@ -654,13 +570,7 @@
     padding: 0;
   }
 
-  .trouble-hook-sub {
-    font-size: 13px;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-    margin-bottom: 12px;
-    display: block;
-  }
+  
 
   .trouble-hook-text {
     font-family: 'Shippori Mincho', serif;
@@ -671,39 +581,12 @@
   }
 
   /* ───── WHY SECTION ───── */
-  .why {
-    padding: 80px 0 120px;
-    background: #f0f4f8;
-    position: relative;
-    overflow: hidden;
-  }
+  
 
-  .why::after {
-    content: 'WHY';
-    position: absolute;
-    right: -20px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 180px;
-    font-weight: 700;
-    color: rgba(0,0,0,0.04);
-    user-select: none;
-    letter-spacing: -0.02em;
-  }
-  .why-body {
-    position: relative;
-    z-index: 1;
-    max-width: 640px;
-    margin: 48px 0 0 auto;
-  }
+  
+  
 
-  .why-body p {
-    font-size: 16px;
-    line-height: 2;
-    color: #3a3530;
-    margin-bottom: 24px;
-  }
+  
 
   /* ───── ANALYSIS SECTION ───── */
   .analysis {
@@ -735,7 +618,7 @@
     font-weight: 700;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--accent);
+    color: var(--accent-text);
     writing-mode: vertical-rl;
     text-orientation: mixed;
     padding-right: 20px;
@@ -772,84 +655,31 @@
   .analysis-text strong { color: var(--ink); font-weight: 700; }
 
   /* ───── CASES SECTION ───── */
-  .cases {
-    padding: 100px 0;
-    background: #1e2d42;
-    color: #fff;
-    border-top: 3px solid var(--accent);
-  }
+  
 
-  .cases .section-label { color: rgba(255,255,255,0.35); }
-  .cases .divider { background: var(--accent); }
-  .cases .jp-heading { color: #fff; }
+  
+  
+  
 
-  .cases-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-    margin-top: 48px;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.08);
-  }
+  
 
-  .case-item {
-    background: #1e2d42;
-    overflow: hidden;
-    transition: background 0.3s;
-  }
-  .case-item:hover { background: #243552; }
+  
+  
 
-  .case-img-wrap {
-    width: 100%;
-    aspect-ratio: 1/1;
-    overflow: hidden;
-  }
+  
 
-  .case-img-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.4s ease;
-  }
-  .case-item:hover .case-img-wrap img { transform: scale(1.03); }
+  
+  
 
-  .case-info {
-    padding: 20px 24px 28px;
-    border-top: 1px solid rgba(255,255,255,0.07);
-  }
+  
 
-  .case-tag {
-    display: inline-block;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 10px;
-  }
+  
 
-  .case-trouble {
-    font-family: 'Shippori Mincho', serif;
-    font-size: 14px;
-    font-weight: 700;
-    color: #fff;
-    line-height: 1.6;
-    margin-bottom: 8px;
-  }
+  
 
-  .case-desc {
-    font-size: 13px;
-    color: rgba(255,255,255,0.55);
-    line-height: 1.8;
-    padding-top: 8px;
-    border-top: 1px solid rgba(255,255,255,0.08);
-  }
+  
 
-  @media (max-width: 768px) {
-    .cases-grid { grid-template-columns: 1fr; }
-  }
+  
 
   /* ───── STEPS SECTION ───── */
   .steps {
@@ -933,133 +763,42 @@
   }
 
   /* ───── TARGET SECTION ───── */
-  .target {
-    padding: 120px 0 80px;
-    background: #f0f4f8;
-  }
+  
 
-  .target-list {
-    margin-top: 48px;
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
+  
 
-  .target-list li {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    padding: 20px 0;
-    border-bottom: 1px solid var(--line);
-    font-family: 'Shippori Mincho', serif;
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--ink);
-  }
-  .target-list li:first-child { border-top: 1px solid var(--line); }
+  
+  
 
-  .target-list li::before {
-    content: '';
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--accent);
-    flex-shrink: 0;
-  }
+  
 
-  .target-note {
-    margin-top: 40px;
-    padding: 24px 28px;
-    background: #fff;
-    border-left: 3px solid var(--line);
-    font-size: 13px;
-    line-height: 2;
-    color: var(--muted);
-  }
+  
 
   /* ───── VOICE SECTION ───── */
-  .voice {
-    padding: 100px 0;
-    background: #ffffff;
-  }
+  
 
-  .voice .section-label { color: var(--muted); }
-  .voice .divider { margin: 20px auto; }
+  
+  
 
-  .voice-grid {
-    margin-top: 56px;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    border-top: 1px solid var(--line);
-  }
+  
 
-  .voice-item {
-    padding: 40px 0;
-    border-bottom: 1px solid var(--line);
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 32px;
-    align-items: start;
-  }
+  
 
-  .voice-profile {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    min-width: 72px;
-  }
+  
 
-  .voice-age {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--accent);
-    line-height: 1;
-  }
+  
 
-  .voice-name {
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-  }
+  
 
-  .voice-tag {
-    display: inline-block;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 12px;
-  }
+  
 
-  .voice-text {
-    font-family: 'Shippori Mincho', serif;
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--ink);
-    line-height: 1.9;
-  }
+  
 
-  .voice-text::before {
-    content: '「';
-    color: var(--accent);
-  }
+  
 
-  .voice-text::after {
-    content: '」';
-    color: var(--accent);
-  }
+  
 
-  @media (max-width: 480px) {
-    .voice-item { grid-template-columns: 1fr; gap: 16px; }
-    .voice-profile { flex-direction: row; align-items: center; gap: 8px; }
-    .voice-text { font-size: 15px; }
-  }
+  
 
   /* ───── TRAINER SECTION ───── */
   .trainer {
@@ -1215,8 +954,7 @@
 
   .faq-q {
     width: 100%;
-    background: none;
-    border: none;
+    list-style: none;
     padding: 24px 32px;
     display: flex;
     align-items: flex-start;
@@ -1225,13 +963,19 @@
     text-align: left;
     transition: background 0.2s;
   }
+  .faq-q::-webkit-details-marker { display: none; }
   .faq-q:hover { background: rgba(0,0,0,0.02); }
+  .faq-q:focus-visible {
+    outline: 3px solid var(--cta);
+    outline-offset: -3px;
+    background: rgba(0,0,0,0.03);
+  }
 
   .faq-q-label {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 18px;
     font-weight: 700;
-    color: var(--accent);
+    color: var(--accent-text);
     flex-shrink: 0;
     line-height: 1.5;
   }
@@ -1248,20 +992,13 @@
 
   .faq-q-icon {
     font-size: 20px;
-    font-weight: 300;
+    font-weight: 400;
     color: var(--muted);
     flex-shrink: 0;
     transition: transform 0.3s;
     line-height: 1.5;
   }
-  .faq-q.open .faq-q-icon { transform: rotate(45deg); }
-
-  .faq-a {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease;
-  }
-  .faq-a.open { max-height: 400px; }
+  .faq-item[open] .faq-q-icon { transform: rotate(45deg); }
 
   .faq-a-inner {
     display: flex;
@@ -1377,10 +1114,10 @@
     font-size: 15px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.62);
     margin-bottom: 28px;
   }
-  .footer-logo span { color: rgba(240,112,32,0.6); }
+  .footer-logo span { color: #f58c45; }
 
   .footer-sns {
     display: flex;
@@ -1390,7 +1127,7 @@
   }
 
   .footer-sns-link {
-    color: rgba(255,255,255,0.35);
+    color: rgba(255,255,255,0.6);
     transition: color 0.2s;
     display: flex;
     align-items: center;
@@ -1407,22 +1144,19 @@
   }
 
   .footer-nav-link {
-    font-size: 11px;
-    color: rgba(255,255,255,0.3);
+    font-size: 13px;
+    color: rgba(255,255,255,0.72);
     text-decoration: none;
     letter-spacing: 0.05em;
     transition: color 0.2s;
   }
   .footer-nav-link:hover { color: rgba(255,255,255,0.7); }
 
-  .footer-nav-sep {
-    font-size: 11px;
-    color: rgba(255,255,255,0.15);
-  }
+  
 
   .footer-copy {
-    font-size: 11px;
-    color: rgba(255,255,255,0.2);
+    font-size: 12px;
+    color: rgba(255,255,255,0.62);
     letter-spacing: 0.1em;
   }
 
@@ -1431,21 +1165,17 @@
   .trouble .jp-heading { text-align: center; }
   .trouble .divider { margin: 20px auto; }
 
-  .target .section-label,
-  .target .jp-heading { text-align: center; }
-  .target .divider { margin: 20px auto; }
+  
+  
 
-  .cases .section-label,
-  .cases .jp-heading { text-align: center; }
-  .cases .divider { margin: 20px auto; }
+  
+  
 
   .faq .section-label,
   .faq .jp-heading { text-align: center; }
   .faq .divider { margin: 20px auto; }
 
-  .why .section-label,
-  .why .jp-heading,
-  .why .divider,
+  
   .analysis .section-label,
   .analysis .jp-heading,
   .analysis .divider,
@@ -1502,18 +1232,18 @@
 
     header { padding: 14px 0; }
     header .inner { padding: 0 14px; }
-    .header-cta { font-size: 11px; padding: 8px 12px; white-space: nowrap; }
+    .header-cta { font-size: 13px; padding: 8px 14px; white-space: nowrap; }
 
-    .hero { padding: 100px 20px 64px; min-height: 90vh; }
+    .hero { padding: 96px 20px 44px; min-height: 76svh; }
     .hero-catch { font-size: 12px; margin-bottom: 14px; color: rgba(255,255,255,0.75) !important; }
     .hero-main { font-size: 26px; line-height: 1.45; margin-bottom: 20px; }
     .hero-badges { margin-bottom: 40px; }
     .hero-badge { font-size: 13px; padding: 7px 16px; }
     .hero-ctas { flex-direction: column; gap: 12px; margin-top: 40px; }
-    .hero-ctas .cta-primary { width: 100%; text-align: center; justify-content: center; padding: 18px 24px; font-size: 15px; }
+    .hero-ctas { align-items: flex-start; }
+    .hero-ctas .cta-primary { width: auto; padding: 17px 26px; font-size: 15px; }
 
     .jp-heading { font-size: 22px !important; }
-    .section-label { color: #8a939b !important; }
 
     .trouble { padding: 72px 0 56px; }
     .trouble-grid { padding: 28px 24px; }
@@ -1521,11 +1251,11 @@
     .trouble-num { opacity: 0.4; }
     .trouble-text { font-size: 15px; }
     .trouble-hook-text { font-size: 17px; }
-    .trouble-hook-sub { color: #6a7280; font-size: 13px; }
+    
 
-    .why { padding: 64px 0 80px; }
-    .why-body { margin: 32px 0 0; }
-    .why-body p { font-size: 15px; color: #4a5260 !important; }
+    
+    
+    
 
     .analysis { padding: 64px 0 80px; }
     .analysis-grid { margin-top: 40px; }
@@ -1545,11 +1275,11 @@
     .analysis-title { font-size: 17px; }
     .analysis-text { font-size: 14px; color: #4a5260 !important; }
 
-    .cases { padding: 72px 0; }
-    .cases-grid { grid-template-columns: 1fr; }
-    .case-info { padding: 16px 20px 20px; }
-    .case-trouble { font-size: 14px; color: rgba(255,255,255,0.9) !important; }
-    .case-desc { font-size: 13px; color: rgba(255,255,255,0.7) !important; }
+    
+    
+    
+    
+    
 
     .steps { padding: 64px 0 80px; }
     .steps-track { margin-top: 40px; }
@@ -1558,18 +1288,18 @@
     .step-title { font-size: 16px; }
     .step-text { font-size: 14px; color: #4a5260 !important; }
 
-    .target { padding: 72px 0 56px; }
-    .target-list li { font-size: 14px; padding: 18px 0; gap: 16px; }
-    .target-note { font-size: 13px; color: #4a5260; padding: 20px 20px; }
+    
+    
+    
 
-    .voice { padding: 72px 0; }
-    .voice-text { font-size: 15px; color: #1e2022 !important; }
-    .voice-name { color: #6a7280; font-size: 12px; }
+    
+    
+    
 
     .trainer { padding: 72px 0; }
     .trainer-photo-circle { width: 104px; height: 104px; }
     .trainer-name { font-size: 22px; }
-    .trainer-en { color: #6a7280; }
+    .trainer-en { color: var(--muted); }
     .trainer-tag { color: #4a5260; border-color: #c0c8d0; }
     .trainer-story { padding: 20px 20px; }
     .trainer-story-text { font-size: 14px; color: #4a5260 !important; }
@@ -1622,12 +1352,11 @@
     body { font-weight: 500; }
 
     /* 本文系: 15px / weight 500 / 濃いグレー */
-    .why-body p,
+    
     .analysis-text,
     .step-text,
     .faq-a-text,
-    .trainer-story-text,
-    .target-note {
+    .trainer-story-text{
       font-size: 15px !important;
       font-weight: 500;
       color: #3a4250 !important;
@@ -1636,16 +1365,16 @@
 
     /* ダーク背景上の本文は白寄りに */
     .final-cta-text { font-size: 15px !important; font-weight: 500; }
-    .case-desc { font-size: 14px !important; font-weight: 500; color: rgba(255,255,255,0.85) !important; }
-    .case-trouble { font-size: 15px !important; }
+    
+    
 
     /* 見出し・リスト系を一段階アップ */
     .trouble-text { font-size: 16px !important; }
     .trouble-hook-text { font-size: 18px !important; }
-    .target-list li { font-size: 15px !important; }
+    
     .analysis-title { font-size: 18px !important; }
     .step-title { font-size: 17px !important; }
-    .voice-text { font-size: 16px !important; }
+    
     .trainer-feat-item { font-size: 15px !important; }
     .faq-q-text { font-size: 15px !important; }
 
@@ -1654,12 +1383,225 @@
     .hero-badge { font-size: 14px; font-weight: 700; border-color: rgba(255,255,255,0.6); }
 
     /* 補足ラベル類 */
-    .trouble-hook-sub { font-size: 14px; font-weight: 500; }
-    .voice-name { font-size: 13px; }
-    .voice-tag { font-size: 11px; }
+    
+    
+    
     .analysis-label { font-size: 16px; }
   }
-</style>
+  /* ───── 冒頭：サービスの具体像と申込操作（A1・A2）───── */
+  
+  
+
+  /* ───── 冒頭直下：担当者と「無料だけでもよい」こと（A3）───── */
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  /* ───── 事例・お客様の声の位置づけ（A5・B8）───── */
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  /* ═══════════════ 2026-09-20 構成の作り直し ═══════════════ */
+
+  :root { --bone: #c4ccd6; }
+
+  /* 見出しの標準サイズ（各h2のインライン指定を廃止） */
+  .jp-heading { font-size: clamp(22px, 3.4vw, 32px); line-height: 1.55; }
+  @media (max-width: 480px) { .jp-heading { font-size: 22px; } }
+
+  /* セクションの地色。同じ色が隣り合わないように並べる */
+  
+  .trouble       { background: var(--paper); }
+  
+  .cause         { background: var(--paper); }
+  .analysis      { background: var(--warm-white); }
+  .trainer       { background: var(--paper); }
+  .steps         { background: var(--warm-white); }
+  .faq           { background: var(--paper); }
+
+  /* ───── 冒頭のトレーナー帯 ───── */
+  
+  
+  
+  
+  
+  
+
+  /* ───── 悩みの締め ───── */
+  .trouble-hook { margin-top: 32px; text-align: center; }
+  .trouble-hook-text {
+    font-family: 'Shippori Mincho', serif; font-size: clamp(16px, 2.4vw, 20px);
+    font-weight: 700; line-height: 1.9; color: var(--ink);
+  }
+
+  /* ───── 痛みの原因は、痛いところにあるとは限りません ───── */
+  .cause { padding: 88px 0; }
+  .cause-legend {
+    display: flex; justify-content: center; gap: 22px;
+    margin: 26px 0 22px; font-size: 14px; color: var(--muted);
+  }
+  .cause-legend span { display: inline-flex; align-items: center; gap: 7px; }
+  .dot-pain {
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--accent); box-shadow: 0 0 0 4px rgba(240,112,32,.18);
+  }
+  .dot-cause {
+    width: 12px; height: 12px; border-radius: 50%;
+    border: 2.5px solid var(--accent-text); background: #fff;
+  }
+  .cause-item {
+    display: grid;
+    grid-template-columns: 78px 1fr;
+    gap: 16px;
+    align-items: center;
+    background: var(--warm-white);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 16px 16px;
+    margin-bottom: 10px;
+  }
+  .cause-fig { display: block; }
+  .cause-no {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700;
+    letter-spacing: .22em; color: var(--accent-text); display: block; margin-bottom: 6px;
+  }
+  .cause-h {
+    font-family: 'Shippori Mincho', serif; font-size: 16px; font-weight: 700; line-height: 1.7;
+  }
+  .cause-t { margin-top: 14px; font-size: 14px; line-height: 1.95; color: var(--muted); }
+  .cause-t b { color: var(--ink); font-weight: 700; }
+  
+  
+
+  @media (max-width: 480px) {
+    .cause { padding: 64px 0 72px; }
+    .cause-item { padding: 18px 16px; }
+    .cause-top { grid-template-columns: 78px 1fr; gap: 16px; }
+    .cause-h { font-size: 15px; }
+  }
+
+  /* ───── フォーム分析で痛みの原因を知る ───── */
+  .analysis-lead {
+    max-width: 40em; margin: 20px auto 0; text-align: center;
+    font-size: 15px; line-height: 1.95; color: var(--muted);
+  }
+  .analysis-catch {
+    margin: 26px auto 0; text-align: center;
+    font-family: 'Shippori Mincho', serif; font-size: clamp(18px, 2.6vw, 22px);
+    font-weight: 800; color: var(--accent-text); letter-spacing: .04em;
+  }
+
+  /* ───── CTA直下の操作案内 ───── */
+  .cta-note { margin-top: 12px; font-size: 14px; line-height: 1.8; color: var(--muted); }
+  .apply .cta-note,
+  .final-cta .cta-note { color: rgba(255,255,255,0.82); }
+
+  @media (max-width: 480px) {
+    
+    
+    
+    .analysis-lead { font-size: 15px; }
+  }
+  /* 構成変更にともなう地色の並べ直し */
+  .trouble { background: var(--warm-white); }
+  .cause   { background: var(--paper); }
+
+  /* 「なぜ、痛みは繰り返されるのか」の本文 */
+  .cause-body {
+    max-width: 44em;
+    margin: 30px auto 0;
+    font-size: 15px;
+    line-height: 2.05;
+    color: var(--ink);
+  }
+  .cause-body p + p { margin-top: 20px; }
+  .cause-body strong { font-weight: 700; }
+  .cause-body-close { margin-top: 30px; }
+  @media (max-width: 480px) {
+    .cause-body { font-size: 15px; line-height: 2; margin-top: 26px; }
+    .cause-body p + p { margin-top: 18px; }
+  }
+  /* 分析の流れとトレーナーを入れ替えたので、地色も入れ替える */
+  .steps   { background: var(--paper); }
+  .trainer { background: var(--warm-white); }
+  /* チェックリストから締めへ送る矢印 */
+  .tri-down {
+    width: 0; height: 0;
+    margin: 30px auto 0;
+    border-left: 17px solid transparent;
+    border-right: 17px solid transparent;
+    border-top: 19px solid var(--accent);
+  }
+  .trouble-hook { margin-top: 24px; }
+  @media (max-width: 480px) {
+    .tri-down { margin-top: 24px; border-left-width: 15px; border-right-width: 15px; border-top-width: 17px; }
+    .trouble-hook { margin-top: 20px; }
+  }
+  /* ───── 「なぜ、痛みは繰り返されるのか」の文章に写真を敷く ───── */
+  .cause { padding: 0 0 88px; }
+  .cause-photo {
+    position: relative;
+    overflow: hidden;
+    padding: 80px 0 76px;
+    margin-bottom: 52px;
+  }
+  .cause-photo-bg { position: absolute; inset: 0; z-index: 0; }
+  .cause-photo-bg img {
+    width: 100%; height: 100%; object-fit: cover;
+    object-position: 30% center; display: block;
+  }
+  .cause-photo-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg,
+      rgba(16,24,38,0.70) 0%,
+      rgba(16,24,38,0.70) 40%,
+      rgba(16,24,38,0.76) 100%);
+  }
+  .cause-photo > .container { position: relative; z-index: 1; }
+  .cause-photo .section-label { color: #fff; text-shadow: 0 1px 6px rgba(0,0,0,0.45); }
+  .cause-photo .jp-heading { color: #fff; }
+  .cause-photo .cause-body { color: rgba(255,255,255,0.92); }
+  .cause-photo .cause-body strong { color: #fff; }
+  @media (max-width: 480px) {
+    .cause { padding: 0 0 72px; }
+    .cause-photo { padding: 64px 0 60px; margin-bottom: 44px; }
+  }
+  /* 例カード：テンポよく読めるように詰める */
+  .cause-fig { display: block; }
+  .cause-txt { min-width: 0; }
+  .cause-item .cause-no { margin-bottom: 4px; }
+  .cause-item .cause-h { font-size: 15px; line-height: 1.6; }
+  .cause-item .cause-t { margin-top: 8px; font-size: 13.5px; line-height: 1.85; }
+  @media (max-width: 480px) {
+    .cause-item { grid-template-columns: 68px 1fr; gap: 13px; padding: 14px 13px; }
+    .cause-item .cause-h { font-size: 14.5px; }
+    .cause-item .cause-t { font-size: 13.5px; }
+  }
+  .cause-label {
+    display: block;
+    font-weight: 700;
+    color: var(--accent-text);
+    letter-spacing: 0.04em;
+    margin-bottom: 1px;
+  }</style>
+
+  <!-- JSが動く環境だけフェード演出を有効にする（描画前に付ける） -->
+  <script>document.documentElement.classList.add('js');</script>
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-54Y0J5BGGX"></script>
@@ -1670,332 +1612,298 @@
     gtag('config', 'G-54Y0J5BGGX');
   </script>
 </head>
-<body>
+<body data-page-type="analysis">
 
 <!-- HEADER -->
 <header>
   <div class="inner">
-    <a href="analysis.html" class="logo-combo">
-      <img src="re_move_logo.png" alt="Re Move ロゴ" class="header-logo-img">
+    <a href="/analysis" class="logo-combo">
+      <picture>
+        <source type="image/webp" srcset="img/logo-96.webp 96w, img/logo-192.webp 192w" sizes="(max-width: 720px) 44px, 56px">
+        <img src="re_move_logo.png" alt="Re Move ロゴ" class="header-logo-img" width="56" height="56" decoding="async">
+      </picture>
       <div class="logo-text-block">
         <span class="logo-sub">ランナー専門サポート</span>
         <span class="logo-main"><span class="logo-re">Re</span> <span class="logo-move">Move</span></span>
       </div>
     </a>
-    <a href="https://lin.ee/tjPDQay" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': 'LINE登録ボタン_フォーム分析'})" class="header-cta" target="_blank">LINEで申し込む</a>
+    <a href="https://lin.ee/tjPDQay" data-cta-position="header" data-cta-label="LINE登録ボタン_フォーム分析" class="header-cta" target="_blank" rel="noopener">LINEで申し込む</a>
   </div>
 </header>
 
-<!-- HERO -->
+<main id="main">
+
+<!-- 1. HERO -->
 <section class="hero">
   <div class="hero-img">
-    <img src="IMG_9491_2.JPG" alt="ランニングをするランナー">
+    <picture>
+      <source type="image/webp" srcset="img/hero-run-640.webp 640w, img/hero-run-825.webp 825w" sizes="100vw">
+      <img src="img/hero-run-760.jpg" alt="並木道を走るランナー" width="825" height="1353" fetchpriority="high" decoding="async">
+    </picture>
   </div>
   <div class="hero-track-lines"></div>
   <div class="hero-inner">
     <span class="hero-label">ランナー専門サポート <span style="text-transform:none;">Re Move</span></span>
     <p class="hero-catch">マッサージやストレッチだけでは<br class="sp-br">変わらなかったランナーへ</p>
     <h1 class="hero-main">
-      その痛みの原因、<br>
+      痛みの原因、<br>
       <em>あなたの走りから<br class="sp-br">分析します</em>
     </h1>
     <div class="hero-badges">
       <span class="hero-badge"><strong>無料</strong></span>
       <span class="hero-badge">オンライン30分</span>
       <span class="hero-badge"><strong>月10名</strong>まで</span>
+      <span class="hero-badge">理学療法士による分析</span>
     </div>
     <div class="hero-ctas">
-      <a href="https://lin.ee/tjPDQay" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': 'LINE登録ボタン_フォーム分析'})" class="cta-primary" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>LINEで申し込む</a>
+      <a href="https://lin.ee/tjPDQay" data-cta-position="hero" data-cta-label="LINE登録ボタン_フォーム分析" class="cta-primary" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>LINEで申し込む</a>
     </div>
   </div>
 </section>
 
-<!-- TROUBLE -->
+<!-- 2. TROUBLE -->
 <section class="trouble">
   <div class="container">
     <div class="fade-in">
       <span class="section-label">Trouble</span>
       <div class="divider"></div>
-      <h2 class="jp-heading" style="font-size: clamp(22px,3.5vw,34px); line-height:1.5;">こんなお悩み<br class="sp-br">ありませんか？</h2>
+      <h2 class="jp-heading">こんなお悩み<br class="sp-br">ありませんか？</h2>
     </div>
     <div class="trouble-grid fade-in">
       <div class="trouble-item">
         <span class="trouble-num"></span>
-        <p class="trouble-text">痛みが気になって思うように走れない</p>
+        <p class="trouble-text">痛みが気になって、思うように走れない</p>
       </div>
       <div class="trouble-item">
         <span class="trouble-num"></span>
-        <p class="trouble-text">いろいろ試しているけど改善しきらない</p>
+        <p class="trouble-text">いろいろ試しているけれど、改善しきらない</p>
       </div>
       <div class="trouble-item">
         <span class="trouble-num"></span>
-        <p class="trouble-text">このまま痛みとうまく付き合うしかないと感じている</p>
+        <p class="trouble-text">休むと治るが、走るとまた同じところが痛くなる</p>
+      </div>
+      <div class="trouble-item">
+        <span class="trouble-num"></span>
+        <p class="trouble-text">痛みの不安を抱えたまま練習している</p>
       </div>
       <div class="trouble-item">
         <span class="trouble-num"></span>
         <p class="trouble-text">安心して走れる状態を取り戻したい</p>
       </div>
     </div>
-
+    <div class="tri-down fade-in" aria-hidden="true"></div>
     <div class="trouble-hook fade-in">
-      <span class="trouble-hook-sub">一つでも当てはまる方へ</span>
-      <p class="trouble-hook-text">長引く痛みや不調が改善しきらないのは、患部だけでなく、「あなたの身体に合っていない動き」に原因があるかもしれません。</p>
+      <p class="trouble-hook-text">その悩み、付き合っていくものと諦めずに<br class="sp-br">まずは原因を知ることから始めてみませんか？</p>
     </div>
   </div>
 </section>
 
-<!-- WHY -->
-<section class="why">
-  <div class="container">
+<!-- 3. なぜ、痛みは繰り返されるのか -->
+<section class="cause">
+  <div class="cause-photo">
+    <div class="cause-photo-bg">
+      <picture>
+        <source type="image/webp" srcset="img/knee-768.webp 768w, img/knee-1080.webp 1080w" sizes="100vw">
+        <img src="img/knee-900.jpg" alt="膝を押さえるランナー" width="1080" height="719" loading="lazy" decoding="async">
+      </picture>
+    </div>
+    <div class="container">
     <div class="fade-in">
-      <span class="section-label">Why</span>
+      <span class="section-label">Cause</span>
       <div class="divider"></div>
-      <h2 class="jp-heading" style="font-size: clamp(20px,3vw,30px); line-height:1.6;">なぜ改善しきらないのか？</h2>
+      <h2 class="jp-heading">なぜ、痛みは繰り返されるのか</h2>
     </div>
-    <div class="why-body fade-in">
-      <p>痛みや不調があると、多くの方はまず患部のケアを行います。ストレッチやマッサージをしたり、筋トレで強化をしたり、しっかり身体を休めることもあるでしょう。</p>
-      <p>もちろんそのこと自体は大切ですが、患部のケアだけでは改善しきらないこともあります。</p>
-      <p>その理由は、<strong>「痛みが出る原因そのものが変わっていない」</strong>からです。</p>
-      <p>痛みが出ている場所に負担をかけ続ける動きが変わらない限り、同じ痛みは繰り返されます。同じ膝痛でも、負担がかかっている理由や身体の使い方は人によって違うのです。</p>
-      <p>だからこそ大切なのは、なぜ痛みが出るのか、その根本の原因を知り、<strong>自分に合った身体の使い方を身につけること</strong>です。</p>
+    <div class="cause-body fade-in">
+      <p>痛みや不調があると、一般的にはまず患部のケアを行います。</p>
+      <p>ストレッチやマッサージをしたり、筋トレで強化をしたり、しっかり身体を休め、治療を受けることもあるでしょう。</p>
+      <p>もちろん患部のケア・治療は大切です。<br>しかし、治ったと思って走り出すとまた痛めてしまう。そんな経験はありませんか？</p>
+      <p>この理由は、<strong>「痛みが出る原因そのものが変わっていない」</strong>からです。</p>
+      <p>痛みの原因は、痛いところにあるとは限りません。痛みが出ている場所に負担をかけ続けてしまっている<strong>「動き」こそが、痛みの本当の原因</strong>なのです。</p>
+    </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="cause-legend fade-in">
+      <span><i class="dot-pain"></i>痛いところ</span>
+      <span><i class="dot-cause"></i>原因</span>
+    </div>
+      <div class="cause-item fade-in">
+        <svg class="cause-fig" viewBox="0 0 120 270" width="100%" aria-hidden="true">
+          <g stroke="var(--bone)" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="60" cy="34" r="15"/>
+            <path d="M60 49 V58"/>
+            <path d="M43 58 L77 58 L73 138 L47 138 Z"/>
+            <path d="M44 61 L35 116"/><path d="M76 61 L85 116"/>
+            <path d="M50 138 L44 191 L42 242"/><path d="M70 138 L76 191 L78 242"/>
+            <path d="M42 242 H55"/><path d="M78 242 H91"/>
+          </g>
+          <circle cx="72" cy="140" r="7" fill="#fff" stroke="var(--accent-text)" stroke-width="2.6"/>
+          <circle cx="78" cy="238" r="7" fill="#fff" stroke="var(--accent-text)" stroke-width="2.6"/>
+          <circle cx="76" cy="191" r="11" fill="rgba(240,112,32,.18)"/>
+          <circle cx="76" cy="191" r="6.5" fill="var(--accent)"/>
+        </svg>
+        <div class="cause-txt">
+          <span class="cause-no">例 1</span>
+          <p class="cause-h">着地のとき、膝の内側が痛い</p>
+          <p class="cause-t"><span class="cause-label">【原因】</span>足首まわりと股関節がうまく使えず、<b>着地で膝が内側に逃げている</b>。</p>
+        </div>
+      </div>
+      <div class="cause-item fade-in">
+        <svg class="cause-fig" viewBox="0 0 120 270" width="100%" aria-hidden="true">
+          <g stroke="var(--bone)" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="60" cy="34" r="15"/>
+            <path d="M60 49 V58"/>
+            <path d="M43 58 L77 58 L73 138 L47 138 Z"/>
+            <path d="M44 61 L35 116"/><path d="M76 61 L85 116"/>
+            <path d="M50 138 L44 191 L42 242"/><path d="M70 138 L76 191 L78 242"/>
+            <path d="M42 242 H55"/><path d="M78 242 H91"/>
+          </g>
+          <circle cx="60" cy="88" r="7" fill="#fff" stroke="var(--accent-text)" stroke-width="2.6"/>
+          <circle cx="72" cy="140" r="11" fill="rgba(240,112,32,.18)"/>
+          <circle cx="72" cy="140" r="6.5" fill="var(--accent)"/>
+        </svg>
+        <div class="cause-txt">
+          <span class="cause-no">例 2</span>
+          <p class="cause-h">着地のあと、地面を押すときに股関節が痛い</p>
+          <p class="cause-t"><span class="cause-label">【原因】</span>上半身がうまく使えていないぶん、<b>股関節だけで地面を押す割合が大きくなっている</b>。</p>
+        </div>
+      </div>
+      <div class="cause-item fade-in">
+        <svg class="cause-fig" viewBox="0 0 120 270" width="100%" aria-hidden="true">
+          <g stroke="var(--bone)" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="60" cy="34" r="15"/>
+            <path d="M60 49 V58"/>
+            <path d="M43 58 L77 58 L73 138 L47 138 Z"/>
+            <path d="M44 61 L35 116"/><path d="M76 61 L85 116"/>
+            <path d="M50 138 L44 191 L42 242"/><path d="M70 138 L76 191 L78 242"/>
+            <path d="M42 242 H55"/><path d="M78 242 H91"/>
+          </g>
+          <circle cx="60" cy="132" r="7" fill="#fff" stroke="var(--accent-text)" stroke-width="2.6"/>
+          <circle cx="79" cy="241" r="7" fill="#fff" stroke="var(--accent-text)" stroke-width="2.6"/>
+          <circle cx="77" cy="219" r="11" fill="rgba(240,112,32,.18)"/>
+          <circle cx="77" cy="219" r="6.5" fill="var(--accent)"/>
+        </svg>
+        <div class="cause-txt">
+          <span class="cause-no">例 3</span>
+          <p class="cause-h">着地のとき、アキレス腱が痛い</p>
+          <p class="cause-t"><span class="cause-label">【原因】</span>足首の歪みと腰まわりがうまく使えていないことで、<b>アキレス腱にかかる負担が大きくなっている</b>。</p>
+        </div>
+      </div>
+    <div class="cause-body cause-body-close fade-in">
+      <p>ここを変えない限り、同じ痛みは繰り返されます。</p>
+      <p>同じ膝痛でも、負担がかかっている理由や身体の使い方は人によって違うのです。</p>
+      <p>だからこそ、なぜ痛みが出るのか、<strong>その根本の原因を知ることから始めることが大切</strong>なのです。</p>
     </div>
   </div>
 </section>
 
-<!-- ANALYSIS -->
+<!-- 4. フォーム分析で痛みの原因を知る -->
 <section class="analysis">
   <div class="container">
     <div class="fade-in">
       <span class="section-label">Analysis</span>
       <div class="divider"></div>
-      <h2 class="jp-heading" style="font-size: clamp(22px,3.5vw,34px); line-height:1.5;">フォーム分析でわかること</h2>
+      <h2 class="jp-heading">フォーム分析で痛みの原因を知る</h2>
+      <p class="analysis-lead">ランニング動画を撮影いただき、痛みの原因をフォーム・動きから分析します。</p>
     </div>
     <div class="analysis-grid">
       <div class="analysis-item fade-in">
         <div class="analysis-label">Point 01</div>
         <div class="analysis-content">
-          <div class="analysis-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <div class="analysis-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
               <path d="M11 8v6M8 11h6"/>
-            </svg>
-          </div>
+            </svg></div>
           <h3 class="analysis-title">なぜ痛みが起きているのか</h3>
-          <p class="analysis-text">痛みが出ている場所と、その原因は別であることが多くあります。膝が痛い場合でも、足首の動きや股関節の使い方、あるいは上半身の連動が原因になっていることがあります。</p>
-          <p class="analysis-text">送っていただいた動画から、<strong>どこに負担が集中しているのか、なぜそこに負担が集中しているのか</strong>を分析します。</p>
+          <p class="analysis-text">送っていただいた動画から、<strong>なぜその部分に痛みが出るのか、その部分に負荷が集中している原因は何か</strong>を分析します。</p>
         </div>
       </div>
       <div class="analysis-item fade-in">
         <div class="analysis-label">Point 02</div>
         <div class="analysis-content">
-          <div class="analysis-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <div class="analysis-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 12a9 9 0 1 1-2.64-6.36"/>
               <path d="M21 3v6h-6"/>
-            </svg>
-          </div>
-          <h3 class="analysis-title">なぜこれまでのケアや対処で<br class="sp-br">変わらなかったのか</h3>
-          <p class="analysis-text">ストレッチ、マッサージ、筋トレ、休養。続けても変わらなかったのは、努力が足りなかったからではありません。</p>
-          <p class="analysis-text">負担が集中する動きが変わっていなければ、走り始めればまた同じ場所に負担がかかります。</p>
-          <p class="analysis-text">これまで取り組んできたことを伺ったうえで、<strong>なぜそれでは変わらなかったのか</strong>をお伝えします。</p>
+            </svg></div>
+          <h3 class="analysis-title">なぜこれまでのケアでは<br class="sp-br">変わらなかったのか</h3>
+          <p class="analysis-text">ストレッチ、マッサージ、筋トレ、休養。続けても変わらなかったのは、努力が足りなかったからではありません。これまで取り組んできたことをうかがったうえで、<strong>なぜそれでは変わらなかったのか</strong>をお伝えします。</p>
+        </div>
+      </div>
+      <div class="analysis-item fade-in">
+        <div class="analysis-label">Point 03</div>
+        <div class="analysis-content">
+          <div class="analysis-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M8.5 12.5 11 15l4.5-5.5"/>
+            </svg></div>
+          <h3 class="analysis-title">どんな動きができるように<br class="sp-br">なればいいのか</h3>
+          <p class="analysis-text">痛みの原因になっている動きに対して、<strong>これから何ができるようになることが大切か</strong>をお伝えします。</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CASES -->
-<section class="cases">
-  <div class="container">
-    <div class="fade-in">
-      <span class="section-label">Before / After</span>
-      <div class="divider"></div>
-      <h2 class="jp-heading" style="font-size: clamp(22px,3.5vw,34px); line-height:1.5;">ランナーのサポート事例</h2>
-    </div>
-    <div class="cases-grid">
-      <div class="case-item fade-in">
-        <div class="case-img-wrap">
-          <img src="case-1.jpg" alt="鼠蹊部の痛みの改善事例" loading="lazy">
-        </div>
-        <div class="case-info">
-          <span class="case-tag">鼠蹊部の痛み</span>
-          <p class="case-trouble">鼠蹊部の痛みによって長い時間走れないという悩みを持つランナー</p>
-          <p class="case-desc">ランジ動作時の膝が内に入る動きを改善。</p>
-        </div>
-      </div>
-      <div class="case-item fade-in">
-        <div class="case-img-wrap">
-          <img src="case-2.jpg" alt="鵞足炎による膝痛の改善事例" loading="lazy">
-        </div>
-        <div class="case-info">
-          <span class="case-tag">膝痛 / 鵞足炎</span>
-          <p class="case-trouble">鵞足炎による膝痛で走れなかったランナー</p>
-          <p class="case-desc">しゃがみ込みの時の動作エラーを改善し、痛みなく走れるように回復。</p>
-        </div>
-      </div>
-      <div class="case-item fade-in">
-        <div class="case-img-wrap">
-          <img src="case-3.jpg" alt="ランニングフォーム改善の事例" loading="lazy">
-        </div>
-        <div class="case-info">
-          <span class="case-tag">フォーム改善 / 股関節</span>
-          <p class="case-trouble">ランニングフォーム改善に取り組むランナー</p>
-          <p class="case-desc">背中から臀部にかけての連動性を上げ、股関節の可動域が大幅改善。</p>
-        </div>
-      </div>
-      <div class="case-item fade-in">
-        <div class="case-img-wrap">
-          <img src="case-4.jpg" alt="フルマラソン後の膝痛の改善事例" loading="lazy">
-        </div>
-        <div class="case-info">
-          <span class="case-tag">膝痛 / フルマラソン後</span>
-          <p class="case-trouble">フルマラソン後の膝痛に悩んでいたランナー</p>
-          <p class="case-desc">痛みで左右均等にしゃがめない状態から、痛みなくしゃがめるように。</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FLOW -->
-<section class="steps">
-  <div class="container">
-    <div class="fade-in">
-      <span class="section-label">Flow</span>
-      <div class="divider"></div>
-      <h2 class="jp-heading" style="font-size: clamp(22px,3.5vw,34px); line-height:1.5;">分析の流れ</h2>
-    </div>
-
-    <div class="steps-track">
-      <div class="step-item fade-in">
-        <div class="step-num-wrap">
-          <div class="step-num">01</div>
-        </div>
-        <div class="step-content">
-          <h3 class="step-title">LINEで申し込む</h3>
-        </div>
-      </div>
-      <div class="step-item fade-in">
-        <div class="step-num-wrap">
-          <div class="step-num">02</div>
-        </div>
-        <div class="step-content">
-          <h3 class="step-title">撮影方法が届きます</h3>
-          <p class="step-text">ランニング動画と、座った状態での体幹の回旋動作を撮影していただきます。スマートフォンで撮影できます。</p>
-        </div>
-      </div>
-      <div class="step-item fade-in">
-        <div class="step-num-wrap">
-          <div class="step-num">03</div>
-        </div>
-        <div class="step-content">
-          <h3 class="step-title">動画を送る</h3>
-          <p class="step-text">撮影した動画をLINEに送ってください。届き次第、フィードバックの日程を調整します。</p>
-        </div>
-      </div>
-      <div class="step-item fade-in">
-        <div class="step-num-wrap">
-          <div class="step-num">04</div>
-        </div>
-        <div class="step-content">
-          <h3 class="step-title">オンラインでフィードバック（30分）</h3>
-          <p class="step-text">目安として、動画をいただいてから1週間ほどで実施します。動画を一緒に見ながら、どこに負担が集中しているのか、なぜこれまで変わらなかったのかをお伝えします。</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOR YOU -->
-<section class="target">
-  <div class="container">
-    <div class="fade-in">
-      <span class="section-label">For You</span>
-      <div class="divider"></div>
-      <h2 class="jp-heading" style="font-size: clamp(22px,3.5vw,34px); line-height:1.5;">こんな方におすすめ</h2>
-    </div>
-    <ul class="target-list fade-in">
-      <li>長引く痛みや不調を繰り返している方</li>
-      <li>治療やセルフケアを続けても、改善しきらない方</li>
-      <li>走れてはいるけれど、不安を抱えながら練習している方</li>
-      <li>痛みの根本の原因を、自分の走り方や動きから知りたい方</li>
-      <li>原因がわかったうえで、次にやることを決めたい方</li>
-    </ul>
-    <p class="target-note fade-in">※フォーム分析は、痛みや不調を抱えている方を対象としています。「フォームをきれいにしたい」「かっこいいフォームで走りたい」という目的の方には、お力になれない場合があります。<br>※痛みが強く、まずは走れる状態を目指したいという方は、LINEからご相談ください。</p>
-  </div>
-</section>
-
-<!-- APPLY -->
+<!-- 5. CTA -->
 <section class="apply">
   <div class="container">
     <div class="fade-in">
       <span class="section-label">Apply</span>
       <div class="divider"></div>
-      <h2 class="jp-heading" style="font-size: clamp(22px,3.5vw,34px); line-height:1.5;">無料フォーム分析のお申し込み</h2>
+      <h2 class="jp-heading">無料フォーム分析</h2>
       <div class="apply-row">
         <div class="apply-left">
           <span class="apply-badge">毎月10名まで</span>
-          <h3 class="apply-name">無料フォーム分析</h3>
-          <p class="apply-desc">
-            お申込み後に撮影方法をご案内します。<br>動画を頂いてから1週間ほどでフィードバックをします。
-          </p>
+          <p class="apply-desc">お申込み後に撮影方法をご案内します。<br>動画を頂いてから1週間ほどでフィードバックをします。</p>
         </div>
         <div class="apply-right">
           <div class="apply-amount-wrap">
             <span class="apply-amount">無料</span>
             <span class="apply-unit-label">オンライン30分</span>
           </div>
-          <a href="https://lin.ee/tjPDQay" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': 'LINE登録ボタン_フォーム分析申込'})" class="cta-primary" target="_blank">LINEで申し込む</a>
+          <a href="https://lin.ee/tjPDQay" data-cta-position="apply" data-cta-label="LINE登録ボタン_フォーム分析申込" class="cta-primary" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>LINEで申し込む</a>
+          <p class="cta-note">友だち追加後、トークで「分析」と送ってください。</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- VOICE -->
-<section class="voice">
+<!-- 6. 分析の流れ -->
+<section class="steps">
   <div class="container">
     <div class="fade-in">
-      <span class="section-label">Voice</span>
+      <span class="section-label">Flow</span>
       <div class="divider"></div>
-      <h2 class="jp-heading" style="font-size: clamp(22px,3.5vw,34px); line-height:1.5;">お客様の声</h2>
+      <h2 class="jp-heading">分析の流れ</h2>
     </div>
-    <div class="voice-grid">
-      <div class="voice-item fade-in">
-        <div class="voice-profile">
-          <span class="voice-age">40代</span>
-          <span class="voice-name">O.Sさん</span>
-        </div>
-        <div class="voice-content">
-          <span class="voice-tag">鼠蹊部の痛み</span>
-          <p class="voice-text">一見、患部に関係のない様な動きでも、ケアを続けていくと確実に患部に効いていて、いつもびっくりしています！</p>
+    <div class="steps-track">
+      <div class="step-item fade-in">
+        <div class="step-num-wrap"><div class="step-num">01</div></div>
+        <div class="step-content">
+          <h3 class="step-title">LINEで申し込む</h3>
+          <p class="step-text">LINE追加後、トーク画面から「分析」と送信ください。</p>
         </div>
       </div>
-      <div class="voice-item fade-in">
-        <div class="voice-profile">
-          <span class="voice-age">40代</span>
-          <span class="voice-name">H.Aさん</span>
-        </div>
-        <div class="voice-content">
-          <span class="voice-tag">臀部痛・パフォーマンスアップ</span>
-          <p class="voice-text">痛いところや変なクセで硬くなってしまったところを瞬時に見抜き、エクササイズを教えてくださっていつも治るので目からうろこでした！</p>
+      <div class="step-item fade-in">
+        <div class="step-num-wrap"><div class="step-num">02</div></div>
+        <div class="step-content">
+          <h3 class="step-title">動画を撮って送る</h3>
+          <p class="step-text">撮影方法はLINEでご案内します。スマートフォンで撮影いただけます。</p>
         </div>
       </div>
-      <div class="voice-item fade-in">
-        <div class="voice-profile">
-          <span class="voice-age">30代</span>
-          <span class="voice-name">H.Sさん</span>
-        </div>
-        <div class="voice-content">
-          <span class="voice-tag">膝痛・パフォーマンスアップ</span>
-          <p class="voice-text">続ければ確実に変わることを実感しています。とにかく続けてみよう。</p>
+      <div class="step-item fade-in">
+        <div class="step-num-wrap"><div class="step-num">03</div></div>
+        <div class="step-content">
+          <h3 class="step-title">オンラインでフィードバック</h3>
+          <p class="step-text">動画をいただいてから1週間ほどを目安に、Zoomを使ってフィードバックをさせていただきます。</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TRAINER -->
+<!-- 7. TRAINER -->
 <section class="trainer">
   <div class="container">
     <div class="fade-in">
@@ -2005,7 +1913,10 @@
     <div class="trainer-grid fade-in">
       <div class="trainer-name-row">
         <div class="trainer-photo-circle">
-          <img src="IMG_3965_2.JPG" alt="山田紘暉のプロフィール写真">
+          <picture>
+            <source type="image/webp" srcset="img/trainer-240.webp 240w, img/trainer-480.webp 480w" sizes="140px">
+            <img src="IMG_3965_2.JPG" alt="山田紘暉のプロフィール写真" width="2048" height="2730" loading="lazy" decoding="async">
+          </picture>
         </div>
         <div class="trainer-name-block">
           <div class="trainer-en">Hiroki Yamada</div>
@@ -2036,200 +1947,162 @@
   </div>
 </section>
 
-<!-- FAQ -->
+<!-- 8. FAQ -->
 <section class="faq">
   <div class="container">
     <div class="fade-in">
       <span class="section-label">FAQ</span>
       <div class="divider"></div>
-      <h2 class="jp-heading" style="font-size: clamp(22px,3.5vw,34px); line-height:1.5;">よくある質問</h2>
+      <h2 class="jp-heading">よくある質問</h2>
     </div>
     <div class="faq-list fade-in">
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
+      <details class="faq-item">
+        <summary class="faq-q">
           <span class="faq-q-label">Q.</span>
           <span class="faq-q-text">本当に無料ですか？</span>
-          <span class="faq-q-icon">+</span>
-        </button>
+          <span class="faq-q-icon" aria-hidden="true">+</span>
+        </summary>
         <div class="faq-a">
           <div class="faq-a-inner">
             <span class="faq-a-label">A.</span>
-            <p class="faq-a-text">はい、分析もフィードバックも無料です。現在、月10名まででお受けしています。</p>
+            <p class="faq-a-text">はい、分析もフィードバックも無料です。現在、月10名まででお受けしています。自分の痛みの原因が分からないまま諦めてしまうランナーが多いと感じていて、まずは原因を知ってほしいと考えているためです。</p>
           </div>
         </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          <span class="faq-q-label">Q.</span>
-          <span class="faq-q-text">動画はどうやって撮ればいいですか？</span>
-          <span class="faq-q-icon">+</span>
-        </button>
-        <div class="faq-a">
-          <div class="faq-a-inner">
-            <span class="faq-a-label">A.</span>
-            <p class="faq-a-text">お申し込みいただいた後、撮影方法を詳しくご案内します。スマートフォンで撮影できます。</p>
-          </div>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          <span class="faq-q-label">Q.</span>
-          <span class="faq-q-text">一人でも撮影できますか？</span>
-          <span class="faq-q-icon">+</span>
-        </button>
-        <div class="faq-a">
-          <div class="faq-a-inner">
-            <span class="faq-a-label">A.</span>
-            <p class="faq-a-text">できます。カメラを固定しての撮影方法もご案内しています。可能であれば、どなたかに撮影していただくとより正確に分析できます。</p>
-          </div>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          <span class="faq-q-label">Q.</span>
-          <span class="faq-q-text">走れる場所がないのですが。</span>
-          <span class="faq-q-icon">+</span>
-        </button>
-        <div class="faq-a">
-          <div class="faq-a-inner">
-            <span class="faq-a-label">A.</span>
-            <p class="faq-a-text">場所の指定はありません。いつも練習されている場所で問題ありません。</p>
-          </div>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          <span class="faq-q-label">Q.</span>
-          <span class="faq-q-text">痛みが強くて走れない状態でも受けられますか？</span>
-          <span class="faq-q-icon">+</span>
-        </button>
-        <div class="faq-a">
-          <div class="faq-a-inner">
-            <span class="faq-a-label">A.</span>
-            <p class="faq-a-text">痛みが強く、まずは走れる状態を目指したいという方は、LINEでご相談ください。いまの状態をうかがって、必要なことをご案内します。</p>
-          </div>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">
           <span class="faq-q-label">Q.</span>
           <span class="faq-q-text">分析のあと、必ず何か申し込む必要がありますか？</span>
-          <span class="faq-q-icon">+</span>
-        </button>
+          <span class="faq-q-icon" aria-hidden="true">+</span>
+        </summary>
         <div class="faq-a">
           <div class="faq-a-inner">
             <span class="faq-a-label">A.</span>
             <p class="faq-a-text">ありません。フィードバックの内容にご納得いただけた場合のみ、その先のサポートをご案内しています。</p>
           </div>
         </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-label">Q.</span>
+          <span class="faq-q-text">痛みが強くて走れない状態でも受けられますか？</span>
+          <span class="faq-q-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <span class="faq-a-label">A.</span>
+            <p class="faq-a-text">痛みが強く、まずは走れる状態を目指したいという方は、LINEでご相談ください。いまの状態をうかがって、必要なことをご案内します。</p>
+          </div>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-label">Q.</span>
+          <span class="faq-q-text">撮影は一人でもできますか？</span>
+          <span class="faq-q-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <span class="faq-a-label">A.</span>
+            <p class="faq-a-text">できます。カメラを固定しての撮影方法もご案内しています。可能であれば、どなたかに撮影していただくとより正確に分析できます。</p>
+          </div>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">
           <span class="faq-q-label">Q.</span>
           <span class="faq-q-text">オンラインのフィードバックは何を使いますか？</span>
-          <span class="faq-q-icon">+</span>
-        </button>
+          <span class="faq-q-icon" aria-hidden="true">+</span>
+        </summary>
         <div class="faq-a">
           <div class="faq-a-inner">
             <span class="faq-a-label">A.</span>
             <p class="faq-a-text">Zoomを使用します。動画を画面共有しながらお伝えするため、パソコンまたはタブレットでのご参加をおすすめします。</p>
           </div>
         </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          <span class="faq-q-label">Q.</span>
-          <span class="faq-q-text">病院や治療院に通っていても受けられますか？</span>
-          <span class="faq-q-icon">+</span>
-        </button>
-        <div class="faq-a">
-          <div class="faq-a-inner">
-            <span class="faq-a-label">A.</span>
-            <p class="faq-a-text">はい、可能です。担当の医師や治療家の指示がある場合はそちらを優先してください。</p>
-          </div>
-        </div>
-      </div>
+      </details>
     </div>
   </div>
 </section>
 
-<!-- FINAL CTA -->
+<!-- 9. 最終CTA -->
 <section class="final-cta">
-  <div class="final-cta-bg"><img src="IMG_3552.JPG" alt="" loading="lazy"></div>
+  <div class="final-cta-bg"><picture><source type="image/webp" srcset="img/cta-bg-768.webp 768w, img/cta-bg-1280.webp 1280w" sizes="100vw"><img src="IMG_3552.JPG" alt="" width="2048" height="2894" loading="lazy" decoding="async"></picture></div>
   <div class="final-cta-inner container">
     <div class="fade-in">
       <span class="section-label" style="text-transform:none;">Re Move</span>
       <h2 class="final-cta-heading">痛みを繰り返すことなく、<br>安心して走れる状態へ。</h2>
-      <p class="final-cta-text">
-        その痛みがなぜ起きているのか、なぜこれまで変わらなかったのか。まずはあなたの走りから、原因を一緒に見つけていきましょう。
-      </p>
+      <p class="final-cta-text">いまの痛みがなぜ起きているのか。まずは原因を知ることから始めませんか。</p>
       <div class="final-cta-badges">
         <span class="hero-badge"><strong>無料</strong></span>
         <span class="hero-badge">オンライン30分</span>
         <span class="hero-badge"><strong>月10名</strong>まで</span>
       </div>
       <div class="final-cta-btns">
-        <a href="https://lin.ee/tjPDQay" onclick="gtag('event', 'line_click', {'event_category': 'LINE', 'event_label': 'LINE登録ボタン_フォーム分析'})" class="cta-primary" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>LINEで申し込む</a>
+        <a href="https://lin.ee/tjPDQay" data-cta-position="final" data-cta-label="LINE登録ボタン_フォーム分析" class="cta-primary" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>LINEで申し込む</a>
+        <p class="cta-note">友だち追加後、トークで「分析」と送ってください。</p>
       </div>
     </div>
   </div>
 </section>
 
+</main>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">ランナー専門サポート <span style="text-transform:none;">Re Move</span></div>
   <div class="footer-sns">
-    <a href="https://www.instagram.com/hiroki_trainer_?igsh=MTRwdTNnb25yNG5iaA==" class="footer-sns-link" target="_blank" aria-label="Instagram">
+    <a href="https://www.instagram.com/hiroki_trainer_?igsh=MTRwdTNnb25yNG5iaA==" class="footer-sns-link" target="_blank" rel="noopener" aria-label="Instagram">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
     </a>
-    <a href="https://www.threads.com/@hiroki_trainer_?igshid=NTc4MTIwNjQ2YQ==" class="footer-sns-link" target="_blank" aria-label="Threads">
+    <a href="https://www.threads.com/@hiroki_trainer_?igshid=NTc4MTIwNjQ2YQ==" class="footer-sns-link" target="_blank" rel="noopener" aria-label="Threads">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.473 12.01v-.02c.027-3.579.877-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.781 3.631 2.695 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L7.734 7.847c.98-1.454 2.568-2.256 4.478-2.256h.044c3.194.02 5.097 1.975 5.287 5.388.108.046.216.094.321.142 1.49.7 2.58 1.761 3.154 3.07.797 1.82.871 4.79-1.548 7.158-1.85 1.81-4.094 2.628-7.277 2.65Zm1.003-11.69c-.242 0-.487.007-.739.021-1.836.103-2.98.946-2.916 2.143.067 1.256 1.452 1.839 2.784 1.767 1.224-.065 2.818-.543 3.086-3.71a10.5 10.5 0 0 0-2.215-.221z"/></svg>
     </a>
-    <a href="https://x.com/hiro85_yama?s=21&t=ApdMsFMb6oEmEvqJ75FDjQ" class="footer-sns-link" target="_blank" aria-label="X">
+    <a href="https://x.com/hiro85_yama?s=21&t=ApdMsFMb6oEmEvqJ75FDjQ" class="footer-sns-link" target="_blank" rel="noopener" aria-label="X">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
     </a>
   </div>
   <nav class="footer-nav">
-    <a href="privacy-site.html" class="footer-nav-link">プライバシーポリシー</a>
+    <a href="/privacy-site" class="footer-nav-link">プライバシーポリシー</a>
   </nav>
   <p class="footer-copy">© 2025 山田紘暉 All Rights Reserved.</p>
 </footer>
 
 <script>
-  // Scroll animation
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
+  // LINEのクリック計測。ページ種別とCTA位置を一緒に送る。
+  // gtagが無い（ブロックされた）場合は何もしない＝リンクは普通に開く
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[data-cta-position]');
+    if (!a || typeof window.gtag !== 'function') return;
+    window.gtag('event', 'line_click', {
+      event_category: 'LINE',
+      event_label: a.getAttribute('data-cta-label'),   // 既存レポートとの互換のため据え置き
+      page_type: document.body.getAttribute('data-page-type'),
+      cta_position: a.getAttribute('data-cta-position')
     });
-  }, { threshold: 0.1 });
+  });
 
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  // スクロール演出。FAQと本文の表示はJSに依存しない
+  (function () {
+    var targets = document.querySelectorAll('.fade-in');
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // ハンバーガーメニュー
-  function toggleNav(btn) {
-    const nav = document.querySelector('.site-nav');
-    const open = btn.classList.toggle('open');
-    nav.classList.toggle('open', open);
-    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-  }
-
-  // FAQ
-  function toggleFaq(btn) {
-    const allBtns = document.querySelectorAll('.faq-q');
-    const allAnswers = document.querySelectorAll('.faq-a');
-    const answer = btn.nextElementSibling;
-    const isOpen = btn.classList.contains('open');
-
-    allBtns.forEach(b => b.classList.remove('open'));
-    allAnswers.forEach(a => a.classList.remove('open'));
-
-    if (!isOpen) {
-      btn.classList.add('open');
-      answer.classList.add('open');
+    if (reduce || !('IntersectionObserver' in window)) {
+      for (var i = 0; i < targets.length; i++) targets[i].classList.add('visible');
+      return;
     }
-  }
+
+    var observer = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          obs.unobserve(entry.target);   // 表示後は監視を外す
+        }
+      });
+    }, { threshold: 0.1 });
+
+    for (var j = 0; j < targets.length; j++) observer.observe(targets[j]);
+  })();
 </script>
 
 </body>

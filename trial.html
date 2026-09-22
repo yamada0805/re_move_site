@@ -63,7 +63,7 @@
     --paper: #f7f9fb;
     --warm-white: #ffffff;
     --accent: #f07020;          /* ブランドのオレンジ。面・線・濃い背景の上の文字に使う */
-    --accent-light: #f58c45;
+    --accent-light: #f8a05f;   /* 写真＋0.80の上で4.5:1（旧#f58c45では不足） */
     --accent-text: #b8480c;     /* 明るい背景に置く文字用。白地に対し約5.3:1 */
     --cta: #bf4d0a;             /* 白文字を載せるボタンの地色。白文字に対し約4.9:1 */
     --cta-hover: #a03f08;
@@ -1422,12 +1422,13 @@
 
   /* ───── 冒頭：セッション写真を背景に敷く ───── */
   /* 上の余白は固定ヘッダー（約73〜92px）を避けるため */
-  .hero-offer { position: relative; overflow: hidden; padding: 116px 0 72px; border-top: none; }
+  .hero-offer { position: relative; overflow: hidden; padding: 142px 0 72px; border-top: none; }
   .hero-offer-bg { position: absolute; inset: 0; z-index: 0; }
   .hero-offer-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; display: block; }
   .hero-offer-bg::after {
     content: ''; position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(20,30,46,.62) 0%, rgba(20,30,46,.80) 28%, rgba(20,30,46,.93) 55%, rgba(20,30,46,.96) 100%);
+    /* 分析LPのヒーローと濃さを揃える（一律0.80・地色も同じ #121a28 系） */
+    background: linear-gradient(180deg, rgba(18,26,40,.80) 0%, rgba(18,26,40,.80) 100%);
   }
   .hero-offer > .container { position: relative; z-index: 1; }
   .hero-offer-catch {
@@ -1483,7 +1484,7 @@
   .final-cta .cta-note { color: rgba(255,255,255,0.82); }
 
   @media (max-width: 480px) {
-    .hero-offer { padding: 96px 0 56px; }
+    .hero-offer { padding: 126px 0 56px; }
     .hero-offer-catch { font-size: 14px; }
     .gains { padding: 64px 0 72px; }
     .gain-item { padding: 18px 18px; gap: 14px; }
@@ -1549,9 +1550,9 @@
     font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.72);
   }
 
-  /* 冒頭のキャッチをブランド色に */
+  /* 冒頭のキャッチをブランド色に。地を明るくしたぶん一段明るいオレンジを使う */
   .hero-offer-catch {
-    color: var(--accent);
+    color: var(--accent-light);
     text-shadow: 0 1px 8px rgba(0,0,0,0.5);
   }
   .hero-offer-title { text-shadow: 0 1px 10px rgba(0,0,0,0.45); }

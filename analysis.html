@@ -63,7 +63,7 @@
     --paper: #f7f9fb;
     --warm-white: #ffffff;
     --accent: #f07020;          /* ブランドのオレンジ。面・線・濃い背景の上の文字に使う */
-    --accent-light: #f58c45;
+    --accent-light: #f8a05f;   /* 写真＋0.80の上で4.5:1（旧#f58c45は4.33で不足） */
     --accent-text: #b8480c;     /* 明るい背景に置く文字用。白地に対し約5.3:1 */
     --cta: #bf4d0a;             /* 白文字を載せるボタンの地色。白文字に対し約4.9:1 */
     --cta-hover: #a03f08;
@@ -353,11 +353,11 @@
 
   /* ───── HERO ───── */
   .hero {
-    min-height: 78vh;
-    min-height: 78svh;       /* 1画面を埋めきらず、次のセクションを覗かせる */
+    min-height: 72vh;
+    min-height: 72svh;       /* 1画面を埋めきらず、次のセクションを覗かせる */
     display: flex;
-    align-items: flex-start;  /* 文字を上へ。下半分は写真（走者）に空ける */
-    padding: 112px 24px 40px;
+    align-items: flex-start;  /* 文字を上へ。下は写真（走者）に空ける */
+    padding: 142px 24px 40px; /* 上はヘッダー(73px)から十分に離す */
     position: relative;
     overflow: hidden;
     background: #1a2332;
@@ -417,26 +417,13 @@
     z-index: 1;
   }
 
-  .hero-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    color: var(--accent-light);   /* 写真の上でも4.5:1を確保するため一段明るく */
-    margin-bottom: 32px;
-    display: block;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.2s forwards;
-  }
-
   .hero-catch {
     font-family: 'Shippori Mincho', serif;
     font-size: clamp(13px, 2vw, 16px);
     font-weight: 600;
-    color: rgba(255,255,255,0.6);
-    letter-spacing: 0.15em;
-    margin-bottom: 20px;
+    color: rgba(255,255,255,0.82);
+    letter-spacing: 0.12em;
+    margin-bottom: 16px;
     text-align: left;
     opacity: 0;
     animation: fadeUp 0.8s 0.4s forwards;
@@ -459,13 +446,31 @@
     font-style: normal;
   }
 
-  .hero-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 48px;
+  /* 条件は枠で囲まず、細い罫線で区切った1行にする（案A：削ぎ落とし） */
+  .hero-meta {
+    font-size: 13.5px;
+    letter-spacing: 0.04em;
+    line-height: 2;
+    color: rgba(255,255,255,0.92);
+    margin-bottom: 34px;
     opacity: 0;
     animation: fadeUp 0.8s 0.8s forwards;
+  }
+  .hero-meta i {
+    display: inline-block;
+    vertical-align: 1px;
+    font-style: normal;
+    width: 1px;
+    height: 12px;
+    margin: 0 13px;
+    background: rgba(255,255,255,0.38);
+  }
+  @media (max-width: 480px) {
+    .hero-meta i.pc-only { display: none; }
+  }
+  .hero-meta strong {
+    font-weight: 700;
+    color: var(--accent-light);
   }
 
   .hero-badge {
@@ -1218,7 +1223,8 @@
 
     .steps-track::before { display: none; }
 
-    .hero-main { font-size: clamp(24px, 7vw, 38px); }
+    .hero-main { font-size: clamp(28px, 7.4vw, 40px); }
+    .hero { min-height: 60svh; }   /* タブレットは縦が余るので低くする */
   }
 
   /* ═══════════════════════════════════════
@@ -1233,12 +1239,14 @@
     header .inner { padding: 0 14px; }
     .header-cta { font-size: 13px; padding: 8px 14px; white-space: nowrap; }
 
-    .hero { padding: 96px 20px 44px; min-height: 76svh; }
-    .hero-catch { font-size: 12px; margin-bottom: 14px; color: rgba(255,255,255,0.75) !important; }
-    .hero-main { font-size: 26px; line-height: 1.45; margin-bottom: 20px; }
-    .hero-badges { margin-bottom: 40px; }
-    .hero-badge { font-size: 13px; padding: 7px 16px; }
-    .hero-ctas { flex-direction: column; gap: 12px; margin-top: 40px; }
+    .hero { padding: 126px 20px 44px; min-height: 67svh; }
+    /* ヒーローを縮めたぶんは足元の舗装を切る。走者の位置は元のまま保つ */
+    .hero-img img { object-position: center 10%; }
+    .hero-catch { font-size: 12.5px; margin-bottom: 14px; color: rgba(255,255,255,0.84) !important; }
+    .hero-main { font-size: 34px; line-height: 1.38; margin-bottom: 22px; }
+    .hero-meta { font-size: 13px; margin-bottom: 30px; }
+    .final-cta-badges .hero-badge { font-size: 13px; padding: 7px 16px; }
+    .hero-ctas { flex-direction: column; gap: 12px; margin-top: 0; }
     .hero-ctas { align-items: flex-start; }
     .hero-ctas .cta-primary { width: auto; padding: 17px 26px; font-size: 15px; }
 
@@ -1379,7 +1387,7 @@
 
     /* ヒーロー */
     .hero-catch { font-size: 13px !important; font-weight: 600; }
-    .hero-badge { font-size: 14px; font-weight: 700; border-color: rgba(255,255,255,0.6); }
+    .final-cta-badges .hero-badge { font-size: 14px; font-weight: 700; border-color: rgba(255,255,255,0.6); }
 
     /* 補足ラベル類 */
     
@@ -1642,18 +1650,14 @@
   </div>
   <div class="hero-track-lines"></div>
   <div class="hero-inner">
-    <span class="hero-label">ランナー専門サポート <span style="text-transform:none;">Re Move</span></span>
     <p class="hero-catch">マッサージやストレッチだけでは<br class="sp-br">変わらなかったランナーへ</p>
     <h1 class="hero-main">
       痛みの原因、<br>
       <em>あなたの走りから<br class="sp-br">分析します</em>
     </h1>
-    <div class="hero-badges">
-      <span class="hero-badge"><strong>無料</strong></span>
-      <span class="hero-badge">オンライン30分</span>
-      <span class="hero-badge"><strong>月10名</strong>まで</span>
-      <span class="hero-badge">理学療法士による分析</span>
-    </div>
+    <p class="hero-meta">
+      <strong>無料</strong><i></i>オンライン30分<i></i><strong>月10名</strong>まで<i class="pc-only"></i><br class="sp-br">理学療法士による分析
+    </p>
     <div class="hero-ctas">
       <a href="https://lin.ee/tjPDQay" data-cta-position="hero" data-cta-label="LINE登録ボタン_フォーム分析" class="cta-primary" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>LINEで申し込む</a>
     </div>

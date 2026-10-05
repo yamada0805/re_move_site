@@ -2162,6 +2162,19 @@
   .nextstep .divider { margin: 20px auto !important; }
 
   .final-offer-box { opacity: 1; animation: none; margin: 26px 0 28px; }
+
+  /* ═══ 2026-10-05 料金の段：最終CTAと同じやり方。紺の地に、カラー写真を薄く重ねる ═══ */
+  .hero-offer.offer-mid { background: #1a2332; }
+  .hero-offer.offer-mid .hero-offer-bg::after { background: none; }
+  .hero-offer.offer-mid .hero-offer-bg img { opacity: 0.25; filter: grayscale(20%) brightness(0.75); }
+  @media (max-width: 480px) {
+    .hero-offer.offer-mid .hero-offer-bg img { opacity: 0.35; filter: grayscale(10%) brightness(0.85); }
+  }
+  .hero-offer.offer-mid .offer-col-sub { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.22); }
+  .hero-offer.offer-mid .apply-flow {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.20); border-radius: 8px;
+  }
+  .hero-offer.offer-mid .apply-flow-note { color: #fff; }
 </style>
 
   <!-- JSが動く環境だけフェード演出を有効にする（描画前に付ける） -->

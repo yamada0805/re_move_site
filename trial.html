@@ -2179,6 +2179,11 @@
   .hero-offer.offer-mid .offer-col-sub { opacity: 0.85; }
   .hero-offer.offer-mid .price-meta,
   .hero-offer.offer-mid .offer-tax { color: rgba(255,255,255,0.88); }
+  /* 料金の段：写真の上に、ごく薄い黒をかぶせて落ち着かせる／ボタンを少し大きく（2026-10-05） */
+  .hero-offer.offer-mid .hero-offer-bg::after { background: rgba(0,0,0,0.18); }
+  .hero-offer.offer-mid .hero-offer-cta .cta-primary {
+    min-width: 280px; justify-content: center; padding: 19px 40px; font-size: 16px;
+  }
 </style>
 
   <!-- JSが動く環境だけフェード演出を有効にする（描画前に付ける） -->

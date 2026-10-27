@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<!-- 根本改善プログラム（プランと料金）の公開ページ。/trialの「プランと料金の詳細を見る」からリンク。継続への直接申込は設けない。 -->
+<!-- 検索への表示（index）はCEO確認待ちのため、当面noindex -->
+<meta name="robots" content="noindex,follow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>根本改善プログラム | Re Move ランナー専門サポート</title>
+<meta name="description" content="根本改善プログラム（ライトプラン・トータルサポートプラン）の内容と料金です。">
+<link rel="canonical" href="https://re-move-run.vercel.app/plans">
+<meta property="og:title" content="根本改善プログラム | Re Move ランナー専門サポート">
+<meta property="og:url" content="https://re-move-run.vercel.app/plans">
+<meta property="og:image" content="https://re-move-run.vercel.app/ogp_image.png">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-54Y0J5BGGX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-54Y0J5BGGX');
+</script>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#1e2022;--paper:#f7f9fb;--accent:#f07020;--accent-light:#f8a05f;--accent-text:#b8480c;--cta:#bf4d0a;--cta-hover:#a03f08;
+        --muted:#666e76;--line:#dde3ea;--deep:#1a2332;--soft:#fdf4ed}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Zen Kaku Gothic New',sans-serif;background:#fff;color:var(--ink);line-height:1.9;letter-spacing:.02em;-webkit-text-size-adjust:100%}
+  a{color:inherit}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .en{font-family:'Barlow Condensed',sans-serif;letter-spacing:.14em;text-transform:uppercase}
+  .sp-br{display:none}
+  @media (max-width:640px){.sp-br{display:block}}
+
+  /* ヘッダー */
+  header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(6px)}
+  header .inner{max-width:1040px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .logo-combo{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .logo-combo img{width:44px;height:44px;display:block}
+  .logo-sub{display:block;font-size:11px;color:var(--muted);letter-spacing:.12em}
+  .logo-main{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:21px;line-height:1.1}
+  .logo-main b{color:var(--accent);font-weight:700}
+  .btn{display:inline-block;background:var(--cta);color:#fff;font-weight:700;text-decoration:none;border-radius:6px;letter-spacing:.04em;text-align:center}
+  .btn:hover{background:var(--cta-hover)}
+  .header-cta{font-size:13.5px;padding:10px 18px}
+
+  /* ヒーロー */
+  .hero{position:relative;overflow:hidden;background:linear-gradient(180deg,#fff 0%,var(--soft) 100%);padding:64px 0 56px}
+  .hero .mark{position:absolute;left:-10px;top:6px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(110px,26vw,250px);line-height:1;color:rgba(240,112,32,.09);letter-spacing:.04em;pointer-events:none;user-select:none}
+  .hero .wrap{position:relative}
+  .crumb{font-size:12.5px;color:var(--muted)}
+  .crumb a{text-decoration:none}
+  .hero .catch{margin-top:26px;font-family:'Shippori Mincho',serif;font-weight:600;font-size:18px;color:var(--accent-text)}
+  .hero h1{margin-top:6px;font-family:'Shippori Mincho',serif;font-weight:800;font-size:clamp(32px,6vw,48px);line-height:1.4}
+  .hero .lead{margin-top:22px;max-width:680px;font-size:16px}
+  .hero .lead b{font-weight:700}
+  .hero .small{margin-top:14px;max-width:680px;font-size:13.5px;color:var(--muted)}
+  .hero .cols{display:grid;grid-template-columns:1.25fr 1fr;gap:44px;align-items:center}
+  .hero .ph{border-radius:16px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 10px 32px rgba(26,35,50,.14)}
+  .hero .ph img{width:100%;height:100%;object-fit:cover;object-position:50% 60%;display:block}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+  .chips a{display:inline-block;padding:9px 18px;border:1.5px solid var(--accent-text);color:var(--accent-text);border-radius:999px;font-size:14px;font-weight:700;text-decoration:none;background:#fff}
+  .chips a:hover{background:var(--soft)}
+
+  /* セクション共通 */
+  section.s{padding:84px 0}
+  section.s.alt{background:var(--paper)}
+  .sec-en{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:.24em;color:var(--accent);text-transform:uppercase}
+  h2.t{margin-top:6px;font-family:'Shippori Mincho',serif;font-weight:800;font-size:clamp(26px,4.4vw,36px);line-height:1.5}
+  .sec-lead{margin-top:14px;font-size:15.5px;color:#3d454c;max-width:720px}
+
+  /* 3つの柱：変える → 保つ → 戻す */
+  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+  .chev{display:flex;align-items:center;gap:10px;padding:14px 34px 14px 18px;color:#fff;font-family:'Shippori Mincho',serif;font-weight:800;font-size:16.5px;line-height:1.4;clip-path:polygon(0 0,calc(100% - 22px) 0,100% 50%,calc(100% - 22px) 100%,0 100%)}
+  .chev i{font-style:normal;flex:none;display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px}
+  .chev.c1{background:#f8a05f}.chev.c1 i{color:#f8a05f}
+  .chev.c2{background:#f58a45}.chev.c2 i{color:#f58a45}
+  .chev.c3{background:#f07020}.chev.c3 i{color:#f07020}
+  .pph{margin-top:14px;aspect-ratio:4/3;border-radius:12px;overflow:hidden;background:var(--paper)}
+  .pph img{width:100%;height:100%;object-fit:cover;display:block}
+  .pph.fit img{object-fit:contain}
+  .pillar h3{margin-top:16px;font-family:'Shippori Mincho',serif;font-weight:800;font-size:20px;line-height:1.55}
+  .ptx{margin-top:10px;font-size:14.5px;color:#4a5260;line-height:1.95}
+  /* 2つのプラン */
+  .pcards{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px}
+  .pcard{position:relative;background:#fff;border:1px solid var(--line);border-radius:14px;padding:0 0 26px;box-shadow:0 6px 24px rgba(26,35,50,.06);overflow:hidden}
+  .pcard .ph{aspect-ratio:16/9;overflow:hidden;background:var(--paper)}
+  .pcard .ph img{width:100%;height:100%;object-fit:cover;display:block}
+  .pcard .ribbon{background:var(--accent);color:#fff;font-weight:700;font-size:14.5px;line-height:1.6;padding:12px 22px}
+  .pcard .in{padding:22px 24px 0}
+  .pcard h3{font-family:'Shippori Mincho',serif;font-weight:800;font-size:26px;line-height:1.4}
+  .pcard .tag{margin-top:4px;font-weight:700;font-size:15px;color:var(--accent-text);line-height:1.7}
+  .pcard .aim{margin-top:14px;font-family:'Shippori Mincho',serif;font-weight:700;font-size:17px;line-height:1.8}
+  .pcard .aims{list-style:none;margin-top:12px}
+  .pcard .aims li{display:grid;grid-template-columns:6.2em 1fr;gap:10px;align-items:baseline;padding:8px 0;border-top:1px solid var(--line);font-family:'Shippori Mincho',serif;font-weight:700;font-size:15.5px;line-height:1.75}
+  .pcard .aims li:first-child{border-top:0}
+  .pcard .aims span{font-family:'Zen Kaku Gothic New',sans-serif;font-size:12.5px;color:var(--accent-text);border:1px solid var(--accent-text);border-radius:999px;padding:1px 8px;text-align:center;white-space:nowrap}
+  .pcard .gain{list-style:none;margin-top:14px}
+  .pcard .gain li{position:relative;padding:3px 0 3px 22px;font-size:15px;line-height:1.85;color:#2b3238}
+  .pcard .gain li::before{content:'';position:absolute;left:2px;top:.95em;width:9px;height:9px;border-radius:50%;background:var(--accent)}
+  .pcard dd .sub{display:block;margin-top:2px;font-size:13.5px;color:var(--muted)}
+  .pcard dl{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;margin-top:20px;padding-top:18px;border-top:1px solid var(--line);font-size:15px;align-items:baseline}
+  .pcard dt{color:var(--muted);font-size:13.5px}
+  .pcard dd b{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:34px;color:var(--accent-text);letter-spacing:.02em}
+  .pcard dd small{font-size:12.5px;color:var(--muted);white-space:nowrap}
+  .values{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px}
+  .value{background:var(--paper);border-radius:12px;padding:22px 24px}
+  .value h4{font-family:'Shippori Mincho',serif;font-weight:700;font-size:17px}
+  .value p{margin-top:8px;font-size:14.5px;color:#4a5260;line-height:1.95}
+
+  /* 料金表 */
+  .tbl-wrap{margin-top:36px;overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:12px;background:#fff}
+  table.price{width:100%;min-width:700px;border-collapse:collapse;font-size:15px}
+  .price th,.price td{padding:14px 12px;text-align:center;border-bottom:1px solid var(--line);line-height:1.6}
+  .price thead th{background:var(--deep);color:#fff;font-weight:700}
+  .price thead tr:first-child th{border-bottom:1px solid rgba(255,255,255,.2)}
+  .price thead th.g{border-left:1px solid rgba(255,255,255,.2)}
+  .price thead tr:nth-child(2) th{background:#26334a;font-size:14px}
+  .price th.rh,.price td.rh{position:sticky;left:0;z-index:2;text-align:left;font-weight:700;background:#f3f6f9;min-width:7.6em;max-width:9em;font-size:13.5px}
+  .price thead th.rh{background:var(--deep);color:#fff}
+  .price td.rh{color:var(--ink)}
+  .price tr.yen td{padding:18px 10px;background:var(--soft)}
+  .price tr.yen td b{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:30px;color:var(--accent-text);letter-spacing:.02em}
+  .price tr.yen td small{font-size:12px;color:var(--muted);margin-left:2px}
+  .price tr.yen td.rh{background:#fbeadc}
+  .price tr.sub td{font-size:13px;color:var(--muted)}
+  .price td.on{color:var(--accent-text);font-weight:700;font-size:17px}
+  .price td.off{color:#b6bdc4}
+  .price tr:last-child td{border-bottom:0}
+  .scroll-hint{display:none;margin-top:18px;text-align:right;font-size:12.5px;color:var(--muted)}
+  .price thead tr:nth-child(2) th:nth-child(4){background:#3a4a66}
+  .price tbody td:nth-child(5){background:#fffaf5}
+  .price tr.yen td:nth-child(5){background:#fdeadb}
+  .cta-row{margin-top:36px;text-align:center}
+  .cta-row .btn{font-size:16.5px;padding:15px 36px}
+  .cta-row p{margin-top:8px;font-size:13px;color:var(--muted)}
+  .terms{margin-top:36px;border-top:1px solid var(--line)}
+  .terms div{display:grid;grid-template-columns:7em 1fr;gap:16px;padding:16px 4px;border-bottom:1px solid var(--line);font-size:14.5px}
+  .terms dt{font-weight:700}
+  .terms dd a{text-decoration:underline}
+  .goals{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:32px}
+  .goal{background:#fff;border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:10px;padding:20px 20px}
+  .goal h4{font-family:'Shippori Mincho',serif;font-weight:800;font-size:17px;line-height:1.5}
+  .goal .q{margin-top:8px;font-weight:700;font-size:15px;line-height:1.8}
+  .goal p.n{margin-top:10px;font-size:14px;color:#4a5260;line-height:1.9}
+  .notes{margin-top:26px;font-size:13px;color:var(--muted);line-height:1.95}
+  .notes a{text-decoration:underline}
+
+  /* FAQ */
+  .faq{margin-top:30px;border-top:1px solid var(--line)}
+  .faq details{border-bottom:1px solid var(--line)}
+  .faq summary{cursor:pointer;list-style:none;display:flex;gap:14px;align-items:baseline;padding:20px 4px;font-weight:700;font-size:16px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::before{content:'Q';font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--accent);font-size:20px}
+  .faq summary::after{content:'+';margin-left:auto;color:var(--muted);font-size:22px;font-weight:400}
+  .faq details[open] summary::after{content:'−'}
+  .faq .a{padding:0 4px 22px 34px;font-size:15px;color:#3d454c;line-height:1.95}
+
+  /* 体験への導線 */
+  .cta{position:relative;overflow:hidden;background:var(--deep);color:#fff;text-align:center;padding:84px 0}
+  .cta .bg{position:absolute;inset:0}
+  .cta .bg img{width:100%;height:100%;object-fit:cover;display:block}
+  .cta .bg::after{content:'';position:absolute;inset:0;background:rgba(26,35,50,.84)}
+  .cta .wrap{position:relative}
+  .cta h2{font-family:'Shippori Mincho',serif;font-weight:800;font-size:clamp(24px,4vw,32px);line-height:1.5}
+  .cta p{margin-top:14px;font-size:15.5px;color:rgba(255,255,255,.86)}
+  .offer{margin-top:22px;font-size:16px}
+  .offer span{display:inline-block;border:1px solid var(--accent-light);color:var(--accent-light);font-size:12.5px;font-weight:700;padding:3px 11px;margin-right:8px}
+  .offer b{font-family:'Barlow Condensed',sans-serif;font-size:30px;color:var(--accent-light);margin-left:4px}
+  .cta .btn{margin-top:26px;font-size:17px;padding:17px 40px}
+  .back{display:block;margin-top:22px;font-size:14px;color:rgba(255,255,255,.78)}
+
+  footer {
+    background: #111d2b;
+    padding: 56px 24px 40px;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.62);
+    margin-bottom: 28px;
+  }
+  .footer-logo span { color: #f58c45; }
+
+  .footer-sns {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 28px;
+  }
+
+  .footer-sns-link {
+    color: rgba(255,255,255,0.6);
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+  }
+  .footer-sns-link:hover { color: rgba(255,255,255,0.8); }
+
+  .footer-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .footer-nav-link {
+    font-size: 13px;
+    color: rgba(255,255,255,0.72);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .footer-nav-link:hover { color: rgba(255,255,255,0.7); }
+
+  .footer-nav-sep {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .footer-copy {
+    font-size: 12px;
+    color: rgba(255,255,255,0.62);
+    letter-spacing: 0.1em;
+  }
+
+  /* スマホ下部の固定ボタン */
+  .sticky{display:none}
+  @media (max-width:820px){
+    .wrap{padding:0 20px}
+    section.s{padding:64px 0}
+    .pcards,.values,.goals,.pillars{grid-template-columns:1fr}
+    .chev{clip-path:none;border-radius:10px;padding:12px 16px}
+    .pillar + .pillar{margin-top:10px}
+    .hero{padding:48px 0 44px}
+    .hero .cols{grid-template-columns:1fr;gap:26px}
+    .hero .ph{aspect-ratio:16/10}
+    .hero .ph img{object-position:50% 62%}
+    .scroll-hint{display:block}
+    .cta-row{display:none}
+    .terms div{grid-template-columns:1fr;gap:4px}
+    .sticky{display:block;position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid var(--line)}
+    .sticky .btn{display:block;font-size:16px;padding:14px}
+  }
+</style>
+</head>
+<body data-page-type="plans">
+
+<header>
+  <div class="inner">
+    <a href="/trial" class="logo-combo">
+      <img src="re_move_logo.png" alt="Re Move ロゴ" width="44" height="44">
+      <div><span class="logo-sub">ランナー専門サポート</span><span class="logo-main"><b>Re</b> Move</span></div>
+    </a>
+    <a href="https://lin.ee/tjPDQay" class="btn header-cta" data-cta-position="plans_header" data-cta-label="体験申込_継続詳細" target="_blank" rel="noopener">LINEで申し込み</a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="mark en" aria-hidden="true">Plans</div>
+  <div class="wrap">
+   <div class="cols">
+    <div class="txt">
+    <p class="crumb"><a href="/trial">初回体験セッション</a>　›　根本改善プログラム</p>
+    <p class="catch">痛みなく、走れる身体を取り戻す</p>
+    <h1>根本改善プログラム</h1>
+    </div>
+   </div>
+  </div>
+</section>
+
+<section class="s" id="course">
+  <div class="wrap">
+    <span class="sec-en">Course</span>
+    <h2 class="t">ライトプランと<br class="sp-br">トータルサポートプラン</h2>
+    <div class="pcards">
+      <div class="pcard">
+        <p class="ribbon">走れてはいるけれど、痛みや怪我が不安な方向け</p>
+        <div class="in">
+          <h3>ライトプラン</h3>
+          <p class="aim">身体の使い方・動きを見直して、不安なく走り続けられる身体を目指す</p>
+          <dl>
+            <dt>期間</dt><dd>3ヶ月間</dd>
+            <dt>回数</dt><dd>全6〜9回（月2回／月3回）</dd>
+            <dt>料金</dt><dd><b>57,000円</b>〜 <small>総額・税込</small><span class="sub">月あたり19,000円〜</span></dd>
+          </dl>
+        </div>
+      </div>
+      <div class="pcard">
+        <p class="ribbon">痛みが強く、思うように走れていない方向け</p>
+        <div class="in">
+          <h3>トータルサポートプラン</h3>
+          <p class="aim">痛みの根本原因にアプローチし、痛みなく走れる身体を目指す</p>
+          <dl>
+            <dt>期間</dt><dd>4〜6ヶ月間</dd>
+            <dt>回数</dt><dd>全12〜24回</dd>
+            <dt>料金</dt><dd><b>198,000円</b>〜 <small>総額・税込</small><span class="sub">月あたり48,000円〜</span></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s alt" id="core">
+  <div class="wrap">
+    <span class="sec-en">Core</span>
+    <h2 class="t">トータルサポートプランの3つの柱</h2>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="chev c1"><i>1</i>セッション</div>
+        <div class="pph fit"><img src="img/pillar-move-440.jpg" alt="動きの改善のbefore・after（うつ伏せでの脚上げ）" width="440" height="480" loading="lazy"></div>
+        <h3>根本原因の動きを改善する</h3>
+        <p class="ptx">痛みの原因になっている動きに対して、セッションではアプローチしていきます。動きのクセは、時間が経つとまた元に戻ってしまうため、適切な頻度と回数で根本改善を目指します。</p>
+      </div>
+      <div class="pillar">
+        <div class="chev c2"><i>2</i>セルフエクササイズ</div>
+        <div class="pph"><img src="img/pillar-self-720.jpg" alt="膝を抱えて行うセルフエクササイズ" width="720" height="900" loading="lazy" style="object-position:50% 38%"></div>
+        <h3>あなたに合った動きを、継続・定着させる</h3>
+        <p class="ptx">自宅で行えるエクササイズを、あなたの状態に合わせてお伝えします。セッションとセッションの間でもエクササイズをチェックし、良い動きの継続・定着をサポートします。</p>
+      </div>
+      <div class="pillar">
+        <div class="chev c3"><i>3</i>練習設計</div>
+        <div class="pph"><img src="img/pillar-run-640.webp" alt="公園を走るランナー" width="640" height="904" loading="lazy" style="object-position:30% 52%"></div>
+        <h3>復帰まで、サポートする</h3>
+        <p class="ptx">痛みが治まると、つい走る量を一気に戻して、また痛める方が少なくありません。走る距離・ペース・頻度は状態を見ながら調整し、復帰までを伴走します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="price">
+  <div class="wrap">
+    <span class="sec-en">Price</span>
+    <h2 class="t">料金と内容</h2>
+    <p class="scroll-hint">横にスクロールできます →</p>
+    <div class="tbl-wrap">
+      <table class="price">
+        <thead>
+          <tr><th class="rh" rowspan="2">プラン</th><th colspan="2" class="g">ライトプラン</th><th colspan="3" class="g">トータルサポートプラン</th></tr>
+          <tr><th>月2回</th><th>月3回</th><th>4ヶ月</th><th>6ヶ月</th><th>6ヶ月集中</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="rh">期間</td><td>3ヶ月</td><td>3ヶ月</td><td>4ヶ月</td><td>6ヶ月</td><td>6ヶ月</td></tr>
+          <tr><td class="rh">セッション</td><td>月2回<br>全6回</td><td>月3回<br>全9回</td><td>月3回<br>全12回</td><td>月3回<br>全18回</td><td>月4回<br>全24回</td></tr>
+          <tr class="yen"><td class="rh">総額（税込）</td><td><b>57,000</b><small>円</small></td><td><b>84,000</b><small>円</small></td><td><b>198,000</b><small>円</small></td><td><b>288,000</b><small>円</small></td><td><b>342,000</b><small>円</small></td></tr>
+          <tr class="sub"><td class="rh">月あたりの目安</td><td>19,000円</td><td>28,000円</td><td>49,500円</td><td>48,000円</td><td>57,000円</td></tr>
+          <tr><td class="rh">パーソナルセッション<br>（オンライン50分）</td><td class="on">○</td><td class="on">○</td><td class="on">○</td><td class="on">○</td><td class="on">○</td></tr>
+          <tr><td class="rh">エクササイズ動画のお渡し</td><td class="on">○</td><td class="on">○</td><td class="on">○</td><td class="on">○</td><td class="on">○</td></tr>
+          <tr><td class="rh">LINE相談</td><td class="on">○</td><td class="on">○</td><td class="on">○</td><td class="on">○</td><td class="on">○</td></tr>
+          <tr><td class="rh">ビフォーアフター動画</td><td class="on">○</td><td class="on">○</td><td class="on">○</td><td class="on">○</td><td class="on">○</td></tr>
+          <tr><td class="rh">エクササイズチェック</td><td class="off">−</td><td class="off">−</td><td class="on">○</td><td class="on">○</td><td class="on">○</td></tr>
+          <tr><td class="rh">走りの分析と練習設計</td><td class="off">−</td><td class="off">−</td><td class="on">○</td><td class="on">○</td><td class="on">○</td></tr>
+          <tr><td class="rh">骨格動作タイプ診断1回※</td><td class="off">−</td><td class="off">−</td><td class="off">−</td><td class="on">○</td><td class="on">○</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="notes">※ 骨格動作タイプ診断は、株式会社HURECのサービスを利用します。</p>
+    <div class="cta-row">
+      <a href="https://lin.ee/tjPDQay" class="btn" data-cta-position="plans_mid" data-cta-label="体験申込_継続詳細" target="_blank" rel="noopener">初回体験セッションに申し込む</a>
+      <p>初回体験セッション80分 ¥4,400（税込）／毎月5名様限定</p>
+    </div>
+  </div>
+</section>
+
+<section class="s alt" id="faq">
+  <div class="wrap">
+    <span class="sec-en">FAQ</span>
+    <h2 class="t">よくあるご質問</h2>
+    <div class="faq">
+      <details><summary>プログラム中も、走り続けられますか</summary><p class="a">走ることを一律にお止めすることはありません。痛みの状態を見ながら、ご相談して決めていきます。<br>ただし私は医師ではないため、診断はできません。医療機関での対応が必要と思われる場合は、受診をおすすめしています。</p></details>
+      <details><summary>忙しい時期もあり、続けられるか不安です</summary><p class="a">ペースはご予定に合わせてご相談しながら決めます。加えて、お客様ごとのエクササイズ動画をお渡しし、期間中はLINEでご相談いただけます。</p></details>
+      <details><summary>単発セッションを続けるのと、何が違いますか</summary><p class="a">単発は、その1回の中で動きを整えるものです。根本改善プログラムは、セッションとセッションの間も含めてサポートします。</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2>まずは、初回体験セッションから</h2>
+    <p class="offer"><span>毎月5名様限定</span>初回体験セッション80分<b>¥4,400</b>（税込）</p>
+    <a href="https://lin.ee/tjPDQay" class="btn" data-cta-position="plans_bottom" data-cta-label="体験申込_継続詳細" target="_blank" rel="noopener">初回セッションに申し込む</a>
+    <a href="/trial" class="back">← 初回体験セッションのページへ戻る</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="footer-logo">ランナー専門サポート <span style="text-transform:none;">Re Move</span></div>
+  <div class="footer-sns">
+    <a href="https://www.instagram.com/hiroki_trainer_?igsh=MTRwdTNnb25yNG5iaA==" class="footer-sns-link" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <a href="https://www.threads.com/@hiroki_trainer_?igshid=NTc4MTIwNjQ2YQ==" class="footer-sns-link" target="_blank" rel="noopener" aria-label="Threads">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.473 12.01v-.02c.027-3.579.877-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.781 3.631 2.695 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L7.734 7.847c.98-1.454 2.568-2.256 4.478-2.256h.044c3.194.02 5.097 1.975 5.287 5.388.108.046.216.094.321.142 1.49.7 2.58 1.761 3.154 3.07.797 1.82.871 4.79-1.548 7.158-1.85 1.81-4.094 2.628-7.277 2.65Zm1.003-11.69c-.242 0-.487.007-.739.021-1.836.103-2.98.946-2.916 2.143.067 1.256 1.452 1.839 2.784 1.767 1.224-.065 2.818-.543 3.086-3.71a10.5 10.5 0 0 0-2.215-.221z"/></svg>
+    </a>
+    <a href="https://x.com/hiro85_yama?s=21&t=ApdMsFMb6oEmEvqJ75FDjQ" class="footer-sns-link" target="_blank" rel="noopener" aria-label="X">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    </a>
+  </div>
+  <nav class="footer-nav">
+    <a href="/tokushoho-plan" class="footer-nav-link">特定商取引法に基づく表記</a>
+    <span class="footer-nav-sep">|</span>
+    <a href="/privacy-site" class="footer-nav-link">プライバシーポリシー</a>
+  </nav>
+  <p class="footer-copy">© 2025 山田紘暉 All Rights Reserved.</p>
+</footer>
+
+<div class="sticky"><a href="https://lin.ee/tjPDQay" class="btn" data-cta-position="plans_sticky" data-cta-label="体験申込_継続詳細" target="_blank" rel="noopener">初回体験セッションに申し込む</a></div>
+
+<script>
+  // LINEのクリック計測（/trialと同じ形）。gtagが無い場合は何もしない
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[data-cta-position]');
+    if (!a || typeof window.gtag !== 'function') return;
+    window.gtag('event', 'line_click', {
+      event_category: 'LINE',
+      event_label: a.getAttribute('data-cta-label'),
+      page_type: document.body.getAttribute('data-page-type'),
+      cta_position: a.getAttribute('data-cta-position')
+    });
+  });
+</script>
+</body>
+</html>
